@@ -8,9 +8,11 @@ public class Dice implements Bin {
 
 
     public ArrayList roll(int numOfDice){
+
         return null;
     }
     public ArrayList compare(Dice dice){
+
         return null;
     }
 
