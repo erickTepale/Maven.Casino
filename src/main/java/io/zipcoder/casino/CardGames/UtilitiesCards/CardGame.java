@@ -9,11 +9,14 @@ import java.util.Stack;
 
 public abstract class CardGame extends Game {
     //does cardgame get deal and draw? or stay in deck
+    private Deck deck;
+
+    public CardGame() {
+        deck = new Deck();
+        deck.shuffle();
+    }
 
     public ArrayList<Card> deal(Integer numOfCards){
-        Deck deck = new Deck();
-        deck.shuffle();
-
         return Deck.getHand(numOfCards);
     }
 

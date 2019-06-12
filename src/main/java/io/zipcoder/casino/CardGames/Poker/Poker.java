@@ -12,13 +12,11 @@ public class Poker extends CardGame implements GamblingGame {
     private PokerPlayer player;
     private PokerPlayer dealer;
     private Integer pot;
-    private Deck deck;
 
     public Poker(BasePlayer player, BasePlayer dealer){
+        super();
         this.player = new PokerPlayer(player);
         this.dealer = new PokerPlayer(dealer);
-        deck = super.getDeck();
-        pot = 0;
         initGame();
     }
 
