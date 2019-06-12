@@ -15,7 +15,7 @@ public class Deck {
         this.generate();
     }
 
-    public void generate() {
+    private void generate() {
         for (Suit suit : Suit.values()) {
             for (Rank rank : Rank.values()) {
                 cards.push(new Card(suit, rank));

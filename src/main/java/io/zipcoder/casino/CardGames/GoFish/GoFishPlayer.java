@@ -6,13 +6,15 @@ import io.zipcoder.casino.CardGames.UtilitiesCards.Card;
 import java.util.List;
 
 public class GoFishPlayer extends BasePlayer {
+    private BasePlayer basePlayer;
+    private List<Card> hand;
+
     public GoFishPlayer(String name, BasePlayer player) {
         super(name);
-        this.player = player;
+        this.basePlayer = basePlayer;
     }
 
-    private BasePlayer player;
-    private List<Card> hand;
+
 
     public void ask(){}
     public void fetch(){}
