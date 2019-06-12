@@ -1,3 +1,8 @@
+package io.zipcoder.casino.CardGames.Blackjack;
+
+import io.zipcoder.casino.utilities.BasePlayer;
+import io.zipcoder.casino.CardGames.UtilitiesCards.Card;
+
 import java.util.List;
 
 public class BlackjackPlayer extends BasePlayer {

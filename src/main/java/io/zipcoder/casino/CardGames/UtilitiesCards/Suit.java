@@ -1,8 +1,10 @@
+package io.zipcoder.casino.CardGames.UtilitiesCards;
+
 public enum Suit {
     HEARTS("Hearts"),
     SPADES("Spades"),
     DIAMONDS("Diamonds"),
-    ClUBS("Clubs");
+    CLUBS("Clubs");
 
     private final String suitText;
 

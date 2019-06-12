@@ -1,3 +1,7 @@
+package io.zipcoder.casino.Roulette;
+
+import io.zipcoder.casino.utilities.GamblingGame;
+
 public class Roulette implements GamblingGame {
     private RoulettePlayer player;
     private RoulettePlayer dealer;

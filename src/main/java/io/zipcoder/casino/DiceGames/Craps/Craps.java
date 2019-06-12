@@ -1,4 +1,9 @@
-public class Craps extends  DiceGame implements GamblingGame{
+package io.zipcoder.casino.DiceGames.Craps;
+
+import io.zipcoder.casino.DiceGames.UtilitiesDice.DiceGame;
+import io.zipcoder.casino.utilities.GamblingGame;
+
+public class Craps extends DiceGame implements GamblingGame {
     CrapsPlayer player;
     CrapsPlayer dealer;
 
