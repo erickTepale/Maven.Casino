@@ -1,6 +1,6 @@
 package io.zipcoder.casino.CardGames.UtilitiesCards;
 
-public class Card {
+public class Card implements Comparable<Card> {
     private Suit suit;
     private Rank faceValue;
     private Boolean isFaceUp;
@@ -36,5 +36,12 @@ public class Card {
             thisCard = this.faceValue.getRankValue() + " of " + this.suit.getSuitText();
         }
         return thisCard;
+    }
+
+
+    @Override
+    public int compareTo(Card card) {
+        return (this.getFaceValue().getRankValue() < card.getFaceValue().getRankValue() ? -1 :
+                (this.getFaceValue().getRankValue() == card.getFaceValue().getRankValue() ? 0 : 1));
     }
 }
