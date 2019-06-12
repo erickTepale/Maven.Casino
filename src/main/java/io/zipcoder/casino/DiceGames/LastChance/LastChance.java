@@ -1,6 +1,9 @@
-import java.util.List;
+package io.zipcoder.casino.DiceGames.LastChance;
 
-public class LastChance extends DiceGame implements GamblingGame{
+import io.zipcoder.casino.DiceGames.UtilitiesDice.DiceGame;
+import io.zipcoder.casino.utilities.GamblingGame;
+
+public class LastChance extends DiceGame implements GamblingGame {
     private LastChancePlayer player;
     private LastChancePlayer dealer;
 
