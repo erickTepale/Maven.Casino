@@ -19,6 +19,7 @@ public class Dice implements Bin {
 
 
     public ArrayList compare(Dice dice){
+
         return null;
     }
 
