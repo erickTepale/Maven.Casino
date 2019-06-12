@@ -10,8 +10,8 @@ public class GoFish extends CardGame implements Bin {
     private GoFishPlayer dealer;
 
     public GoFish(BasePlayer player, BasePlayer dealer) {
-        this.player = new GoFishPlayer(player);
-        this.dealer = new GoFishPlayer(dealer);
+        this.player = (GoFishPlayer) player;
+        this.dealer = (GoFishPlayer) dealer;
     }
 
 
@@ -19,13 +19,18 @@ public class GoFish extends CardGame implements Bin {
 
     }
 
+    @Override
     public void remove(Integer index) {
 
     }
-
-    public Boolean isWin() {
-        return null;
-    }
+//
+//    public void remove(Integer index) {
+//
+//    }
+//
+//    public Boolean isWin() {
+//        return null;
+//    }
 
     public void switchTurns() {
 
