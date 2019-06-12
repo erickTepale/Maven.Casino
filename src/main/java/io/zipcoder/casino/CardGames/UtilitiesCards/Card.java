@@ -6,14 +6,6 @@ public class Card {
     private Boolean isFaceUp;
     //can define as enum
 
-    public Card(Suit suit, Rank faceValue, Boolean isFaceUp) {
-        this.suit = suit;
-        this.faceValue = faceValue;
-        this.isFaceUp = isFaceUp;
-    }
-
-
-
     public Card(Suit suit, Rank faceValue) {
         this.faceValue = faceValue;
         this.suit = suit;
@@ -37,7 +29,12 @@ public class Card {
 
 
     public String printCard(){
-        String thisCard = this.faceValue + " OF " + this.suit;
+        String thisCard;
+        if (this.faceValue.getRankValue() > 10 || this.faceValue.getRankValue() == 1){
+            thisCard = this.faceValue.getRankString() + " of " + this.suit.getSuitText();
+        } else {
+            thisCard = this.faceValue.getRankValue() + " of " + this.suit.getSuitText();
+        }
         return thisCard;
     }
 }
