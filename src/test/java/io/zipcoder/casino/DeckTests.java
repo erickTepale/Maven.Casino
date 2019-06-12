@@ -98,4 +98,14 @@ public class DeckTests {
         Integer actual = testHand.getHandSize();
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void getHandTest2(){
+        testHand = new Hand(testDeck.getHand(35));
+        testHand.sortHandByNumber();
+        testHand.showHand();
+//        Integer actual = testHand.getHandSize();
+//        Assert.assertEquals(expected, actual);
+    }
+
 }
