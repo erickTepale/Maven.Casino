@@ -9,11 +9,9 @@ public class GoFishPlayer extends BasePlayer {
     private BasePlayer basePlayer;
     private List<Card> hand;
 
-    public GoFishPlayer(String name, BasePlayer player) {
-        super(name);
+    public GoFishPlayer(BasePlayer player) {
         this.basePlayer = basePlayer;
     }
-
 
 
     public void ask(){}
