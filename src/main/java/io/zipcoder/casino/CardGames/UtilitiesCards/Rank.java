@@ -17,7 +17,7 @@ public enum Rank {
         return rankValue;
     }
 
-    public void setRankValue(int rankValue) {
+    public void setRankValue() {
         this.rankValue = rankValue;
     }
 
