@@ -10,6 +10,10 @@ public class BlackjackPlayer extends BasePlayer {
     private Boolean stand;
     private Boolean bust;
 
+    public BlackjackPlayer(String name) {
+        super(name);
+    }
+
     public Card hit(){
 
         return null;

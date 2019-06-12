@@ -4,4 +4,7 @@ import io.zipcoder.casino.utilities.BasePlayer;
 
 public class CrapsPlayer extends BasePlayer {
 
+    public CrapsPlayer(String name) {
+        super(name);
+    }
 }

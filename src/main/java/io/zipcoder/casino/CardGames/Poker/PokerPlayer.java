@@ -10,6 +10,11 @@ public class PokerPlayer extends BasePlayer {
     private Boolean stand;
     List<Card> hand;
 
+    public PokerPlayer(String name, BasePlayer player) {
+        super(name);
+        this.player = player;
+    }
+
     public void raise(){
 
     }

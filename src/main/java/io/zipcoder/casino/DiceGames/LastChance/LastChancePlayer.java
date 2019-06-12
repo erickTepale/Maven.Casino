@@ -8,6 +8,11 @@ import java.util.List;
 public class LastChancePlayer extends BasePlayer {
     private List<Dice> bin;
 
+    public LastChancePlayer(String name, List<Dice> bin) {
+        super(name);
+        this.bin = bin;
+    }
+
     public void rollDice(){
     }
     public void checkWinLC(){
