@@ -31,16 +31,16 @@ public class Lobby {
                 Poker poker = new Poker(base,dealer);
                 break;
             case "GoFish" :
-                GoFish gofish = new GoFish(base,dealer);
+                //GoFish gofish = new GoFish(base,dealer);
                 break;
             case "Roulette" :
-                Roulette roulette = new Roulette(base,dealer);
+                //Roulette roulette = new Roulette(base,dealer);
                 break;
             case "Craps" :
                 Craps craps = new Craps(base,dealer);
                 break;
             case "Last Chance" :
-                LastChance lc = new LastChance(base,dealer);
+                //LastChance lc = new LastChance(base,dealer);
 
 
         }
