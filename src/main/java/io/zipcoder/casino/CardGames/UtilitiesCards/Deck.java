@@ -1,5 +1,6 @@
 package io.zipcoder.casino.CardGames.UtilitiesCards;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
 
@@ -47,5 +48,13 @@ public class Deck {
         for (int i = 0; i < numberOfCards; i++) {
             discardPile.push(draw());
         }
+    }
+
+    public static ArrayList<Card> getHand(Integer handSize){
+        ArrayList<Card> thisHand = new ArrayList<Card>();
+        for (int i = 0; i < handSize; i++){
+            thisHand.add(draw());
+        }
+        return thisHand;
     }
 }

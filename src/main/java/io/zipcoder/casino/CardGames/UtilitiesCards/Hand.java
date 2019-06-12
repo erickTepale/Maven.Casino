@@ -3,24 +3,23 @@ package io.zipcoder.casino.CardGames.UtilitiesCards;
 import java.util.ArrayList;
 
 public class Hand {
-    public static ArrayList<Card> playerHand;
-    public Deck thisDeck;
+    public static ArrayList<Card> hand;
 
     public Hand(){
-        this.playerHand = new ArrayList<Card>();
-        this.thisDeck = new Deck();
+        this.hand = new ArrayList<Card>();
     }
 
-    public Hand(Integer handSize, Deck deck){
-        for (int i = 0; i < handSize; i++){
-            playerHand.add(deck.draw());
+    public Hand(ArrayList<Card> hand){
+        this.hand = hand;
+    }
+
+    public void showHand(){
+        for (Card card: this.hand){
+            System.out.println(card.printCard());
         }
     }
 
-//    public void getHand(Integer handSize){
-//        for (int i = 0; i < handSize; i++){
-//            playerHand.add(thisDeck.draw());
-//        }
-//    }
-
+    public Integer getHandSize(){
+        return this.hand.size();
+    }
 }
