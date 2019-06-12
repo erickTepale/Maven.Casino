@@ -1,3 +1,5 @@
+package io.zipcoder.casino.utilities;
+
 public abstract class Game {
 
     public Boolean isWin(){return null;}

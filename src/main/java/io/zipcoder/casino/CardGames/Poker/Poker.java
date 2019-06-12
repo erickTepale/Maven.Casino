@@ -1,4 +1,9 @@
-public class Poker extends CardGame implements GamblingGame{
+package io.zipcoder.casino.CardGames.Poker;
+
+import io.zipcoder.casino.CardGames.UtilitiesCards.CardGame;
+import io.zipcoder.casino.utilities.GamblingGame;
+
+public class Poker extends CardGame implements GamblingGame {
     private PokerPlayer player;
     private PokerPlayer dealer;
     private Integer pot;
