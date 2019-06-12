@@ -7,7 +7,8 @@ public class Casino {
         Console console = new Console(System.in,System.out);
         String name = console.getStringInput("Please enter your name:");
         BasePlayer blank = new BasePlayer(name);
-        Lobby lobby = new Lobby(blank);
+        BasePlayer dealer = new BasePlayer("Dealer");
+        Lobby lobby = new Lobby(blank,dealer);
         // write your tests before you start fucking with this
     }
 }
