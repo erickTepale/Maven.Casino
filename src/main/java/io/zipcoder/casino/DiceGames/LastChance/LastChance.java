@@ -22,7 +22,7 @@ public class LastChance{
     Integer[]heldDice = new Integer[5]; //Dice that matches neededDice
     String welcomeMessage = "Welcome..."; //Continue with stringbuilder
     String gameScreen = "LastChance..."; //Continue with stringbuilder
-    String playAgainMessage = "Wouldyouliketoplayagain?Type'y'toplayagainor'n'toreturntothelobby.";
+    String playAgainMessage = "Would you like to play again? Type 'y' to play again or 'n' to return to the lobby.";
     Boolean playAgain = true;
     Boolean winLC = false;
     Boolean roll = true; //Set in printGameLC and sent to playGame
@@ -31,12 +31,24 @@ public class LastChance{
     Integer multiplier = 1;
     Integer numberOfDice = 5; //Will change as the game continues
 
+    /* README
+    Lobby class directs to welcomeLC()
+    welcomeLC() prompts input and calls setupLC()
+    setupLC() sets bet, multiplier, possibleWinning, and rolls. And calls printGameLC()
+    printGameLC() prompts input and calls either playGame() or Lobby
+    playGame() calls Dice.roll()
+
+
+    */
+
+
+
     public static void welcomeLC(){
         //String.format welcomeMessage here
             }
 
-    public void setupLC(Integer iBet,Integer iMultiplier){
-            bet = iBet;
+    public void setupLC(Integer ibet,Integer iMultiplier){
+            bet = ibet;
             multiplier = iMultiplier;
             possibleWinning = bet * multiplier;
             rolls = 7 - multiplier;
@@ -107,6 +119,9 @@ public class LastChance{
     public void returnToLobby(){
 
     }
+
+
+
 
 }
 
