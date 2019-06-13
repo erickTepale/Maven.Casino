@@ -14,4 +14,20 @@ public  class BasePlayer {
     public String getName() {
         return name;
     }
+
+    public void addToWallet(Integer amount){
+        wallet += amount;
+    }
+
+    public Integer getWallet(){
+        return wallet;
+    }
+
+    public boolean removeFromWallet(Integer amount){
+        if(wallet - amount >= 0 ){
+            wallet -= amount;
+            return true;
+        }else
+            return false;
+    }
 }

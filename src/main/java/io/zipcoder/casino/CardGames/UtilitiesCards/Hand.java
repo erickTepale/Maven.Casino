@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Hand {
-    public static ArrayList<Card> hand;
+    private ArrayList<Card> hand;
 
     public Hand(){
         this.hand = new ArrayList<>();
@@ -31,9 +31,5 @@ public class Hand {
     public void sortHandByNumber(){
         Collections.sort(this.hand);
     }
-
-//    public void sortHandByNumber(){
-//        CardSorter(hand).sortCards();
-//    }
 
 }

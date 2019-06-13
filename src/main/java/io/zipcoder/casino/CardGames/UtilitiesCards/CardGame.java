@@ -13,14 +13,14 @@ public abstract class CardGame extends Game {
     private BasePlayer basePlayer;
     private BasePlayer player;
 
-
+    //working on deck methods
     public CardGame() {
         deck = new Deck();
         deck.shuffle();
     }
 
     public ArrayList<Card> deal(Integer numOfCards){
-        return Deck.getHand(numOfCards);
+        return deck.getHand(numOfCards);
     }
 
     public Deck getDeck(){
@@ -28,5 +28,30 @@ public abstract class CardGame extends Game {
         a.shuffle();
         return a;
     }
+
+    public void add(Card card) {
+        deck.add(card);
+    }
+
+    public void shuffle() {
+        deck.shuffle();
+    }
+
+    public Integer getDeckSize() {
+        return deck.getDeckSize();
+    }
+
+    public Integer getDiscardPileSize() {
+        return deck.getDiscardPileSize();
+    }
+
+    public Card draw() {
+        return deck.draw();
+    }
+
+    public void burn(Integer numberOfCards){
+        deck.burn(numberOfCards);
+    }
+
 
 }

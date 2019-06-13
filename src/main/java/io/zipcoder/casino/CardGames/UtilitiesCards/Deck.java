@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.Stack;
 
 public class Deck {
-    public static Stack<Card> cards;
-    public static Stack<Card> discardPile;
+    public Stack<Card> cards;
+    public Stack<Card> discardPile;
 
 
     public Deck() {
@@ -27,7 +27,7 @@ public class Deck {
         cards.push(card);
     }
 
-    public static Card draw() {
+    public Card draw() {
         return cards.pop();
     }
 
@@ -44,13 +44,13 @@ public class Deck {
     }
 
 
-    public static void burn(Integer numberOfCards){
+    public void burn(Integer numberOfCards){
         for (int i = 0; i < numberOfCards; i++) {
             discardPile.push(draw());
         }
     }
 
-    public static ArrayList<Card> getHand(Integer handSize){
+    public ArrayList<Card> getHand(Integer handSize){
         ArrayList<Card> thisHand = new ArrayList<Card>();
         for (int i = 0; i < handSize; i++){
             thisHand.add(draw());

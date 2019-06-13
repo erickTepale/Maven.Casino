@@ -4,6 +4,7 @@ import io.zipcoder.casino.CardGames.UtilitiesCards.Card;
 import io.zipcoder.casino.CardGames.UtilitiesCards.CardGame;
 import io.zipcoder.casino.CardGames.UtilitiesCards.Deck;
 import io.zipcoder.casino.utilities.BasePlayer;
+import io.zipcoder.casino.utilities.Console;
 import io.zipcoder.casino.utilities.GamblingGame;
 
 import java.util.ArrayList;
@@ -12,11 +13,15 @@ public class Poker extends CardGame implements GamblingGame {
     private PokerPlayer player;
     private PokerPlayer dealer;
     private Integer pot;
+    private Integer[] wagerRecords; //2 rounds of betting
+    private Console console;
 
     public Poker(BasePlayer player, BasePlayer dealer){
         super();
         this.player = new PokerPlayer(player);
         this.dealer = new PokerPlayer(dealer);
+        this.pot = 0;
+        console = new Console(System.in, System.out);
         initGame();
     }
 

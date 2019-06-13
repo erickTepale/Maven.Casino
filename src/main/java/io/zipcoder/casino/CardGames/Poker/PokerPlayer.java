@@ -24,6 +24,8 @@ public class PokerPlayer extends BasePlayer {
 
     }
 
+
+
     public BasePlayer getPlayer() {
         return player;
     }
