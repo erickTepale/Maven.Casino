@@ -1,5 +1,7 @@
 package io.zipcoder.casino.Roulette;
 import java.util.Random;
+
+import io.zipcoder.casino.utilities.BasePlayer;
 import io.zipcoder.casino.utilities.GamblingGame;
 
 public class Roulette implements GamblingGame {

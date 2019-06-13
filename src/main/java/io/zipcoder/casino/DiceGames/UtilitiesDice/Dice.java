@@ -8,6 +8,10 @@ public class Dice implements Bin {
     static ArrayList<Integer> playerDice = new ArrayList<Integer>(5);
 
 
+    public Dice() {
+
+    }
+
 
     public static ArrayList roll(int numOfDice){
         for (int i = 0; i < numOfDice; i++) {
@@ -29,6 +33,27 @@ public class Dice implements Bin {
 
     public void remove(Integer index) {
 
+    }
+
+
+    public Integer rollOneDIe() {
+        return null;
+    }
+
+    public Integer rollTwoDice() {
+        return null;
+    }
+
+    public Integer rollThreeDie() {
+        return null;
+    }
+
+    public Integer rollFourDie() {
+        return null;
+    }
+
+    public Integer rollFiveDie() {
+        return null;
     }
 }
 
