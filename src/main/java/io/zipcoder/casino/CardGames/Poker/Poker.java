@@ -5,6 +5,7 @@ import io.zipcoder.casino.CardGames.UtilitiesCards.CardGame;
 import io.zipcoder.casino.CardGames.UtilitiesCards.Deck;
 import io.zipcoder.casino.utilities.BasePlayer;
 import io.zipcoder.casino.utilities.Console;
+import io.zipcoder.casino.utilities.ConsoleIO;
 import io.zipcoder.casino.utilities.GamblingGame;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class Poker extends CardGame implements GamblingGame {
     private Integer[] wagerRecords; //2 rounds of betting
     private Console console;
 
-    public Poker(BasePlayer player, BasePlayer dealer){
+    public Poker(BasePlayer player, BasePlayer dealer, ConsoleIO consoleIO){
         super();
         this.player = new PokerPlayer(player);
         this.dealer = new PokerPlayer(dealer);
@@ -30,22 +31,18 @@ public class Poker extends CardGame implements GamblingGame {
     }
 
     private void initGame(){
-    /*    String action = "";
+        String action = "";
         //cycle through options
         do {
             switch (action) {
                 case "quit":
                     break;
                 case "Play":
-//                    placeWager();
-//                    dealer.deal();
-//                    player.turn();
-//                    checkWin();
                     break;
 
             }
 
-        }while(!action.equals("quit"));*/
+        }while(!action.equals("quit"));
 
 
         //place wager

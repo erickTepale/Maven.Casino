@@ -8,7 +8,7 @@ import io.zipcoder.casino.DiceGames.LastChance.LastChance;
 //import io.zipcoder.casino.Roulette.Roulette;
 
 public class Lobby {
-    private Console console = new Console(System.in, System.out);
+    private ConsoleIO console;
 
 
     public Lobby() {
@@ -16,9 +16,9 @@ public class Lobby {
 
     }
 
-    public Lobby(BasePlayer base, BasePlayer dealer) {
-
-        System.out.println("Welcome " + base.getName() + " to Blitz & Chips the most exclusive Casino in the World");
+    public Lobby(ConsoleIO console, BasePlayer base, BasePlayer dealer) {
+    this.console = console;
+        //System.out.println("Welcome " + base.getName() + " to Blitz & Chips the most exclusive Casino in the World");
         boolean gameRunning = true;
         while (gameRunning) {
             String game = console.getStringInput("Please choose a game below");
@@ -28,7 +28,7 @@ public class Lobby {
                     Blackjack bj = new Blackjack(base, dealer);
                     break;
                 case "Poker":
-                    Poker poker = new Poker(base, dealer);
+                    Poker poker = new Poker(base, dealer, console);
                     break;
                 case "GoFish":
                     //GoFish gofish = new GoFish(base,dealer);
