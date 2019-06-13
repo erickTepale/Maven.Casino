@@ -23,8 +23,13 @@ public class Craps extends DiceGame implements GamblingGame {
 
     }
 
-    public void placeWager() {
+    @Override
+    public void welcomeMessage() {
 
+    }
+
+    public Integer placeWager() {
+        return null;
     }
 
     public void increaseMinBet() {
