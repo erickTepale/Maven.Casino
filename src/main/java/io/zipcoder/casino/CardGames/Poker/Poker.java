@@ -30,18 +30,27 @@ public class Poker extends CardGame implements GamblingGame {
     }
 
     private void initGame(){
-        String action = "";
+    /*    String action = "";
         //cycle through options
-//        do {
-//            switch (action) {
-//                case "quit":
-//
-//            }
-//
-//        }while(!action.equals("quit"));
+        do {
+            switch (action) {
+                case "quit":
+                    break;
+                case "Play":
+//                    placeWager();
+//                    dealer.deal();
+//                    player.turn();
+//                    checkWin();
+                    break;
+
+            }
+
+        }while(!action.equals("quit"));*/
 
 
         //place wager
+
+
     }
 
     public Boolean isWin() {
