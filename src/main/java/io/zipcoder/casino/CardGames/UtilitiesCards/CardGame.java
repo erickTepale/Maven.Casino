@@ -12,6 +12,7 @@ public abstract class CardGame extends Game {
     private Deck deck;
     private BasePlayer basePlayer;
     private BasePlayer player;
+    private BasePlayer cpuPlayer;
 
     //working on deck methods
     public CardGame() {
@@ -19,8 +20,15 @@ public abstract class CardGame extends Game {
         deck.shuffle();
     }
 
+    public CardGame(BasePlayer basePlayer, BasePlayer cpuPlayer, Deck deck){
+        this.basePlayer = basePlayer;
+        this.player = cpuPlayer;
+        deck.shuffle();
+        this.deck = deck;
+    }
+
     public ArrayList<Card> deal(Integer numOfCards){
-        return deck.getHand(numOfCards);
+        return this.deck.getHand(numOfCards);
     }
 
     public Deck getDeck(){

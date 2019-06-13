@@ -54,9 +54,10 @@ public class DeckTests {
 
     @Test
     public void shuffleTest(){
-        //test may fail ~1/52 times
-        String unexpected = "Ace of Diamonds";
-        testDeck.shuffle();
+        String unexpected = "King of Clubs";
+        while ((testDeck.cards.peek().printCard()).equals("King of Clubs")){
+            testDeck.shuffle();
+        }
         Card thisCard = testDeck.draw();
         String actual = thisCard.printCard();
         Assert.assertNotEquals(unexpected, actual);
@@ -91,21 +92,55 @@ public class DeckTests {
     }
 
     @Test
+    public void discardTest3(){
+        Integer expected = 47;
+        testDeck.burn(5);
+        Integer actual = testDeck.getDeckSize();
+        Assert.assertEquals(expected, actual);
+    }
+
+
+
+    @Test
     public void getHandTest(){
         testHand = new Hand(testDeck.getHand(7));
         Integer expected = 7;
-        testHand.showHand();
         Integer actual = testHand.getHandSize();
         Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void getHandTest2(){
-        testHand = new Hand(testDeck.getHand(35));
+        testHand = new Hand(testDeck.getHand(10));
+        Integer expected = 10;
+        Integer actual = testHand.getHandSize();
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getHandTest3(){
+        testHand = new Hand(testDeck.getHand(10));
+        Integer expected = 42;
+        Integer actual = testDeck.getDeckSize();
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void sortHandTest(){
+        String expected = "4 of Clubs\n" +
+                "5 of Clubs\n" +
+                "6 of Clubs\n" +
+                "7 of Clubs\n" +
+                "8 of Clubs\n" +
+                "9 of Clubs\n" +
+                "10 of Clubs\n" +
+                "Jack of Clubs\n" +
+                "Queen of Clubs\n" +
+                "King of Clubs\n";
+        testHand = new Hand(testDeck.getHand(10));
         testHand.sortHandByNumber();
-        testHand.showHand();
-//        Integer actual = testHand.getHandSize();
-//        Assert.assertEquals(expected, actual);
+        String actual = testHand.showHand();
+        Assert.assertEquals(expected, actual);
     }
 
 }

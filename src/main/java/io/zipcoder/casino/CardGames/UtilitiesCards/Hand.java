@@ -16,9 +16,19 @@ public class Hand {
         this.hand = hand;
     }
 
-    public void showHand(){
+
+    public String showHand(){
+        String showHand = "";
         for (Card card: this.hand){
-            System.out.println(card.printCard());
+            showHand += card.printCard() + "\n";
+            //System.out.println(card.printCard());
+        }
+        return showHand;
+    }
+
+    public void addToHand(Hand hand){
+        for (Card card : hand.hand){
+            this.hand.add(card);
         }
     }
 

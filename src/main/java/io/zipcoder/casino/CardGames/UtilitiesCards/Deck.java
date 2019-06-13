@@ -10,8 +10,8 @@ public class Deck {
 
 
     public Deck() {
-        this.cards = new Stack<Card>();
-        this.discardPile = new Stack<Card>();
+        this.cards = new Stack<>();
+        this.discardPile = new Stack<>();
         this.generate();
     }
 
