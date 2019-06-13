@@ -9,8 +9,25 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class LastChance{
-
+public class LastChance extends DiceGame implements GamblingGame{
+    /**
+     *   public void initGame(){
+     *      String input = "";
+     *      while(input.equals("quit"){
+     *          switch (input)
+     *              -> quit
+     *                      break;
+     *              -> "play"
+     *                      welcomeMessage();
+     *                      placeWager();
+     *                      dealerRoll();
+     *                      playerPlayGame(); // -> 5times
+     *                      printResult();
+     */
+    
+    //instance vars
+    private LastChancePlayer player;
+    private LastChancePlayer dealer;
 
     //Variablesfromotherclasses
     Integer bet=0;
@@ -108,6 +125,25 @@ public class LastChance{
 
     }
 
+    @Override
+    public void welcomeMessage() {
+
+    }
+
+    @Override
+    public Integer placeWager() {
+        return null;
+    }
+
+    @Override
+    public void increaseMinBet() {
+
+    }
+
+    @Override
+    public void decreaseMinBet() {
+
+    }
 }
 
 
