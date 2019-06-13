@@ -11,4 +11,8 @@ public class CrapsPlayer extends BasePlayer {
     public CrapsPlayer(String name) {
         super(name);
     }
+
+    public Integer roll(int i) {
+         return roll(2);
+    }
 }
