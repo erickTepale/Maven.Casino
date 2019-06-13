@@ -9,9 +9,13 @@ public class Craps extends DiceGame implements GamblingGame {
     CrapsPlayer player;
     CrapsPlayer dealer;
 
+
     public Craps(BasePlayer base, BasePlayer dealer){
+        super();
         this.player = (CrapsPlayer) base;
         this.dealer = (CrapsPlayer) dealer;
+        this.minBet = 20;
+        player.roll(2);
     }
 
 

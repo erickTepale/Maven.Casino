@@ -36,7 +36,12 @@ public class Dice implements Bin {
     }
 
 
-    public Integer rollOneDIe() {
+    public Integer rollDice(){
+
+        return null;
+    }
+
+   public Integer rollOneDIe() {
         return null;
     }
 

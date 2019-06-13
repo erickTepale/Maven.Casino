@@ -14,6 +14,7 @@ public class LastChancePlayer extends BasePlayer {
     }
 
     public void rollDice(){
+
     }
     public void checkWinLC(){
     }
