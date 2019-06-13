@@ -37,7 +37,7 @@ public class CardGameTest extends CardGame{
     public void burnTest(){
         Integer expected = 51;
 
-        Deck.burn(1);
+        testDeck.burn(1);
         Integer actual = testDeck.getDeckSize();
         Assert.assertEquals(expected, actual);
     }
@@ -80,5 +80,19 @@ public class CardGameTest extends CardGame{
         //check
         Assert.assertEquals(expected, size);
     }
+
+    @Test
+    public void addTest1(){
+        //Card expected
+        Card pop = super.draw();
+
+        //action
+        super.add(pop);
+
+        Assert.assertEquals(pop, super.draw());
+    }
+
+
+
 
 }
