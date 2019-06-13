@@ -41,7 +41,7 @@ public class Dice implements Bin {
         return null;
     }
 
-   /* public Integer rollOneDIe() {
+   public Integer rollOneDIe() {
         return null;
     }
 
@@ -59,7 +59,7 @@ public class Dice implements Bin {
 
     public Integer rollFiveDie() {
         return null;
-    }*/
+    }
 }
 
 

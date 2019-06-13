@@ -24,7 +24,7 @@ public class LastChance extends DiceGame implements GamblingGame{
      *                      playerPlayGame(); // -> 5times
      *                      printResult();
      */
-    
+
     //instance vars
     private LastChancePlayer player;
     private LastChancePlayer dealer;
