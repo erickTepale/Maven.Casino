@@ -11,12 +11,15 @@ public class Craps extends DiceGame implements GamblingGame {
     CrapsPlayer player;
     CrapsPlayer dealer;
     private Console console;
+    private int startBet;
 
 
     public Craps(BasePlayer base, BasePlayer dealer){
         super();
         this.player = (CrapsPlayer) base;
         this.dealer = (CrapsPlayer) dealer;
+        this.startBet = 0;
+        this.minBet = 20;
     }
 
     private void toPlayTheGame () {
@@ -27,7 +30,10 @@ public class Craps extends DiceGame implements GamblingGame {
                 case "RULES": printRules();
                 break;
                 case "Play": console.println(placeWager());
-
+                if (startBet >0 ){
+                    roll();
+                }
+                break;
             }
         } while (!Menu.equals("quit"));
 
@@ -84,6 +90,7 @@ public class Craps extends DiceGame implements GamblingGame {
     }
 
     public String printMenu(){
+
         return null;
     }
 
