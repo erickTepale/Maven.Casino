@@ -10,7 +10,6 @@ import java.util.Collections;
 import java.util.EnumMap;
 
 public class Hand {
-
     public static String showHand(ArrayList<Card> hand){
         String showHand = "";
         for (Card card: hand){
@@ -62,5 +61,4 @@ public class Hand {
         }
         return handMap;
     }
-
 }

@@ -49,9 +49,9 @@ public class Poker extends CardGame implements GamblingGame {
                     if(pot > 0){
                         dealer.setHand(super.deal(5));
                         player.setHand(super.deal(5));
+                        sortHands();
                         Hand.showHand((ArrayList<Card>) player.hand);
                         console.println(player.currentHandValue());
-                        Hand.showHand((ArrayList<Card>) player.hand);
                     }
 
                     break;
@@ -133,6 +133,11 @@ public class Poker extends CardGame implements GamblingGame {
                 "to either stay pat, or redraw selected cards to make a better hand.\n" +
                 "Not doubling down is a folding action and you lose initial bet." +
                 "\nDealer Must Have Queen High to Play! ");
+    }
+
+    public void sortHands(){
+        Hand.sortHandByNumber((ArrayList<Card>)player.hand);
+        Hand.sortHandByNumber((ArrayList<Card>)dealer.hand);
     }
 
     public Boolean isWin() {

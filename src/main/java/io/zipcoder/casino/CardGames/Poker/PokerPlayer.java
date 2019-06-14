@@ -20,19 +20,9 @@ public class PokerPlayer extends BasePlayer {
     }
 
     public String currentHandValue(){
-        Hand.sortHandByNumber((ArrayList<Card>) hand);
         return null;
     }
 
-    public void raise(){
-
-    }
-    public void call(){
-
-    }
-    public void check(){
-
-    }
     public Boolean checkRoyal (){
 
         return null;
@@ -60,7 +50,7 @@ public class PokerPlayer extends BasePlayer {
 
     //in pokerPlayer.java
     public String placeWager(int bet){
-       return player.removeFromWallet(bet) ? "Bet Placed!" : "Insufficient Funds!";
+        return player.removeFromWallet(bet) ? "Bet Placed!" : "Insufficient Funds!";
     }
 
 
