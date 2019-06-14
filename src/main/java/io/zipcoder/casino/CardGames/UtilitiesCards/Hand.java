@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Hand {
-    private ArrayList<Card> hand;
+    private ArrayList<Card> hand; // need to delete this asap
 
     public Hand(){
         this.hand = new ArrayList<>();
@@ -16,12 +16,21 @@ public class Hand {
         this.hand = hand;
     }
 
-    public void showHand(){
+    /*public static void showHand(){
         for (Card card: this.hand){
+            System.out.println(card.printCard());
+        }
+    }*/
+
+    public static void showHand(ArrayList<Card> hand){
+        for (Card card: hand){
             System.out.println(card.printCard());
         }
     }
 
+    public ArrayList<Card> getHand(){
+        return hand;
+    }
 
     public Integer getHandSize(){
         return this.hand.size();

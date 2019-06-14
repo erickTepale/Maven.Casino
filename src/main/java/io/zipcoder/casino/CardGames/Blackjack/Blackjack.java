@@ -39,15 +39,21 @@ public class Blackjack extends CardGame implements GamblingGame {
 
     }
 
+
     public Integer placeWager(Console console) {
-        console.getIntegerInput("Please enter your wager",betAmount);
-        if(player.removeFromWallet(betAmount)){
+        console.getIntegerInput("Please enter your wager", betAmount);
+        if (player.removeFromWallet(betAmount)) {
             console.println("Bet Amount of " + betAmount + " Confirmed");
 
-        }else{
+        } else {
             console.println("You currently do not have enough money to make that wager");
         }
         return betAmount;
+    }
+
+    public String placeWager() {
+        return null;
+
     }
 
     public void increaseMinBet() {

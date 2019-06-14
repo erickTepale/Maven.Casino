@@ -1,3 +1,4 @@
+
 package io.zipcoder.casino;
 
 import io.zipcoder.casino.CardGames.UtilitiesCards.*;
@@ -67,7 +68,7 @@ public class DeckTests {
     public void addCardTest(){
         String expected = "Ace of Diamonds";
         testDeck.draw();
-        testDeck.add(new Card(Suit.DIAMONDS, Rank.ACE));
+        testDeck.add(new Card(Suit.DIAMONDS, Rank.ACE, Suit.DIAMONDS.getSuitImage()));
         Card thisCard = testDeck.cards.get(51);
         String actual = thisCard.printCard();
         Assert.assertEquals(expected, actual);
@@ -94,7 +95,7 @@ public class DeckTests {
     public void getHandTest(){
         testHand = new Hand(testDeck.getHand(7));
         Integer expected = 7;
-        testHand.showHand();
+        testHand.showHand(testHand.getHand());
         Integer actual = testHand.getHandSize();
         Assert.assertEquals(expected, actual);
     }
@@ -103,9 +104,10 @@ public class DeckTests {
     public void getHandTest2(){
         testHand = new Hand(testDeck.getHand(35));
         testHand.sortHandByNumber();
-        testHand.showHand();
+        testHand.showHand(testHand.getHand());
 //        Integer actual = testHand.getHandSize();
 //        Assert.assertEquals(expected, actual);
     }
 
 }
+
