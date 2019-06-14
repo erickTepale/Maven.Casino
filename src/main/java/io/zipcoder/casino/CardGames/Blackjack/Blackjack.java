@@ -59,7 +59,7 @@ public class Blackjack extends CardGame implements GamblingGame {
     public void decreaseMinBet() {
 
     }
-    public Integer placeWager(){
+    public String placeWager(){
         return null;
     }
 }

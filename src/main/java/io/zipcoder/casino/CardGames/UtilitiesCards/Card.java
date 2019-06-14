@@ -46,7 +46,6 @@ public class Card implements Comparable<Card> {
 
     @Override
     public int compareTo(Card card) {
-        return (this.getFaceValue().getRankValue() < card.getFaceValue().getRankValue() ? -1 :
-                (this.getFaceValue().getRankValue() == card.getFaceValue().getRankValue() ? 0 : 1));
+        return (Integer.compare(this.getFaceValue().getRankValue(), card.getFaceValue().getRankValue()));
     }
 }

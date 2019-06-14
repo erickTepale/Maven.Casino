@@ -37,7 +37,7 @@ public class DeckTests {
 
     @Test
     public void DrawTest(){
-        String expected = "King of Clubs";
+        String expected = "K"+ (char)'\u2663';
         Card thisCard = testDeck.draw();
         String actual = thisCard.printCard();
         Assert.assertEquals(expected, actual);
@@ -45,7 +45,7 @@ public class DeckTests {
 
     @Test
     public void DrawTest2(){
-        String expected = "Queen of Clubs";
+        String expected = "Q"+ (char)'\u2663';
         testDeck.draw();
         Card thisCard = testDeck.draw();
         String actual = thisCard.printCard();
@@ -66,7 +66,7 @@ public class DeckTests {
 
     @Test
     public void addCardTest(){
-        String expected = "Ace of Diamonds";
+        String expected = "A" + (char)'\u2666';
         testDeck.draw();
         testDeck.add(new Card(Suit.DIAMONDS, Rank.ACE, Suit.DIAMONDS.getSuitImage()));
         Card thisCard = testDeck.cards.get(51);
@@ -77,7 +77,7 @@ public class DeckTests {
 
     @Test
     public void discardTest(){
-        String expected = "King of Clubs";
+        String expected = "K" + (char)'\u2663';
         testDeck.burn(1);
         String actual = testDeck.discardPile.peek().printCard();
         Assert.assertEquals(expected, actual);
