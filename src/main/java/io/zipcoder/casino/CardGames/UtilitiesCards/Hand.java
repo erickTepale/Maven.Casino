@@ -6,7 +6,6 @@ import java.util.EnumMap;
 
 public class Hand {
 
-
     public static String showHand(ArrayList<Card> hand){
         String showHand = "";
         for (Card card: hand){
@@ -50,7 +49,7 @@ public class Hand {
     }
 
 
-    public EnumMap<Rank, Integer> getHandMap(ArrayList<Card> hand){
+    public static EnumMap<Rank, Integer> getHandMap(ArrayList<Card> hand){
         EnumMap<Rank, Integer> handMap = new EnumMap<>(Rank.class);
         for (Card card : hand){
             int count = handMap.containsKey(card.getFaceValue()) ? handMap.get(card.getFaceValue()) : 0;

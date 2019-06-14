@@ -21,7 +21,7 @@ public class GoFishTests {
         humanPlayer = new GoFishPlayer(basePlayer);
         cpuPlayer = new GoFishPlayer();
         goFishGame = new GoFish(basePlayer, cpuPlayer);
-        //goFishGame.deckGetter().sortDeck();
+        goFishGame.deckGetter().sortDeck();
     }
 
     @Test
@@ -66,6 +66,18 @@ public class GoFishTests {
 
     }
 
+    @Test
+    public void getBookTest(){
+        Hand thisHand = new Hand();
+        goFishGame.setHand(cpuPlayer);
+        System.out.println(Hand.showHand(cpuPlayer.hand));
+        System.out.println(thisHand.getHandMap(cpuPlayer.hand));
+
+        
+
+    }
+
+
 
 
 
@@ -100,19 +112,19 @@ public class GoFishTests {
 //    }
 
 
-    @Test
-    public void getNameTest(){
-        String expected = "Test";
-        String actual = humanPlayer.getName();
-        Assert.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void getNameTest2(){
-        String expected = "Go Fish Player";
-        String actual = cpuPlayer.getName();
-        Assert.assertEquals(expected, actual);
-    }
+//    @Test
+//    public void getNameTest(){
+//        String expected = "Test";
+//        String actual = humanPlayer.getName();
+//        Assert.assertEquals(expected, actual);
+//    }
+//
+//    @Test
+//    public void getNameTest2(){
+//        String expected = "Go Fish Player";
+//        String actual = cpuPlayer.getName();
+//        Assert.assertEquals(expected, actual);
+//    }
 
 
 }
