@@ -17,13 +17,13 @@ public class Poker extends CardGame implements GamblingGame {
     private Integer[] wagerRecords; //2 rounds of betting
     private Console console;
 
-    public Poker(BasePlayer player, BasePlayer dealer, ConsoleIO consoleIO){
+    public Poker(BasePlayer player, BasePlayer dealer, Console consoleIO){
         super();
         this.player = new PokerPlayer(player);
         this.dealer = new PokerPlayer(dealer);
         this.pot = 0;
         this.minBet = 50;
-        console = new Console(System.in, System.out);
+        console = consoleIO;//new Console(System.in, System.out);
 
         welcomeMessage();
         initGame();
@@ -51,6 +51,7 @@ public class Poker extends CardGame implements GamblingGame {
                         player.setHand(super.deal(5));
                         Hand.showHand((ArrayList<Card>) player.hand);
                         console.println(player.currentHandValue());
+                        Hand.showHand((ArrayList<Card>) player.hand);
                     }
 
                     break;
