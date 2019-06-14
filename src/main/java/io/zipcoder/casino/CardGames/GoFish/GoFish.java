@@ -49,16 +49,16 @@ public class GoFish extends CardGame {
     }
 
 
-    //Iterator<Card> iter = player.hand.iterator();
-
     public void checkForBooks(GoFishPlayer player){
         playerHandMap = Hand.getHandMap(player.hand);
 
         for (Map.Entry<Rank, Integer> mapEntry : playerHandMap.entrySet()) {
             if (mapEntry.getValue() == 4) {
-                for (Card card : player.hand) {
-                    if (card.getFaceValue().equals(mapEntry.getKey())){
-                        player.hand.remove(card);
+                Rank remove = mapEntry.getKey();
+                for (Iterator<Card> iterator = player.hand.iterator(); iterator.hasNext();) {
+                    Card thisCard = iterator.next();
+                    if (thisCard.getFaceValue().equals(remove)){
+                        iterator.remove();
                     }
                 }
                 player.setNumberOfBooks(player.getNumberOfBooks() + 1);
@@ -66,14 +66,8 @@ public class GoFish extends CardGame {
         }
     }
 
-//    Iterator<Card> iter = player.hand.iterator();
-//    public void itr(){
-//    while (iter.hasNext()) {
-//        if (iter.next() == 5) {
-//            iter.remove();
-//        }
-//    }
-//    }
+
+
 
 
 

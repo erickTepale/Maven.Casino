@@ -59,25 +59,26 @@ public class GoFishTests {
 
     @Test
     public void handMapTest(){
-        Hand thisHand = new Hand();
         goFishGame.setHand(cpuPlayer);
         System.out.println(Hand.showHand(cpuPlayer.hand));
-        System.out.println(thisHand.getHandMap(cpuPlayer.hand));
+        System.out.println(Hand.getHandMap(cpuPlayer.hand));
 
     }
 
     @Test
     public void getBookTest(){
-        Hand thisHand = new Hand();
         goFishGame.setHand(cpuPlayer);
-        System.out.println(Hand.showHand(cpuPlayer.hand));
-        System.out.println(thisHand.getHandMap(cpuPlayer.hand));
         goFishGame.checkForBooks(cpuPlayer);
-        System.out.println(Hand.showHand(cpuPlayer.hand));
-        System.out.println(thisHand.getHandMap(cpuPlayer.hand));
+
+        Integer expectedHandSize = 3;
+        Integer actualHandSize = cpuPlayer.hand.size();
+
+        Integer expectedBooks = 1;
+        Integer actualBooks = cpuPlayer.getNumberOfBooks();
 
 
-
+        Assert.assertEquals(expectedHandSize, actualHandSize);
+        Assert.assertEquals(expectedBooks, actualBooks);
     }
 
 
