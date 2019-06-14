@@ -34,28 +34,25 @@ public class Poker extends CardGame implements GamblingGame {
         //cycle through options
         do {
             action = console.getStringInput(printMenu());
-            switch (action) {
-                case "Rules":
+            switch (action.toUpperCase()) {
+                case "RULES":
                     printRules();
                     break;
-                case "rules":
-                    printRules();
-                    break;
-                case "bonus":
+                case "BONUS":
                     printBonus();
                     break;
-                case "Bonus":
-                    printBonus();
-                    break;
-                case "Rank":
+                case "RANK":
                     printHandRanking();
                     break;
-                case "rank":
-                    printHandRanking();
-                    break;
-                case "Play":
-                    break;
-                case "play":
+                case "PLAY":
+                    console.println(placeWager());
+                    if(pot > 0){
+                        dealer.setHand(super.deal(5));
+                        player.setHand(super.deal(5));
+                        Hand.showHand((ArrayList<Card>) player.hand);
+                        console.println(player.currentHandValue());
+                    }
+
                     break;
             }
 
@@ -145,11 +142,6 @@ public class Poker extends CardGame implements GamblingGame {
 
     }
 
-    public static void printOptions(){
-        //console.println();
-    }
-
-
     //INTERFACE GAMBLING GAME METHODS
     @Override
     public void welcomeMessage() {
@@ -161,9 +153,11 @@ public class Poker extends CardGame implements GamblingGame {
     //in poker.java
     public String placeWager() {
         Integer bet = 0;
-        while(bet <= minBet){
-            console.getIntegerInput("Please input a wager(Min Bet: $" + minBet + ")", bet);
+        while(bet < minBet){
+            bet = console.getIntegerInput("\nPlease input a wager(Min Bet: $" + minBet + ")");
+            if(bet < minBet) console.println("Sorry, Minimum Bet is $" + minBet);
         }
+        this.pot += bet;
         this.bet = bet;
         return player.placeWager(bet);
     }
