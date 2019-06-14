@@ -13,7 +13,7 @@ public class Hand {
     public static String showHand(ArrayList<Card> hand){
         String showHand = "";
         for (Card card: hand){
-            showHand += card.printCard() + "\n";
+            showHand += "[" + card.printCard() + "] ";
         }
         return showHand;
     }

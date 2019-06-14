@@ -4,6 +4,7 @@ import io.zipcoder.casino.CardGames.GoFish.GoFish;
 import io.zipcoder.casino.CardGames.GoFish.GoFishPlayer;
 import io.zipcoder.casino.CardGames.UtilitiesCards.Hand;
 import io.zipcoder.casino.utilities.BasePlayer;
+import io.zipcoder.casino.utilities.Console;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -75,7 +76,6 @@ public class GoFishTests {
 
         Integer expectedBooks = 1;
         Integer actualBooks = cpuPlayer.getNumberOfBooks();
-
 
         Assert.assertEquals(expectedHandSize, actualHandSize);
         Assert.assertEquals(expectedBooks, actualBooks);
