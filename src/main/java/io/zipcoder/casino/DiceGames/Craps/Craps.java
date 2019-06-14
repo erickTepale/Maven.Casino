@@ -40,13 +40,13 @@ public class Craps extends DiceGame implements GamblingGame {
 
     }
 
-    public Integer placeWager() {
 
+    public String placeWager() {
         int bet = 0;
         console.getIntegerInput("Please input a wager(Min bet: $" + minBet + ")", bet);
-        return bet;
-
+        return null;
     }
+
 
     public void increaseMinBet() {
 

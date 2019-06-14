@@ -23,6 +23,7 @@ public  class BasePlayer {
         return wallet;
     }
 
+    //in BasePlayer.java
     public boolean removeFromWallet(Integer amount){
         if(wallet - amount >= 0 ){
             wallet -= amount;
