@@ -44,7 +44,7 @@ public class Roulette implements GamblingGame {
 
     }
 
-    public Integer placeWager() {
+    public String placeWager() {
         return null;
     }
 
