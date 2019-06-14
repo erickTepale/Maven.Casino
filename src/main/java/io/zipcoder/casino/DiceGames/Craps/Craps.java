@@ -28,7 +28,7 @@ public class Craps extends DiceGame implements GamblingGame {
 
     }
 
-    public Integer placeWager() {
+    public String placeWager() {
         return null;
     }
 

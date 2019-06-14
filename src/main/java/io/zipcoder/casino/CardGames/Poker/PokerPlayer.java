@@ -24,6 +24,10 @@ public class PokerPlayer extends BasePlayer {
 
     }
 
+    //in pokerPlayer.java
+    public String placeWager(int bet){
+       return player.removeFromWallet(bet) ? "Bet Placed" : "Insufficient Funds";
+    }
 
 
     public BasePlayer getPlayer() {
