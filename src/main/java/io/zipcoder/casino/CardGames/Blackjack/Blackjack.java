@@ -49,12 +49,8 @@ public class Blackjack extends CardGame implements GamblingGame {
             console.println("You currently do not have enough money to make that wager");
         }
         return betAmount;
-    }
 
-    public String placeWager() {
-        return null;
-
-    }
+}
 
     public void increaseMinBet() {
 
