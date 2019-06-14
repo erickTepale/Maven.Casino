@@ -1,8 +1,10 @@
 package io.zipcoder.casino.utilities;
 
 public interface GamblingGame {
+
     public void welcomeMessage();
-    public Integer placeWager();
+    public void placeWager(); //Set Boolean
+    public void payBet();
     public void increaseMinBet();
     public void decreaseMinBet();
 
