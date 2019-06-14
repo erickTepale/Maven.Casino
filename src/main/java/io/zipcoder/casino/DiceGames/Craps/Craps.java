@@ -1,5 +1,6 @@
 package io.zipcoder.casino.DiceGames.Craps;
 
+import io.zipcoder.casino.DiceGames.UtilitiesDice.Dice;
 import io.zipcoder.casino.DiceGames.UtilitiesDice.DiceGame;
 import io.zipcoder.casino.utilities.BasePlayer;
 import io.zipcoder.casino.utilities.Console;
@@ -16,8 +17,10 @@ public class Craps extends DiceGame implements GamblingGame {
         super();
         this.player = (CrapsPlayer) base;
         this.dealer = (CrapsPlayer) dealer;
-        this.minBet = 20;
-        player.roll(2);
+    }
+
+    public Integer roll() {
+     return rollDice();
     }
 
 
@@ -34,7 +37,6 @@ public class Craps extends DiceGame implements GamblingGame {
     public void welcomeMessage() {
 
            console.println("WELCOME TO THE CRAPS TABLE");
-
 
     }
 
@@ -53,4 +55,5 @@ public class Craps extends DiceGame implements GamblingGame {
     public void decreaseMinBet() {
 
     }
+
 }

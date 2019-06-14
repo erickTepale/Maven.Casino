@@ -12,8 +12,6 @@ public class CrapsPlayer extends BasePlayer {
         super(name);
     }
 
-    public Integer roll(int i) {
-         return roll(2);
-    }
+
 
 }
