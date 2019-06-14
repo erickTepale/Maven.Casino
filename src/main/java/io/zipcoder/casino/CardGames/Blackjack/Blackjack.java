@@ -3,6 +3,7 @@ package io.zipcoder.casino.CardGames.Blackjack;
 import io.zipcoder.casino.CardGames.UtilitiesCards.CardGame;
 import io.zipcoder.casino.utilities.BasePlayer;
 import io.zipcoder.casino.utilities.Console;
+import io.zipcoder.casino.utilities.ConsoleIO;
 import io.zipcoder.casino.utilities.GamblingGame;
 
 public class Blackjack extends CardGame implements GamblingGame {
@@ -15,12 +16,13 @@ public class Blackjack extends CardGame implements GamblingGame {
         this.player = new BlackjackPlayer(base);
         this.dealer = new BlackjackPlayer(dealer);
     }
-    public void main(){
-        Console console = new Console(System.in, System.out);
+    public void Blackjack(BasePlayer base, BasePlayer dealer, Console console){
+        this.player = new BlackjackPlayer(base);
+        this.dealer = new BlackjackPlayer(dealer);
         console.getIntegerInput("Please enter your wager", betAmount);
         console.println(placeWager(betAmount));
         setupBoard();
-
+        player.showCard();
 
 
     }
@@ -47,7 +49,7 @@ public class Blackjack extends CardGame implements GamblingGame {
 
 
     public String placeWager(Integer betAmount) {
-        String answer = "";
+        String answer;
         if (player.removeFromWallet(betAmount)) {
             answer = "Bet Amount of " + betAmount + " Confirmed";
 

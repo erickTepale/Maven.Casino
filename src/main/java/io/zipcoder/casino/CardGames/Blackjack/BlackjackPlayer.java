@@ -26,6 +26,11 @@ public class BlackjackPlayer extends BasePlayer {
         return null;
 
     }
+    public String showCard(){
+
+
+        return null;
+    }
 
 
     public void addCard(Card a){
