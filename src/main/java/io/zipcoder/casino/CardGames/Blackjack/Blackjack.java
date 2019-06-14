@@ -16,7 +16,7 @@ public class Blackjack extends CardGame implements GamblingGame {
         this.player = new BlackjackPlayer(base);
         this.dealer = new BlackjackPlayer(dealer);
     }
-    public void Blackjack(BasePlayer base, BasePlayer dealer, Console console){
+    public Blackjack(BasePlayer base, BasePlayer dealer, Console console){
         this.player = new BlackjackPlayer(base);
         this.dealer = new BlackjackPlayer(dealer);
         console.getIntegerInput("Please enter your wager", betAmount);
