@@ -15,7 +15,7 @@ public class Blackjack extends CardGame implements GamblingGame {
     private BlackjackPlayer player;
     private BlackjackPlayer dealer;
     private Integer betAmount;
-    
+
 
     public  Blackjack(){}
     public Blackjack(BasePlayer base, BasePlayer dealer) {
@@ -34,7 +34,7 @@ public class Blackjack extends CardGame implements GamblingGame {
             Hand.showHand((ArrayList<Card>) dealer.hand);
             console.println("Player is dealt");
             Hand.showHand((ArrayList<Card>) player.hand);
-
+            Hand.
 
 
 
