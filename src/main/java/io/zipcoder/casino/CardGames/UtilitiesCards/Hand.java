@@ -1,11 +1,10 @@
 package io.zipcoder.casino.CardGames.UtilitiesCards;
 
-//import io.zipcoder.casino.CardGames.UtilitiesCards.CarSorter.CardSorter;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Hand {
+
     private ArrayList<Card> hand;
 
     public Hand(){
@@ -21,7 +20,6 @@ public class Hand {
         String showHand = "";
         for (Card card: this.hand){
             showHand += card.printCard() + "\n";
-            //System.out.println(card.printCard());
         }
         return showHand;
     }
@@ -31,6 +29,22 @@ public class Hand {
             this.hand.add(card);
         }
     }
+
+
+
+    public ArrayList<Card> getHand() {
+        return hand;
+    }
+
+    public Card getCard(Integer cardIndex) {
+        return hand.get(cardIndex);
+    }
+
+    public String getCardStringValue(Integer cardIndex) {
+        return hand.get(cardIndex).getFaceValue().getRankString();
+    }
+
+
 
 
     public Integer getHandSize(){

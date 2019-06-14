@@ -9,44 +9,30 @@ import java.util.List;
 
 public class GoFishPlayer extends BasePlayer {
     private BasePlayer basePlayer;
-    //private Hand hand;
-    private List<Card> hand;
+    public Hand hand;
     private Integer numberOfBooks;
     private boolean win;
+    public String name;
 
     public GoFishPlayer(){
-        this.hand = new ArrayList<>();
+        super();
+        this.name = "Go Fish Player";
         this.numberOfBooks = 0;
         this.win = false;
     }
 
 
     public GoFishPlayer(BasePlayer player) {
+        super();
         this.basePlayer = player;
-        this.hand = new ArrayList<>();
         this.numberOfBooks = 0;
         this.win = false;
     }
 
-//    public void setHand(ArrayList<Card> hand){
-//        this.hand = super.g;
-//    }
-
-
-
-//    public Hand getHand() {
-//        return this.hand;
-//    }
-//
-//    public void setHand(Hand hand) {
-//        this.hand = hand;
-//    }
-//
-//    public void setFirstHand(Hand hand) {
-//        this.hand = hand;
-//    }
-
-
+    @Override
+    public String getName() {
+        return this.name;
+    }
 
 
     public void ask(){}

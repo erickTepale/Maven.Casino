@@ -29,13 +29,7 @@ public class Card implements Comparable<Card> {
 
 
     public String printCard(){
-        String thisCard;
-        if (this.faceValue.getRankValue() > 10 || this.faceValue.getRankValue() == 1){
-            thisCard = this.faceValue.getRankString() + " of " + this.suit.getSuitText();
-        } else {
-            thisCard = this.faceValue.getRankValue() + " of " + this.suit.getSuitText();
-        }
-        return thisCard;
+        return this.faceValue.getRankString() + " of " + this.suit.getSuitText();
     }
 
 

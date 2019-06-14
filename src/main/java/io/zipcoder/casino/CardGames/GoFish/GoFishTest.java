@@ -5,24 +5,26 @@ import io.zipcoder.casino.utilities.BasePlayer;
 public class GoFishTest {
     public static void main(String[] args) {
 
-        BasePlayer player = new BasePlayer();
-        BasePlayer cpuPlayer = new BasePlayer();
+
+        BasePlayer basePlayer = new BasePlayer();
+        BasePlayer baseCpuPlayer = new BasePlayer();
+
+        GoFishPlayer player = new GoFishPlayer(basePlayer);
+        GoFishPlayer cpuPlayer = new GoFishPlayer(baseCpuPlayer);
+
 
         GoFish thisGame = new GoFish(player, cpuPlayer);
 
         System.out.println(thisGame.getDeckSize());
 
-        thisGame.player.setHand();
-        thisGame.setPlayerHand(thisGame.cpuPlayer);
-
+        thisGame.setHand(player);
+        thisGame.setHand(cpuPlayer);
         System.out.println(thisGame.getDeckSize());
 
-//        System.out.println(player.getHand().toString());
-//        System.out.println(cpuPlayer.getHand().toString());
-//        player.getHand().showHand();
-//        cpuPlayer.getHand().showHand();
+        player.hand.sortHandByNumber();
+        cpuPlayer.hand.sortHandByNumber();
 
-
-
+        System.out.println(player.hand.showHand());
+        System.out.println(cpuPlayer.hand.showHand());
     }
 }

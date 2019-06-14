@@ -20,13 +20,6 @@ public abstract class CardGame extends Game {
         deck.shuffle();
     }
 
-    public CardGame(BasePlayer basePlayer, BasePlayer cpuPlayer, Deck deck){
-        this.basePlayer = basePlayer;
-        this.player = cpuPlayer;
-        deck.shuffle();
-        this.deck = deck;
-    }
-
     public ArrayList<Card> deal(Integer numOfCards){
         return this.deck.getHand(numOfCards);
     }
@@ -55,6 +48,10 @@ public abstract class CardGame extends Game {
 
     public Card draw() {
         return deck.draw();
+    }
+
+    public Deck deckGetter(){
+        return this.deck;
     }
 
     public void burn(Integer numberOfCards){

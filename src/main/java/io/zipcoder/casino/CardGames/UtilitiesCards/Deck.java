@@ -35,6 +35,11 @@ public class Deck {
         Collections.shuffle(cards);
     }
 
+    public void sortDeck(){
+        Collections.sort(this.cards);
+    }
+
+
     public Integer getDeckSize() {
         return cards.size();
     }

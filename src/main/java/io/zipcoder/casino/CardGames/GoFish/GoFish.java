@@ -2,11 +2,9 @@ package io.zipcoder.casino.CardGames.GoFish;
 
 import io.zipcoder.casino.CardGames.UtilitiesCards.Hand;
 import io.zipcoder.casino.utilities.BasePlayer;
-import io.zipcoder.casino.utilities.Bin;
 import io.zipcoder.casino.CardGames.UtilitiesCards.CardGame;
-import io.zipcoder.casino.CardGames.UtilitiesCards.Deck;
 
-public class GoFish extends CardGame implements Bin {
+public class GoFish extends CardGame {
     public GoFishPlayer player;
     public GoFishPlayer cpuPlayer;
 
@@ -17,41 +15,16 @@ public class GoFish extends CardGame implements Bin {
     }
 
 
-    public GoFish(BasePlayer player, BasePlayer cpuPlayer, Deck deck) {
-        super(player, cpuPlayer, deck);
+    public void setHand(GoFishPlayer player){
+        player.hand = new Hand(deal(7));
     }
+
 
 
     public void startGame(){
 
     }
 
-
-//
-//    public void setPlayerHand(GoFishPlayer goFishPlayer){
-//        goFishPlayer.setHand(new Hand(this.deck.getHand(7)));
-//        goFishPlayer.setHand(new Hand(this.deck.getHand(7)));
-//    }
-
-
-
-
-    public void add(Integer valueOfDice) {
-
-    }
-
-    @Override
-    public void remove(Integer index) {
-
-    }
-//
-//    public void remove(Integer index) {
-//
-//    }
-//
-//    public Boolean isWin() {
-//        return null;
-//    }
 
     @Override
     public void switchTurns() {
