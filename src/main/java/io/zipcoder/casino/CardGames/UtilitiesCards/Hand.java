@@ -2,6 +2,7 @@ package io.zipcoder.casino.CardGames.UtilitiesCards;
 
 //import io.zipcoder.casino.CardGames.UtilitiesCards.CarSorter.CardSorter;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -40,5 +41,11 @@ public class Hand {
     public void sortHandByNumber(){
         Collections.sort(this.hand);
     }
+
+    public static void sortHandByNumber(ArrayList<Card> hand){
+        Collections.sort(hand);
+    }
+
+
 
 }

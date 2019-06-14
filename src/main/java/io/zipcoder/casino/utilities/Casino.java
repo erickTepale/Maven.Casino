@@ -4,7 +4,7 @@ package io.zipcoder.casino.utilities;
 public class Casino {
     public static void main(String[] args) {
 
-        ConsoleIO console = new Console(System.in,System.out);
+        Console console = new Console(System.in,System.out);
         String name = console.getStringInput("Please enter your name:");
         BasePlayer blank = new BasePlayer(name);
         BasePlayer dealer = new BasePlayer("Dealer");
