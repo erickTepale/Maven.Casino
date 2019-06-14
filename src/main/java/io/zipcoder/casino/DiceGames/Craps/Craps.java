@@ -47,6 +47,15 @@ public class Craps extends DiceGame implements GamblingGame {
         return null;
     }
 
+    public void printRules() {
+        console.println("\nRULES" +
+                "\n If you get 7 or 11 on your first roll, You Win\n" +
+                "If you get 2 or 3 or 12 on your first roll, You Lose\n " +
+                "If you get 4 or 5 or 6 or 8 or 9 or 10 on your first roll, You need to match that number to win but if you roll 7 or 11 before then, you Lose. \n" +
+                "You place your initial wager to play the game and double the money");
+    }
+
+
 
     public void increaseMinBet() {
 
