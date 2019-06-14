@@ -1,3 +1,4 @@
+
 package io.zipcoder.casino;
 
 import io.zipcoder.casino.CardGames.UtilitiesCards.*;
@@ -10,12 +11,12 @@ import java.util.ArrayList;
 
 public class DeckTests {
     private Deck testDeck;
-    private Hand testHand;
+    private ArrayList<Card> testHand;
 
     @Before
     public void setup(){
         testDeck = new Deck();
-        testHand = new Hand();
+        testHand = new ArrayList<>();
     }
 
     @Test
@@ -36,7 +37,7 @@ public class DeckTests {
 
     @Test
     public void DrawTest(){
-        String expected = "King of Clubs";
+        String expected = "K of Clubs";
         Card thisCard = testDeck.draw();
         String actual = thisCard.printCard();
         Assert.assertEquals(expected, actual);
@@ -44,7 +45,7 @@ public class DeckTests {
 
     @Test
     public void DrawTest2(){
-        String expected = "Queen of Clubs";
+        String expected = "Q of Clubs";
         testDeck.draw();
         Card thisCard = testDeck.draw();
         String actual = thisCard.printCard();
@@ -54,8 +55,8 @@ public class DeckTests {
 
     @Test
     public void shuffleTest(){
-        String unexpected = "King of Clubs";
-        while ((testDeck.cards.peek().printCard()).equals("King of Clubs")){
+        String unexpected = "K of Clubs";
+        while ((testDeck.cards.peek().printCard()).equals("K of Clubs")){
             testDeck.shuffle();
         }
         Card thisCard = testDeck.draw();
@@ -66,9 +67,9 @@ public class DeckTests {
 
     @Test
     public void addCardTest(){
-        String expected = "Ace of Diamonds";
+        String expected = "A of Diamonds";
         testDeck.draw();
-        testDeck.add(new Card(Suit.DIAMONDS, Rank.ACE));
+        testDeck.add(new Card(Suit.DIAMONDS, Rank.ACE, Suit.DIAMONDS.getSuitImage()));
         Card thisCard = testDeck.cards.get(51);
         String actual = thisCard.printCard();
         Assert.assertEquals(expected, actual);
@@ -77,7 +78,7 @@ public class DeckTests {
 
     @Test
     public void discardTest(){
-        String expected = "King of Clubs";
+        String expected = "K of Clubs";
         testDeck.burn(1);
         String actual = testDeck.discardPile.peek().printCard();
         Assert.assertEquals(expected, actual);
@@ -103,23 +104,24 @@ public class DeckTests {
 
     @Test
     public void getHandTest(){
-        testHand = new Hand(testDeck.getHand(7));
+        testHand = new ArrayList<>(testDeck.getHand(7));
         Integer expected = 7;
-        Integer actual = testHand.getHandSize();
+        Hand.showHand(testHand);
+        Integer actual = testHand.size();
         Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void getHandTest2(){
-        testHand = new Hand(testDeck.getHand(10));
+        testHand = new ArrayList<>(testDeck.getHand(10));
         Integer expected = 10;
-        Integer actual = testHand.getHandSize();
+        Integer actual = testHand.size();
         Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void getHandTest3(){
-        testHand = new Hand(testDeck.getHand(10));
+        testHand = new ArrayList<>(testDeck.getHand(10));
         Integer expected = 42;
         Integer actual = testDeck.getDeckSize();
         Assert.assertEquals(expected, actual);
@@ -127,20 +129,25 @@ public class DeckTests {
 
     @Test
     public void sortHandTest(){
-        String expected = "4 of Clubs\n" +
-                "5 of Clubs\n" +
-                "6 of Clubs\n" +
-                "7 of Clubs\n" +
-                "8 of Clubs\n" +
-                "9 of Clubs\n" +
-                "10 of Clubs\n" +
-                "Jack of Clubs\n" +
-                "Queen of Clubs\n" +
-                "King of Clubs\n";
-        testHand = new Hand(testDeck.getHand(10));
-        testHand.sortHandByNumber();
-        String actual = testHand.showHand();
+        String expected = "Four of Clubs\n" +
+                "Five of Clubs\n" +
+                "Six of Clubs\n" +
+                "Seven of Clubs\n" +
+                "Eight of Clubs\n" +
+                "Nine of Clubs\n" +
+                "Ten of Clubs\n" +
+                "J of Clubs\n" +
+                "Q of Clubs\n" +
+                "K of Clubs\n";
+        testHand = new ArrayList<>(testDeck.getHand(10));
+        Hand.sortHandByNumber(testHand);
+        String actual = Hand.showHand(testHand);
         Assert.assertEquals(expected, actual);
+        Hand.sortHandByNumber(testHand);
+//        Integer actual = testHand.getHandSize();
+//        Assert.assertEquals(expected, actual);
+
     }
 
 }
+

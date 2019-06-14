@@ -5,6 +5,8 @@ import io.zipcoder.casino.CardGames.UtilitiesCards.Hand;
 import io.zipcoder.casino.utilities.BasePlayer;
 import io.zipcoder.casino.CardGames.UtilitiesCards.CardGame;
 
+import java.util.ArrayList;
+
 public class GoFish extends CardGame {
     public GoFishPlayer player;
     public GoFishPlayer cpuPlayer;
@@ -17,7 +19,7 @@ public class GoFish extends CardGame {
 
 
     public void setHand(GoFishPlayer player){
-        player.hand = new Hand(deal(7));
+        player.hand = new ArrayList<>(deal(7));
     }
 
 
@@ -26,10 +28,10 @@ public class GoFish extends CardGame {
         setHand(player);
         setHand(cpuPlayer);
 
-        player.hand.sortHandByNumber();
-        cpuPlayer.hand.sortHandByNumber();
+        Hand.sortHandByNumber(player.hand);
+        Hand.sortHandByNumber(cpuPlayer.hand);
 
-        System.out.println(player.hand.showHand());
+        System.out.println(Hand.showHand(player.hand));
 
     }
 

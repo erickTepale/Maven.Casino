@@ -9,7 +9,7 @@ import java.util.List;
 
 public class GoFishPlayer extends BasePlayer {
     private BasePlayer basePlayer;
-    public Hand hand;
+    public ArrayList<Card> hand;
     private Integer numberOfBooks;
     private boolean win;
     public String name;

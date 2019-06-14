@@ -8,12 +8,14 @@ import java.util.List;
 
 public class BlackjackPlayer extends BasePlayer {
     private BasePlayer player;
+
     private List<Card> hand;
     private Boolean stand;
     private Boolean bust;
 
     public BlackjackPlayer(BasePlayer player){
         this.player = player;
+
     }
     public BlackjackPlayer(String name) {
         super(name);
