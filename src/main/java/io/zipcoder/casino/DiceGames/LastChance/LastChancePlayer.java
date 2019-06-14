@@ -6,6 +6,10 @@ import io.zipcoder.casino.DiceGames.UtilitiesDice.Dice;
 import java.util.List;
 
 public class LastChancePlayer extends BasePlayer {
+
+
+
+
     private List<Dice> bin;
 
     public LastChancePlayer(String name, List<Dice> bin) {
@@ -13,6 +17,8 @@ public class LastChancePlayer extends BasePlayer {
         this.bin = bin;
     }
 
+    public void dealerRoll(){
+    }
     public void rollDice(){
 
     }
