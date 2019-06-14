@@ -10,8 +10,8 @@ public class Deck {
 
 
     public Deck() {
-        this.cards = new Stack<Card>();
-        this.discardPile = new Stack<Card>();
+        this.cards = new Stack<>();
+        this.discardPile = new Stack<>();
         this.generate();
     }
 
@@ -34,6 +34,11 @@ public class Deck {
     public void shuffle() {
         Collections.shuffle(cards);
     }
+
+    public void sortDeck(){
+        Collections.sort(this.cards);
+    }
+
 
     public Integer getDeckSize() {
         return cards.size();

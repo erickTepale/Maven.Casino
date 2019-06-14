@@ -12,6 +12,7 @@ public abstract class CardGame extends Game {
     private Deck deck;
     private BasePlayer basePlayer;
     private BasePlayer player;
+    private BasePlayer cpuPlayer;
 
     //working on deck methods
     public CardGame() {
@@ -20,7 +21,7 @@ public abstract class CardGame extends Game {
     }
 
     public ArrayList<Card> deal(Integer numOfCards){
-        return deck.getHand(numOfCards);
+        return this.deck.getHand(numOfCards);
     }
 
     public Deck getDeck(){
@@ -47,6 +48,10 @@ public abstract class CardGame extends Game {
 
     public Card draw() {
         return deck.draw();
+    }
+
+    public Deck deckGetter(){
+        return this.deck;
     }
 
     public void burn(Integer numberOfCards){

@@ -22,8 +22,6 @@ public class Blackjack extends CardGame implements GamblingGame {
         player.setHand(super.deal(2));
         dealer.setHand(super.deal(1));
 
-
-
     }
 
     public Boolean isWin() {

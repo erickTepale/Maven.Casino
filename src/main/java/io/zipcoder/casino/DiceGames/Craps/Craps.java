@@ -20,7 +20,7 @@ public class Craps extends DiceGame implements GamblingGame {
     }
 
     public Integer roll() {
-     return rollDice();
+        return super.rollDice();
     }
 
 
@@ -49,6 +49,7 @@ public class Craps extends DiceGame implements GamblingGame {
 
 
     public void increaseMinBet() {
+
 
     }
 
