@@ -16,7 +16,7 @@ public class GoFishPlayer extends BasePlayer {
 
     public GoFishPlayer(){
         super();
-        this.name = "Go Fish Player";
+        //this.name = "Go Fish Player";
         this.numberOfBooks = 0;
         this.win = false;
     }
@@ -31,7 +31,7 @@ public class GoFishPlayer extends BasePlayer {
 
     @Override
     public String getName() {
-        return this.name;
+        return super.getName();
     }
 
 

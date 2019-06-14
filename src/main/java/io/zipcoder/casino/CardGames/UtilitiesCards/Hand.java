@@ -30,6 +30,16 @@ public class Hand {
         }
     }
 
+    public void removeFromHand(Hand hand){
+        for (Card card : hand.hand){
+            this.hand.add(card);
+        }
+    }
+
+    public boolean containsCard(Card card){
+        return this.hand.contains(card);
+    }
+
 
 
     public ArrayList<Card> getHand() {
