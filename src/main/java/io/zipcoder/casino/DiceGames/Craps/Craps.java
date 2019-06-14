@@ -22,7 +22,7 @@ public class Craps extends DiceGame implements GamblingGame {
         this.minBet = 20;
     }
 
-    private void toPlayTheGame () {
+    private void initGame () {
         String Menu = "";
         do {
             Menu = console.getStringInput(printMenu());
@@ -70,6 +70,8 @@ public class Craps extends DiceGame implements GamblingGame {
         return null;
     }
 
+
+
     public void printRules() {
         console.println("\nRULES" +
                 "\n If you get 7 or 11 on your first roll, You Win\n" +
@@ -78,20 +80,20 @@ public class Craps extends DiceGame implements GamblingGame {
                 "You place your initial wager to play the game and double the money");
     }
 
-
-
-    public void increaseMinBet() {
-
-
-    }
-
-    public void decreaseMinBet() {
-
-    }
-
     public String printMenu(){
 
-        return null;
+        return "\nPlease Type In An Option: " +
+                "\nPlay:              [Play]" +
+                "\nSee Rules:         [Rules]";
+    }
+    @Override
+    public void increaseMinBet() {
+
+    }
+
+    @Override
+    public void decreaseMinBet() {
+
     }
 
 }
