@@ -2,12 +2,14 @@ package io.zipcoder.casino.DiceGames.Craps;
 
 import io.zipcoder.casino.DiceGames.UtilitiesDice.DiceGame;
 import io.zipcoder.casino.utilities.BasePlayer;
+import io.zipcoder.casino.utilities.Console;
 import io.zipcoder.casino.utilities.GamblingGame;
 
 public class Craps extends DiceGame implements GamblingGame {
     private Integer minBet;
     CrapsPlayer player;
     CrapsPlayer dealer;
+    private Console console;
 
 
     public Craps(BasePlayer base, BasePlayer dealer){
@@ -17,6 +19,7 @@ public class Craps extends DiceGame implements GamblingGame {
         this.minBet = 20;
         player.roll(2);
     }
+
 
 
     public Boolean isWin() {
@@ -30,9 +33,12 @@ public class Craps extends DiceGame implements GamblingGame {
     @Override
     public void welcomeMessage() {
 
+//        console.printl
+
     }
 
     public Integer placeWager() {
+
         return null;
     }
 

@@ -54,7 +54,7 @@ public class DiceTests {
         Integer min = 5;
         Integer max = 30;
 
-        Assert.assertTrue(actual >= min && actual <= max);
+       Assert.assertTrue(actual >= min && actual <= max);
 
     }
 
