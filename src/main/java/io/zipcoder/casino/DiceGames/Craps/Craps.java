@@ -33,13 +33,17 @@ public class Craps extends DiceGame implements GamblingGame {
     @Override
     public void welcomeMessage() {
 
-//        console.printl
+           console.println("WELCOME TO THE CRAPS TABLE");
+
 
     }
 
     public Integer placeWager() {
 
-        return null;
+        int bet = 0;
+        console.getIntegerInput("Please input a wager(Min bet: $" + minBet + ")", bet);
+        return bet;
+
     }
 
     public void increaseMinBet() {
