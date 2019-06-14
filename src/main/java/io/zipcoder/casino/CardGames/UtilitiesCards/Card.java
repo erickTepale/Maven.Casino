@@ -3,12 +3,14 @@ package io.zipcoder.casino.CardGames.UtilitiesCards;
 public class Card implements Comparable<Card> {
     private Suit suit;
     private Rank faceValue;
+    private char imageValue;
     private Boolean isFaceUp;
     //can define as enum
 
-    public Card(Suit suit, Rank faceValue) {
+    public Card(Suit suit, Rank faceValue, char imageValue) {
         this.faceValue = faceValue;
         this.suit = suit;
+        this.imageValue = imageValue;
     }
 
     public Suit getSuite() {
@@ -27,6 +29,9 @@ public class Card implements Comparable<Card> {
         this.faceValue = faceValue;
     }
 
+    public char getImageValue() {
+        return imageValue;
+    }
 
     public String printCard(){
         return this.faceValue.getRankString() + " of " + this.suit.getSuitText();

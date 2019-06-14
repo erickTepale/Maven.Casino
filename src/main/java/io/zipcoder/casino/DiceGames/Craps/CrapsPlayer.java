@@ -4,15 +4,14 @@ import io.zipcoder.casino.utilities.BasePlayer;
 
 public class CrapsPlayer extends BasePlayer {
     private BasePlayer player;
-    private BasePlayer dealer;
-
-
+    private Integer betAmpout;
+    private Integer winAmount;
 
     public CrapsPlayer(String name) {
+
         super(name);
     }
 
-    public Integer roll(int i) {
-         return roll(2);
-    }
+
+
 }

@@ -15,16 +15,6 @@ public class GoFishTest {
 
         GoFish thisGame = new GoFish(player, cpuPlayer);
 
-        System.out.println(thisGame.getDeckSize());
-
-        thisGame.setHand(player);
-        thisGame.setHand(cpuPlayer);
-        System.out.println(thisGame.getDeckSize());
-
-        player.hand.sortHandByNumber();
-        cpuPlayer.hand.sortHandByNumber();
-
-        System.out.println(player.hand.showHand());
-        System.out.println(cpuPlayer.hand.showHand());
+        thisGame.startGame();
     }
 }

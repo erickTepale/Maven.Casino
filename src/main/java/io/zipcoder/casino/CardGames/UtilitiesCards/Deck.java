@@ -18,7 +18,7 @@ public class Deck {
     private void generate() {
         for (Suit suit : Suit.values()) {
             for (Rank rank : Rank.values()) {
-                cards.push(new Card(suit, rank));
+                cards.push(new Card(suit, rank, suit.getSuitImage()));
             }
         }
     }

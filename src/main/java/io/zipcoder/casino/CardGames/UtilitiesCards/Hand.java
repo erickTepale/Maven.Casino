@@ -2,58 +2,61 @@ package io.zipcoder.casino.CardGames.UtilitiesCards;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumMap;
 
 public class Hand {
 
-    private ArrayList<Card> hand;
-
-    public Hand(){
-        this.hand = new ArrayList<>();
-    }
-
-    public Hand(ArrayList<Card> hand){
-        this.hand = hand;
-    }
-
-
-    public String showHand(){
+    public static String showHand(ArrayList<Card> hand){
         String showHand = "";
-        for (Card card: this.hand){
+        for (Card card: hand){
             showHand += card.printCard() + "\n";
         }
         return showHand;
     }
 
-    public void addToHand(Hand hand){
-        for (Card card : hand.hand){
-            this.hand.add(card);
+    public void addToHand(ArrayList<Card> hand){
+        for (Card card : hand){
+            hand.add(card);
         }
     }
 
 
+    public void removeFromHand(ArrayList<Card> hand){
+        for (Card card : hand){
+            hand.add(card);
+        }
+    }
 
-    public ArrayList<Card> getHand() {
+
+    public ArrayList<Card> getHand(ArrayList<Card> hand) {
         return hand;
     }
 
-    public Card getCard(Integer cardIndex) {
-        return hand.get(cardIndex);
-    }
 
-    public String getCardStringValue(Integer cardIndex) {
+    public String getCardStringValue(Integer cardIndex, ArrayList<Card> hand) {
         return hand.get(cardIndex).getFaceValue().getRankString();
     }
 
 
 
-
-    public Integer getHandSize(){
-        return this.hand.size();
+    public Integer getHandSize(ArrayList<Card> hand){
+        return hand.size();
     }
 
 
-    public void sortHandByNumber(){
-        Collections.sort(this.hand);
+    public static void sortHandByNumber(ArrayList<Card> hand){
+        Collections.sort(hand);
     }
+
+
+    public static EnumMap<Rank, Integer> getHandMap(ArrayList<Card> hand){
+        EnumMap<Rank, Integer> handMap = new EnumMap<>(Rank.class);
+        for (Card card : hand){
+            int count = handMap.containsKey(card.getFaceValue()) ? handMap.get(card.getFaceValue()) : 0;
+            handMap.put(card.getFaceValue(), count + 1);
+        }
+        return handMap;
+    }
+
 
 }
