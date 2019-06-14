@@ -34,19 +34,12 @@ public class Card implements Comparable<Card> {
     }
 
     public String printCard(){
-        String thisCard;
-        if (this.faceValue.getRankValue() > 10 || this.faceValue.getRankValue() == 1){
-            thisCard = this.faceValue.getRankString() + this.imageValue;
-        } else {
-            thisCard = this.faceValue.getRankValue() + "" + this.imageValue;
-        }
-        return thisCard;
+        return this.faceValue.getRankString() + " of " + this.suit.getSuitText();
     }
 
 
     @Override
     public int compareTo(Card card) {
-        return (this.getFaceValue().getRankValue() < card.getFaceValue().getRankValue() ? -1 :
-                (this.getFaceValue().getRankValue() == card.getFaceValue().getRankValue() ? 0 : 1));
+        return (Integer.compare(this.getFaceValue().getRankValue(), card.getFaceValue().getRankValue()));
     }
 }
