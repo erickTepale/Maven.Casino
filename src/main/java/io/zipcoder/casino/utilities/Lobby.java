@@ -31,7 +31,7 @@ public class Lobby {
                     Poker poker = new Poker(base, dealer, console);
                     break;
                 case "GoFish":
-                    //GoFish gofish = new GoFish(base,dealer);
+                    GoFish gofish = new GoFish(base,dealer);
                     break;
                 case "Roulette":
                     //Roulette roulette = new Roulette(base,dealer);

@@ -37,9 +37,6 @@ public class Blackjack extends CardGame implements GamblingGame {
             Hand.
 
 
-
-
-        }
     }
     public void setupBoard(){
         player.setHand(super.deal(2));
@@ -84,5 +81,7 @@ public class Blackjack extends CardGame implements GamblingGame {
     public void decreaseMinBet() {
 
     }
-
+    public String placeWager(){
+        return null;
+    }
 }
