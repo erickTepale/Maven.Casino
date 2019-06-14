@@ -301,7 +301,7 @@ public abstract class LastChance extends DiceGame implements GamblingGame{
     }
 
     @Override
-    public Integer placeWager() {
+    public String placeWager() {
         return null;
     }
 
