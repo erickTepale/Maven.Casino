@@ -17,15 +17,21 @@ public class Blackjack extends CardGame implements GamblingGame {
     }
     public void main(){
         Console console = new Console(System.in, System.out);
-
-        placeWager(console);
-        player.setHand(super.deal(2));
-        dealer.setHand(super.deal(1));
+        console.getIntegerInput("Please enter your wager", betAmount);
+        console.println(placeWager(betAmount));
+        setupBoard();
 
 
 
     }
+    public void setupBoard(){
+        player.setHand(super.deal(2));
+        dealer.setHand(super.deal(1));
 
+    }
+    public String placeWager(){
+        return null;
+    }
     public Boolean isWin() {
         return null;
     }
@@ -40,15 +46,15 @@ public class Blackjack extends CardGame implements GamblingGame {
     }
 
 
-    public Integer placeWager(Console console) {
-        console.getIntegerInput("Please enter your wager", betAmount);
+    public String placeWager(Integer betAmount) {
+        String answer = "";
         if (player.removeFromWallet(betAmount)) {
-            console.println("Bet Amount of " + betAmount + " Confirmed");
+            answer = "Bet Amount of " + betAmount + " Confirmed";
 
         } else {
-            console.println("You currently do not have enough money to make that wager");
+            answer = "You currently do not have enough money to make that wager";
         }
-        return betAmount;
+        return answer;
 
 }
 
@@ -59,5 +65,5 @@ public class Blackjack extends CardGame implements GamblingGame {
     public void decreaseMinBet() {
 
     }
-   
+
 }

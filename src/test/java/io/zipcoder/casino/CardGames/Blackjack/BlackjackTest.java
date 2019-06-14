@@ -1,6 +1,7 @@
 package io.zipcoder.casino.CardGames.Blackjack;
 
 import io.zipcoder.casino.utilities.BasePlayer;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -38,9 +39,11 @@ public class BlackjackTest {
     }
 
     @Test
-    public void placeWager() {
-        BasePlayer tester = new BasePlayer();
-        BlackjackPlayer test = new BlackjackPlayer(tester);
+    public void placeWager(Integer betAmount) {
+
+        String expected = "Bet Amount of " + betAmount + " Confirmed";;
+
+        Assert.assertEquals(expected,placeWager(betAmount));
 
     }
 
