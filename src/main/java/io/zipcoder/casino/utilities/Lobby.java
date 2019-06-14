@@ -8,7 +8,7 @@ import io.zipcoder.casino.DiceGames.LastChance.LastChance;
 //import io.zipcoder.casino.Roulette.Roulette;
 
 public class Lobby {
-    private ConsoleIO console;
+    private Console console;
 
 
     public Lobby() {
@@ -16,7 +16,7 @@ public class Lobby {
 
     }
 
-    public Lobby(ConsoleIO console, BasePlayer base, BasePlayer dealer) {
+    public Lobby(Console console, BasePlayer base, BasePlayer dealer) {
     this.console = console;
         //System.out.println("Welcome " + base.getName() + " to Blitz & Chips the most exclusive Casino in the World");
         boolean gameRunning = true;
