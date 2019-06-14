@@ -9,6 +9,7 @@ import io.zipcoder.casino.CardGames.UtilitiesCards.CardGame;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class GoFish extends CardGame {
@@ -47,6 +48,9 @@ public class GoFish extends CardGame {
 
     }
 
+
+    //Iterator<Card> iter = player.hand.iterator();
+
     public void checkForBooks(GoFishPlayer player){
         playerHandMap = Hand.getHandMap(player.hand);
 
@@ -61,6 +65,16 @@ public class GoFish extends CardGame {
             }
         }
     }
+
+//    Iterator<Card> iter = player.hand.iterator();
+//    public void itr(){
+//    while (iter.hasNext()) {
+//        if (iter.next() == 5) {
+//            iter.remove();
+//        }
+//    }
+//    }
+
 
 
 

@@ -72,8 +72,11 @@ public class GoFishTests {
         goFishGame.setHand(cpuPlayer);
         System.out.println(Hand.showHand(cpuPlayer.hand));
         System.out.println(thisHand.getHandMap(cpuPlayer.hand));
+        goFishGame.checkForBooks(cpuPlayer);
+        System.out.println(Hand.showHand(cpuPlayer.hand));
+        System.out.println(thisHand.getHandMap(cpuPlayer.hand));
 
-        
+
 
     }
 
