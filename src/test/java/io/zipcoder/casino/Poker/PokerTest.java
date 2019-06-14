@@ -40,7 +40,7 @@ public class PokerTest {
         Integer pot = 0;
 
         //action
-        Poker a = new Poker(player, dealer, console);
+        //Poker a = new Poker(player, dealer, console);
 
         //result
         //Assert.assertEquals(pot, a.getPot());
