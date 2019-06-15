@@ -13,6 +13,10 @@ public class BlackjackPlayer extends BasePlayer {
     private Boolean stand;
     private Boolean bust;
 
+    public void addCard(Card newCard){
+        hand.add(newCard);
+    }
+
     public BlackjackPlayer(BasePlayer player){
         this.player = player;
 
@@ -33,9 +37,7 @@ public class BlackjackPlayer extends BasePlayer {
     }
 
 
-    public void addCard(Card a){
-        hand.add(a);
-    }
+
 
     public void setHand(ArrayList<Card> hand){
         this.hand = hand;
