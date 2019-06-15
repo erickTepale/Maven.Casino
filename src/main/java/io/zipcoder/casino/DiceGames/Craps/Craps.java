@@ -12,7 +12,10 @@ public class Craps extends DiceGame implements GamblingGame {
     CrapsPlayer dealer;
     private Console console;
     private int startBet;
-
+    private int winAmount;
+    private Boolean win;
+    private int rollCount = 1;
+    private int lastRolledValue;
 
     public Craps(BasePlayer base, BasePlayer dealer){
         super();
@@ -22,7 +25,7 @@ public class Craps extends DiceGame implements GamblingGame {
         this.minBet = 20;
     }
 
-    private void initGame () {
+    public void initGame () {
         String Menu = "";
         do {
             Menu = console.getStringInput(printMenu());
@@ -30,8 +33,9 @@ public class Craps extends DiceGame implements GamblingGame {
                 case "RULES": printRules();
                 break;
                 case "Play": console.println(placeWager());
-                if (startBet >0 ){
-                    roll();
+                if (startBet >=minBet ){
+                    playGame();
+
                 }
                 break;
             }
@@ -39,6 +43,36 @@ public class Craps extends DiceGame implements GamblingGame {
 
     }
 
+    public void playGame(){
+        int rolledValue = roll();
+        if(rollCount ==1){
+            if (rolledValue == 2 || rolledValue == 3 || rolledValue == 12){
+                winAmount = 0;
+                win = false;
+            } else if (rolledValue == 7 || rolledValue == 11){
+                winAmount = startBet * 2;
+                win = true;
+            } else {
+                rollCount = rollCount+1;
+                playGame();
+                lastRolledValue =  rolledValue;
+            }
+
+        }else{
+            if (rolledValue == 7 || rolledValue == 11){
+                winAmount = 0;
+                win = false;
+            } else if (rolledValue == lastRolledValue){
+                winAmount = startBet * 2;
+                win = true;
+            } else {
+                rollCount = rollCount+1;
+                playGame();
+            }
+
+        }
+
+    }
     public Integer roll() {
         return super.rollDice();
     }
@@ -70,7 +104,61 @@ public class Craps extends DiceGame implements GamblingGame {
         return null;
     }
 
+    public Integer getMinBet() {
+        return minBet;
+    }
 
+    public void setMinBet(Integer minBet) {
+        this.minBet = minBet;
+    }
+
+    public CrapsPlayer getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(CrapsPlayer player) {
+        this.player = player;
+    }
+
+    public CrapsPlayer getDealer() {
+        return dealer;
+    }
+
+    public void setDealer(CrapsPlayer dealer) {
+        this.dealer = dealer;
+    }
+
+    public Console getConsole() {
+        return console;
+    }
+
+    public void setConsole(Console console) {
+        this.console = console;
+    }
+
+    public int getStartBet() {
+        return startBet;
+    }
+
+    public void setStartBet(int startBet) {
+        this.startBet = startBet;
+    }
+
+    public int getWinAmount() {
+        return winAmount;
+    }
+
+    public void setWinAmount(int winAmount) {
+        this.winAmount = winAmount;
+    }
+
+    public Boolean getWin() {
+        return win;
+    }
+
+    public void setWin(Boolean win) {
+        this.win = win;
+    }
 
     public void printRules() {
         console.println("\nRULES" +
@@ -95,5 +183,7 @@ public class Craps extends DiceGame implements GamblingGame {
     public void decreaseMinBet() {
 
     }
+
+
 
 }
