@@ -18,7 +18,7 @@ public class GoFish extends CardGame {
     private EnumMap<Rank, Integer> playerHandMap;
     private Console console;
     String action;
-    //private EnumMap<Rank, Integer> cpuHandMap;
+
 
     public GoFish(BasePlayer player, BasePlayer cpuPlayer, Console consoleIO) {
         super();
@@ -42,7 +42,6 @@ public class GoFish extends CardGame {
 
 
     public void startGame(){
-        //cycle through options
         do {
             action = console.getStringInput(printMenu());
             switch (action.toUpperCase()) {
@@ -55,7 +54,6 @@ public class GoFish extends CardGame {
                     playGame();
                     break;
             }
-
         }while(!action.equals("quit"));
     }
 
@@ -65,11 +63,7 @@ public class GoFish extends CardGame {
     public void playGame(){
         do {
             sortHands();
-            console.println("\n            Your Hand:"
-                    + "\n==================================");
-                    console.println(Hand.showHand(player.hand));
-                    console.println("==================================\n");
-            action = console.getStringInput("What card would you like to ask for?");
+            playerTurn();
 
             doTurn(player, cpuPlayer, action);
 
@@ -85,9 +79,26 @@ public class GoFish extends CardGame {
 
 
 
-    public void playerTurn(){
+    public Rank playerTurn() {
+        console.println("\n            Your Hand:"
+                + "\n==================================");
+        console.println(Hand.showHand(player.hand));
+        console.println("==================================\n");
 
 
+        Rank thisCard = Rank.ACE;
+        boolean isLooping = true;
+        while (isLooping) {
+            try {
+                action = console.getStringInput("What card would you like to ask for?");
+                action = action.toUpperCase();
+                thisCard = Enum.valueOf(Rank.class, action);
+                isLooping = false;
+            } catch (IllegalArgumentException e) {
+                console.println("Invalid input, please try again.\n");
+            }
+        }
+        return thisCard;
     }
 
 
@@ -153,12 +164,6 @@ public class GoFish extends CardGame {
                 "\nSee Rules:         [Rules]" +
                 "\nReturn to Lobby:   [Quit]";
     }
-
-
-
-
-
-
 
 
 
