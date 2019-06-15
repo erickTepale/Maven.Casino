@@ -23,28 +23,31 @@ public class GoFishTests {
         cpuPlayer = new GoFishPlayer();
         goFishGame = new GoFish(basePlayer, cpuPlayer);
         goFishGame.deckGetter().sortDeck();
+        goFishGame.setHand(humanPlayer);
+        goFishGame.setHand(cpuPlayer);
     }
 
     @Test
     public void deckSizeTest(){
+        GoFish testGoFishGame = new GoFish(basePlayer, cpuPlayer);
         Integer expected = 52;
-        Integer actual = goFishGame.getDeckSize();
+        Integer actual = testGoFishGame.getDeckSize();
         Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void deckSizeTest2(){
         Integer expected = 38;
-        goFishGame.setHand(humanPlayer);
-        goFishGame.setHand(cpuPlayer);
         Integer actual = goFishGame.getDeckSize();
         Assert.assertEquals(expected, actual);
     }
 
+
+
+
     @Test
     public void getHandTest(){
         Integer expected = 7;
-        goFishGame.setHand(humanPlayer);
         Integer actual = humanPlayer.hand.size();
         Assert.assertEquals(expected, actual);
     }
@@ -52,7 +55,6 @@ public class GoFishTests {
     @Test
     public void getHandTest2(){
         Integer expected = 7;
-        goFishGame.setHand(cpuPlayer);
         Integer actual = cpuPlayer.hand.size();
         Assert.assertEquals(expected, actual);
     }
@@ -60,7 +62,6 @@ public class GoFishTests {
 
     @Test
     public void handMapTest(){
-        goFishGame.setHand(cpuPlayer);
         System.out.println(Hand.showHand(cpuPlayer.hand));
         System.out.println(Hand.getHandMap(cpuPlayer.hand));
 
@@ -68,7 +69,6 @@ public class GoFishTests {
 
     @Test
     public void getBookTest(){
-        goFishGame.setHand(cpuPlayer);
         goFishGame.checkForBooks(cpuPlayer);
 
         Integer expectedHandSize = 3;
@@ -82,53 +82,106 @@ public class GoFishTests {
     }
 
 
+    @Test
+    public void doTurnTest(){
+        ///System.out.println(Hand.showHand(cpuPlayer.hand));
+        //System.out.println(Hand.showHand(humanPlayer.hand));
+        goFishGame.doTurn(cpuPlayer, humanPlayer, "JACK");
+        //System.out.println(Hand.showHand(cpuPlayer.hand));
+        //System.out.println(Hand.showHand(humanPlayer.hand));
+
+    }
+
+    @Test
+    public void doTurnTest2(){
+        Integer expectedInitialHandSize = 7;
+        Integer actualInitialHandSize = humanPlayer.hand.size();
+
+
+        goFishGame.doTurn(humanPlayer, cpuPlayer, "JACK");
+
+        Integer expectedResultingHandSize = 11;
+        Integer actualResultingHandSize = humanPlayer.hand.size();
+
+        Assert.assertEquals(expectedInitialHandSize, actualInitialHandSize);
+        Assert.assertEquals(expectedResultingHandSize, actualResultingHandSize);
+
+    }
+
+    @Test
+    public void doTurnTest3(){
+        Integer expectedInitialHandSize = 7;
+        Integer actualInitialHandSize = cpuPlayer.hand.size();
+
+        goFishGame.doTurn(humanPlayer, cpuPlayer, "JACK");
+
+        Integer expectedResultingHandSize = 3;
+        Integer actualResultingHandSize = cpuPlayer.hand.size();
+
+        Assert.assertEquals(expectedInitialHandSize, actualInitialHandSize);
+        Assert.assertEquals(expectedResultingHandSize, actualResultingHandSize);
+    }
+
+
+    @Test
+    public void doTurnTest4(){
+        Integer expectedInitialHandSize = 7;
+        Integer actualInitialHandSize = cpuPlayer.hand.size();
+
+        goFishGame.doTurn(cpuPlayer, humanPlayer, "KING");
+
+        Integer expectedResultingHandSize = 11;
+        Integer actualResultingHandSize = cpuPlayer.hand.size();
+
+        Assert.assertEquals(expectedInitialHandSize, actualInitialHandSize);
+        Assert.assertEquals(expectedResultingHandSize, actualResultingHandSize);
+    }
+    @Test
+    public void doTurnTest5(){
+        goFishGame.doTurn(cpuPlayer, humanPlayer, "THREE");
+
+        Integer expectedResultingHandSize = 8;
+        Integer actualResultingHandSize = cpuPlayer.hand.size();
+
+        Assert.assertEquals(expectedResultingHandSize, actualResultingHandSize);
+    }
+
+    @Test
+    public void goFishTest(){
+        goFishGame.goFish(humanPlayer);
+
+        Integer expectedResultingHandSize = 8;
+        Integer actualResultingHandSize = humanPlayer.hand.size();
+
+        Assert.assertEquals(expectedResultingHandSize, actualResultingHandSize);
+
+        Integer inspectahDeck = 37;
+        Integer protectYahDeck = goFishGame.getDeckSize();
+        Assert.assertEquals(inspectahDeck, protectYahDeck);
+    }
+
+    @Test
+    public void goFishTest2(){
+        goFishGame.goFish(humanPlayer);
+        goFishGame.goFish(humanPlayer);
+        goFishGame.goFish(humanPlayer);
+
+        Integer expectedResultingHandSize = 10;
+        Integer actualResultingHandSize = humanPlayer.hand.size();
+
+        Assert.assertEquals(expectedResultingHandSize, actualResultingHandSize);
+
+        Integer inspectahDeck = 35;
+        Integer protectYahDeck = goFishGame.getDeckSize();
+        Assert.assertEquals(inspectahDeck, protectYahDeck);
+    }
 
 
 
 
-//    @Test
-//    public void sortHandTest(){
-//        goFishGame.setHand(humanPlayer);
-//        humanPlayer.hand.size();
-//
-//        Assert.assertTrue(humanPlayer.hand.getCardStringValue(0) == "Queen" &&
-//                humanPlayer.hand.getCardStringValue(1) == "Queen"
-//                && humanPlayer.hand.getCardStringValue(2) == "Queen"
-//                && humanPlayer.hand.getCardStringValue(3) == "King"
-//                && humanPlayer.hand.getCardStringValue(4) == "King"
-//                && humanPlayer.hand.getCardStringValue(5) == "King"
-//                && humanPlayer.hand.getCardStringValue(6) == "King");
-//    }
-//
-//    @Test
-//    public void sortHandTest2(){
-//        goFishGame.setHand(humanPlayer);
-//        goFishGame.setHand(cpuPlayer);
-//        cpuPlayer.hand.sortHandByNumber();
-//
-//        Assert.assertTrue(cpuPlayer.hand.getCardStringValue(0) == "Ten" &&
-//                cpuPlayer.hand.getCardStringValue(1) == "Ten"
-//                && cpuPlayer.hand.getCardStringValue(2) == "Jack"
-//                && cpuPlayer.hand.getCardStringValue(3) == "Jack"
-//                && cpuPlayer.hand.getCardStringValue(4) == "Jack"
-//                && cpuPlayer.hand.getCardStringValue(5) == "Jack"
-//                && cpuPlayer.hand.getCardStringValue(6) == "Queen");
-//    }
 
 
-//    @Test
-//    public void getNameTest(){
-//        String expected = "Test";
-//        String actual = humanPlayer.getName();
-//        Assert.assertEquals(expected, actual);
-//    }
-//
-//    @Test
-//    public void getNameTest2(){
-//        String expected = "Go Fish Player";
-//        String actual = cpuPlayer.getName();
-//        Assert.assertEquals(expected, actual);
-//    }
+
 
 
 }
