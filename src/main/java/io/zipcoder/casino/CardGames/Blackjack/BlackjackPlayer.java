@@ -12,7 +12,15 @@ public class BlackjackPlayer extends BasePlayer {
     public List<Card> hand;
     private Boolean stand;
     private Boolean bust;
+    private Integer handValue;
 
+    public void setHandValue(Integer handValue) {
+        this.handValue = handValue;
+    }
+
+    public Integer getHandValue() {
+        return this.handValue;
+    }
     public void addCard(Card newCard){
         hand.add(newCard);
     }
