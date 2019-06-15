@@ -13,8 +13,8 @@ public class GoFishTest {
         GoFishPlayer cpuPlayer = new GoFishPlayer(baseCpuPlayer);
 
 
-        GoFish thisGame = new GoFish(player, cpuPlayer);
+        //GoFish thisGame = new GoFish(player, cpuPlayer, );
 
-        thisGame.startGame();
+        //thisGame.startGame();
     }
 }
