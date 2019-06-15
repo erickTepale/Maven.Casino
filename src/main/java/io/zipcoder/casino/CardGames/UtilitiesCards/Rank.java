@@ -5,7 +5,7 @@ public enum Rank {
     SIX(6, "Six",6), SEVEN(7, "Seven",7), EIGHT(8, "Eight",8), NINE(9, "Nine",9), TEN(10, "Ten",10),
     JACK(11, "J",10), QUEEN(12, "Q",10), KING(13, "K",10);
 
-    private int rankValue;
+    private Integer rankValue;
     private String rankString;
     private int blackJackValue;
 

@@ -3,7 +3,6 @@ package io.zipcoder.casino.CardGames.Poker;
 import io.zipcoder.casino.CardGames.UtilitiesCards.*;
 import io.zipcoder.casino.utilities.BasePlayer;
 import io.zipcoder.casino.utilities.Console;
-import io.zipcoder.casino.utilities.ConsoleIO;
 import io.zipcoder.casino.utilities.GamblingGame;
 
 import java.util.ArrayList;
@@ -50,8 +49,9 @@ public class Poker extends CardGame implements GamblingGame {
                         dealer.setHand(super.deal(5));
                         player.setHand(super.deal(5));
                         sortHands();
-                        Hand.showHand((ArrayList<Card>) player.hand);
+                        console.println("\n"+ Hand.showHand((ArrayList<Card>)player.hand));
                         console.println(player.currentHandValue());
+                        player.addCard(super.draw());
                     }
 
                     break;
@@ -60,7 +60,7 @@ public class Poker extends CardGame implements GamblingGame {
         }while(!action.equals("quit"));
     }
 
-    public String printMenu(){
+    private String printMenu(){
         return "\nPlease Type In An Option: " +
                 "\nPlay:              [Play]" +
                 "\nSee Rules:         [Rules]" +
@@ -68,7 +68,7 @@ public class Poker extends CardGame implements GamblingGame {
                 "\nSee Hand Rankings: [Rank]";
     }
 
-    public void printHandRanking(){
+    private void printHandRanking(){
         console.println("\nHand Rankings:\n\n" +
                              "Royal Flush:       " +
                                 Rank.ACE.getRankString() + Suit.SPADES.getSuitImage() +
@@ -115,7 +115,7 @@ public class Poker extends CardGame implements GamblingGame {
 
     }
 
-    public void printBonus(){
+    private void printBonus(){
         console.println("\nPayout Bonuses:\nBeating the Dealer ->   2:1\n" +
                              "\t2 Pair:            3:1\n" +
                              "\t3 Of A King:       6:1\n" +
@@ -126,7 +126,7 @@ public class Poker extends CardGame implements GamblingGame {
                              "\tRoyal Flush:       90:1");
     }
 
-    public void printRules(){
+    private void printRules(){
         console.println("\nRules:" +
                 "\nSingle Draw Poker is a variation of Poker,\n" +
                 "You place your initial wager to recieve a hand and you double down\n" +
@@ -135,7 +135,7 @@ public class Poker extends CardGame implements GamblingGame {
                 "\nDealer Must Have Queen High to Play! ");
     }
 
-    public void sortHands(){
+    private void sortHands(){
         Hand.sortHandByNumber((ArrayList<Card>)player.hand);
         Hand.sortHandByNumber((ArrayList<Card>)dealer.hand);
     }

@@ -133,24 +133,12 @@ public class DeckTests {
 
     @Test
     public void sortHandTest(){
-        String expected = "Four of Clubs\n" +
-                "Five of Clubs\n" +
-                "Six of Clubs\n" +
-                "Seven of Clubs\n" +
-                "Eight of Clubs\n" +
-                "Nine of Clubs\n" +
-                "Ten of Clubs\n" +
-                "J of Clubs\n" +
-                "Q of Clubs\n" +
-                "K of Clubs\n";
+        String expected = "[4♣] [5♣] [6♣] [7♣] [8♣] [9♣] [10♣] [J♣] [Q♣] [K♣] ";
         testHand = new ArrayList<>(testDeck.getHand(10));
         Hand.sortHandByNumber(testHand);
         String actual = Hand.showHand(testHand);
+        System.out.println(Hand.showHand(testHand));
         Assert.assertEquals(expected, actual);
-        Hand.sortHandByNumber(testHand);
-//        Integer actual = testHand.getHandSize();
-//        Assert.assertEquals(expected, actual);
-
     }
 
 }
