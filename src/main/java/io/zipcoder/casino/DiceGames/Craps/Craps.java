@@ -1,6 +1,5 @@
 package io.zipcoder.casino.DiceGames.Craps;
 
-import io.zipcoder.casino.DiceGames.UtilitiesDice.Dice;
 import io.zipcoder.casino.DiceGames.UtilitiesDice.DiceGame;
 import io.zipcoder.casino.utilities.BasePlayer;
 import io.zipcoder.casino.utilities.Console;
@@ -54,8 +53,9 @@ public class Craps extends DiceGame implements GamblingGame {
                 win = true;
             } else {
                 rollCount = rollCount+1;
-                playGame();
                 lastRolledValue =  rolledValue;
+                playGame();
+
             }
 
         }else{
@@ -67,6 +67,7 @@ public class Craps extends DiceGame implements GamblingGame {
                 win = true;
             } else {
                 rollCount = rollCount+1;
+                lastRolledValue =  rolledValue;
                 playGame();
             }
 
@@ -79,14 +80,6 @@ public class Craps extends DiceGame implements GamblingGame {
 
 
 
-    public Boolean isWin() {
-        return null;
-    }
-
-    public void switchTurns() {
-
-    }
-
     @Override
     public void welcomeMessage() {
 
@@ -94,14 +87,30 @@ public class Craps extends DiceGame implements GamblingGame {
 
     }
 
-
     public String placeWager() {
         int bet = 0;
         if (bet < minBet) {
         bet = console.getIntegerInput("Please input a wager(Min bet: $" + minBet + ")", bet);
-            return null;
+
         }
+
         return null;
+    }
+
+    public int getRollCount() {
+        return rollCount;
+    }
+
+    public void setRollCount(int rollCount) {
+        this.rollCount = rollCount;
+    }
+
+    public int getLastRolledValue() {
+        return lastRolledValue;
+    }
+
+    public void setLastRolledValue(int lastRolledValue) {
+        this.lastRolledValue = lastRolledValue;
     }
 
     public Integer getMinBet() {
@@ -183,7 +192,4 @@ public class Craps extends DiceGame implements GamblingGame {
     public void decreaseMinBet() {
 
     }
-
-
-
 }
