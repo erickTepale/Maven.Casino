@@ -21,7 +21,7 @@ public abstract class CardGame extends Game {
     }
 
     public ArrayList<Card> deal(Integer numOfCards){
-        return this.deck.getHand(numOfCards);
+        return deck.getHand(numOfCards);
     }
 
     public Deck getDeck(){

@@ -5,10 +5,10 @@ public enum Rank {
     SIX(6, "Six"), SEVEN(7, "Seven"), EIGHT(8, "Eight"), NINE(9, "Nine"), TEN(10, "Ten"),
     JACK(11, "J"), QUEEN(12, "Q"), KING(13, "K");
 
-    private int rankValue;
+    private Integer rankValue;
     private String rankString;
 
-    Rank(int rankValue, String rankString) {
+    Rank(Integer rankValue, String rankString) {
         this.rankValue = rankValue;
         this.rankString = rankString;
     }

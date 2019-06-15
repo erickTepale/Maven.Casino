@@ -34,7 +34,7 @@ public class Card implements Comparable<Card> {
     }
 
     public String printCard(){
-        return this.faceValue.getRankString() + " of " + this.suit.getSuitText();
+        return this.faceValue.getRankString() + "" + this.suit.getSuitImage();
     }
 
 
