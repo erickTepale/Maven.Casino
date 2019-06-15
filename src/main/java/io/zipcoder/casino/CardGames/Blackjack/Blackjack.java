@@ -80,7 +80,11 @@ public class Blackjack extends CardGame implements GamblingGame {
         playerTurn = true;
         }
         public Boolean playerBustCheck() {
-            if (player.getHandValue() > 22) {
+            Integer num = 0;
+            if(isAPresent(player.hand) > 0){
+               num = 10 * isAPresent(player.hand);
+            }
+        if (player.getHandValue() - num > 21) {
 
                 return true;
             } else {
@@ -91,7 +95,11 @@ public class Blackjack extends CardGame implements GamblingGame {
 
 
         public Boolean dealerBustCheck(){
-            if (dealer.getHandValue() > 21) {
+            Integer num = 0;
+            if(isAPresent(dealer.hand) > 0){
+                num = 10 * isAPresent(dealer.hand);
+            }
+        if (dealer.getHandValue()-num > 21) {
                 return true;
             } else {
 
@@ -102,8 +110,8 @@ public class Blackjack extends CardGame implements GamblingGame {
                 Integer numofA = 0;
             for (int i = 0; i <hand.size(); i++) {
 
-                numofA =hand.get(i).getFaceValue().getRankValue();
-                if(numofA.equals(1)){
+                if(hand.get(i).getFaceValue().getRankValue()== 1){
+
                 numofA++;}
 
             }
