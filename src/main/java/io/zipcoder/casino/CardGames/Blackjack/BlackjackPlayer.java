@@ -9,9 +9,13 @@ import java.util.List;
 public class BlackjackPlayer extends BasePlayer {
     private BasePlayer player;
 
-    private List<Card> hand;
+    public List<Card> hand;
     private Boolean stand;
     private Boolean bust;
+
+    public void addCard(Card newCard){
+        hand.add(newCard);
+    }
 
     public BlackjackPlayer(BasePlayer player){
         this.player = player;
@@ -26,11 +30,14 @@ public class BlackjackPlayer extends BasePlayer {
         return null;
 
     }
+    public String showCard(){
 
 
-    public void addCard(Card a){
-        hand.add(a);
+        return null;
     }
+
+
+
 
     public void setHand(ArrayList<Card> hand){
         this.hand = hand;
@@ -39,6 +46,11 @@ public class BlackjackPlayer extends BasePlayer {
 
 
     }
+
+    public BasePlayer getPlayer(){
+        return player;
+    }
+
 
     public void split(){
 
