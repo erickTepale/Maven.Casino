@@ -1,12 +1,13 @@
 package io.zipcoder.casino.CardGames.Blackjack;
 
 import io.zipcoder.casino.utilities.BasePlayer;
+import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class BlackjackTest {
-
+public BasePlayer base;
+public BasePlayer dealer;
+public BlackjackPlayer player;
     @Test
     public void isAcePresent(){
         //deck.compare("ACE");
@@ -38,9 +39,23 @@ public class BlackjackTest {
     }
 
     @Test
-    public void placeWager() {
-        BasePlayer tester = new BasePlayer();
-        BlackjackPlayer test = new BlackjackPlayer(tester);
+    public void testplaceWager() {
+        base.getWallet();
+        Blackjack bj = new Blackjack(base,dealer);
+
+        Integer betAmount = 100;
+
+
+        System.out.println(base.getWallet());
+        String answer = bj.placeWager(100);
+
+
+
+        String expected = "Bet Amount of " + betAmount + " Confirmed";;
+
+        Assert.assertEquals(expected,answer);
+
+
 
     }
 
