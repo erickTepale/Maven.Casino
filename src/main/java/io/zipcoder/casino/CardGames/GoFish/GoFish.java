@@ -9,6 +9,7 @@ import io.zipcoder.casino.utilities.Console;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class GoFish extends CardGame {
@@ -16,6 +17,7 @@ public class GoFish extends CardGame {
     public GoFishPlayer cpuPlayer;
     private EnumMap<Rank, Integer> playerHandMap;
     private Console console;
+    String action;
     //private EnumMap<Rank, Integer> cpuHandMap;
 
     public GoFish(BasePlayer player, BasePlayer cpuPlayer, Console consoleIO) {
@@ -40,7 +42,6 @@ public class GoFish extends CardGame {
 
 
     public void startGame(){
-        String action;
         //cycle through options
         do {
             action = console.getStringInput(printMenu());
@@ -51,10 +52,7 @@ public class GoFish extends CardGame {
                 case "PLAY":
                     setHand(player);
                     setHand(cpuPlayer);
-
-                    sortHands();
-
-                    console.println(Hand.showHand(player.hand));
+                    playGame();
                     break;
             }
 
@@ -64,6 +62,22 @@ public class GoFish extends CardGame {
 
 
 
+    public void playGame(){
+        do {
+            sortHands();
+            console.println("\n            Your Hand:"
+                    + "\n==================================");
+                    console.println(Hand.showHand(player.hand));
+                    console.println("==================================\n");
+            action = console.getStringInput("What card would you like to ask for?");
+
+            doTurn(player, cpuPlayer, action);
+
+
+        } while (player.getNumberOfBooks() + cpuPlayer.getNumberOfBooks() < 13);
+    }
+
+
     public void sortHands(){
         Hand.sortHandByNumber(player.hand);
         Hand.sortHandByNumber(cpuPlayer.hand);
@@ -71,31 +85,36 @@ public class GoFish extends CardGame {
 
 
 
+    public void playerTurn(){
 
 
-//    public void doTurn(GoFishPlayer currentPlayer, GoFishPlayer otherPlayer, Integer cardValue){
-//
-//        ArrayList<Card> cardsToExchange = new ArrayList<>();
-//        if (otherPlayer.hand.contains(cardValue)){
-//            for (Card eachCard : otherPlayer.hand.getHand()){
-//                otherPlayer.hand.
-//            }
-//        }
-//    }
+    }
 
 
 
+    public void doTurn(GoFishPlayer currentPlayer, GoFishPlayer otherPlayer, String cardValue){
+        Rank thisCard = Enum.valueOf(Rank.class, cardValue);
+        ArrayList<Card> cardsToExchange = new ArrayList<>();
+        playerHandMap = Hand.getHandMap(otherPlayer.hand);
+
+        if (playerHandMap.containsKey(thisCard)) {
+            for (Iterator<Card> iterator = otherPlayer.hand.iterator(); iterator.hasNext(); ) {
+                Card nextCard = iterator.next();
+                if (nextCard.getFaceValue().getRankValue() == thisCard.getRankValue()) {
+                    cardsToExchange.add(nextCard);
+                    iterator.remove();
+                }
+            }
+            currentPlayer.hand.addAll(cardsToExchange);
+        } else {
+            goFish(currentPlayer);
+        }
+    }
 
 
-
-
-
-
-
-
-    public void cpuTurn(){
-
-
+    public void goFish(GoFishPlayer currentPlayer){
+        Card fishedCard = super.deckGetter().draw();
+        currentPlayer.hand.add(fishedCard);
     }
 
 
