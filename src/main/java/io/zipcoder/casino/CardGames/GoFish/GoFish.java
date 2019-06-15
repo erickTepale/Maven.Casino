@@ -13,6 +13,7 @@ import java.util.*;
 public class GoFish extends CardGame {
     public GoFishPlayer player;
     public GoFishPlayer cpuPlayer;
+    public BasePlayer basePlayer;
     private EnumMap<Rank, Integer> playerHandMap;
     private Console console;
     String action;
@@ -23,6 +24,7 @@ public class GoFish extends CardGame {
         super();
         this.player = new GoFishPlayer(player);
         this.cpuPlayer = new GoFishPlayer((cpuPlayer));
+        this.basePlayer = player;
         console = consoleIO;
         startGame();
     }
@@ -82,7 +84,22 @@ public class GoFish extends CardGame {
             if (checkWin()) break;
             checkForBooks(cpuPlayer);
         }
-        console.println("Game over!");
+
+        endGame();
+    }
+
+
+    public void endGame(){
+        console.println("\nGame over!");
+        if (player.getNumberOfBooks() > cpuPlayer.getNumberOfBooks()){
+            console.println("You won, congratulations! :)");
+        } else if (player.getNumberOfBooks() < cpuPlayer.getNumberOfBooks()){
+            console.println("You lost, sorry... :(");
+        }
+        action = console.getStringInput("\nPlay again?");
+        if (action.equalsIgnoreCase("y") || action.equalsIgnoreCase("yes")) {
+            new GoFish(this.basePlayer, new BasePlayer(), this.console);
+        }
     }
 
 
@@ -95,12 +112,15 @@ public class GoFish extends CardGame {
 
     public Rank playerTurn() {
         printHand(player);
-        console.println("Opponent's hand:");
         Rank thisCard = Rank.ACE;
         boolean isLooping = true;
         while (isLooping) {
             try {
                 action = console.getStringInput("\nIt's your turn. What card would you like to ask your opponent for?");
+                if (action.equalsIgnoreCase("quit")){
+                    new GoFish(this.basePlayer, new BasePlayer(), this.console);
+                    isLooping = false;
+                }
                 action = action.toUpperCase();
                 thisCard = Enum.valueOf(Rank.class, action);
                 isLooping = false;
@@ -138,7 +158,7 @@ public class GoFish extends CardGame {
         console.println("Your opponent asks if you have any " + cardChoice.toLowerCase() + "s...");
         playerHandMap = Hand.getHandMap(player.hand);
         if (playerHandMap.containsKey(Enum.valueOf(Rank.class, cardChoice))){
-            console.println("You begrudgingly hand over your card(s).");
+            console.println("You begrudgingly hand over your card(s).\n");
         } else {
             console.println("But you don't have any!");
         }
@@ -161,6 +181,10 @@ public class GoFish extends CardGame {
                     iterator.remove();
                 }
             }
+            if (currentPlayer.equals(player)){
+                console.println("Your opponent hands over " + cardsToExchange.size() + " " + cardValue.toLowerCase() + "(s)!");
+            }
+
             currentPlayer.hand.addAll(cardsToExchange);
         } else {
             goFish(currentPlayer);
@@ -169,12 +193,15 @@ public class GoFish extends CardGame {
 
 
     public void goFish(GoFishPlayer currentPlayer) {
-        console.println("\n~~~~~~~~~ GO FISH! ~~~~~~~~~\n");
+        console.println("\n~~~~~~~~~ GO FISH! ~~~~~~~~~");
         if (super.getDeckSize() == 0) {
             console.println("The deck is empty!");
         } else {
             Card fishedCard = super.deckGetter().draw();
             currentPlayer.hand.add(fishedCard);
+            if(currentPlayer.equals(player)){
+                console.println("(You drew a [" + fishedCard.printCard() + "])\n");
+            }
         }
     }
 
@@ -187,10 +214,12 @@ public class GoFish extends CardGame {
                 Rank remove = mapEntry.getKey();
                 player.hand.removeIf(thisCard -> thisCard.getFaceValue().equals(remove));
                 player.setNumberOfBooks(player.getNumberOfBooks() + 1);
-                console.println("\n");
-                console.println("You have four " + mapEntry.getKey().toString().toLowerCase() + "s!");
-                console.println("Your books: " + player.getNumberOfBooks());
-                console.println("\n");
+
+                if (player.equals(this.player)) {
+                    console.println("\n");
+                    console.println("You have four " + mapEntry.getKey().toString().toLowerCase() + "s!");
+                    console.println("Your books: " + player.getNumberOfBooks());
+                }
             }
         }
     }
@@ -209,6 +238,7 @@ public class GoFish extends CardGame {
 
     public void printHand(GoFishPlayer player){
         Integer length = Hand.showHand(player.hand).length();
+        console.println("");
         String bars = String.format("%" + length + "s", "").replace(' ', '=');
         String yourHand = String.format("%" + (length/2 + 5) + "s", "Your Hand:");
         console.println(yourHand + "\n" + bars);
@@ -232,7 +262,7 @@ public class GoFish extends CardGame {
             bookBuilder.append("s.");
         }
         console.println(bookBuilder.toString());
-        console.println("Cards in deck: " + super.getDeckSize());
+        //console.println("Cards in deck: " + super.getDeckSize());
     }
 
 
