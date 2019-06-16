@@ -6,7 +6,9 @@ import io.zipcoder.casino.CardGames.UtilitiesCards.Rank;
 import io.zipcoder.casino.utilities.BasePlayer;
 import io.zipcoder.casino.CardGames.UtilitiesCards.CardGame;
 import io.zipcoder.casino.utilities.Console;
+import io.zipcoder.casino.utilities.Lobby;
 
+import java.io.PrintStream;
 import java.util.*;
 
 public class GoFish extends CardGame {
@@ -32,6 +34,8 @@ public class GoFish extends CardGame {
         super();
         this.player = new GoFishPlayer(player);
         this.cpuPlayer = new GoFishPlayer((cpuPlayer));
+        this.basePlayer = player;
+        this.console = new Console(System.in, System.out);
     }
 
 
@@ -63,27 +67,19 @@ public class GoFish extends CardGame {
 
     public void playGame(){
         while (player.getNumberOfBooks() + cpuPlayer.getNumberOfBooks() < 13){
-            checkForBooks(player);
-            checkForBooks(cpuPlayer);
-            sortHands();
-
+            setUp();
             if (checkWin()) break;
 
-
-            checkHand(player);
             playerTurn();
             doTurn(player, cpuPlayer, action);
-            checkForBooks(player);
-            if (checkWin()) break;
+            setUp();
 
-            checkHand(cpuPlayer);
             if (checkWin()) break;
             String cpuCardChoice = cpuTurn();
             doTurn(cpuPlayer, player, cpuCardChoice);
+            setUp();
             if (checkWin()) break;
-            checkForBooks(cpuPlayer);
         }
-
         endGame();
     }
 
@@ -91,13 +87,15 @@ public class GoFish extends CardGame {
     public void endGame(){
         console.println("\nGame over!");
         if (player.getNumberOfBooks() > cpuPlayer.getNumberOfBooks()){
-            console.println("You won, congratulations! :)");
+            console.println("You won! Congratulations, " + this.basePlayer.getName() + "! :)");
         } else if (player.getNumberOfBooks() < cpuPlayer.getNumberOfBooks()){
             console.println("You lost, sorry... :(");
         }
         action = console.getStringInput("\nPlay again?");
         if (action.equalsIgnoreCase("y") || action.equalsIgnoreCase("yes")) {
-            new GoFish(this.basePlayer, new BasePlayer(), this.console);
+            new GoFish(this.basePlayer, new BasePlayer(), new Console(System.in, System.out));
+        } else {
+            new Lobby(new Console(System.in, System.out), this.basePlayer, new BasePlayer());
         }
     }
 
@@ -107,9 +105,18 @@ public class GoFish extends CardGame {
         Hand.sortHandByNumber(cpuPlayer.hand);
     }
 
+    public void setUp(){
+        checkForBooks(player);
+        checkForBooks(cpuPlayer);
+
+        sortHands();
+    }
+
 
 
     public Rank playerTurn() {
+        checkHand(player);
+        setUp();
         printHand(player);
         Rank thisCard = Rank.ACE;
         boolean isLooping = true;
@@ -117,7 +124,7 @@ public class GoFish extends CardGame {
             try {
                 action = console.getStringInput("\nIt's your turn. What card would you like to ask your opponent for?");
                 if (action.equalsIgnoreCase("quit")){
-                    new GoFish(this.basePlayer, new BasePlayer(), this.console);
+                    new Lobby(new Console(System.in, System.out), this.basePlayer, new BasePlayer());
                     isLooping = false;
                 }
                 action = action.toUpperCase();
@@ -131,6 +138,9 @@ public class GoFish extends CardGame {
     }
 
     public String cpuTurn(){
+        checkHand(cpuPlayer);
+        setUp();
+
         console.println("\nIt is your opponent's turn.");
         playerHandMap = Hand.getHandMap(cpuPlayer.hand);
         List<Rank> keysAsArray = new ArrayList<>(playerHandMap.keySet());
@@ -183,8 +193,14 @@ public class GoFish extends CardGame {
             if (currentPlayer.equals(player)){
                 console.println("Your opponent hands over " + cardsToExchange.size() + " " + cardValue.toLowerCase() + "(s)!");
             }
-
             currentPlayer.hand.addAll(cardsToExchange);
+//            if (currentPlayer.equals(player)){
+//                console.println("You get another turn!");
+//                playerTurn();
+//            } else {
+//                console.println("Opponent gets another turn.");
+//                cpuTurn();
+//            }
         } else {
             goFish(currentPlayer);
         }
@@ -231,15 +247,11 @@ public class GoFish extends CardGame {
     }
 
 
-
-
-
-
     public void printHand(GoFishPlayer player){
         Integer length = Hand.showHand(player.hand).length();
         console.println("");
         String bars = String.format("%" + length + "s", "").replace(' ', '=');
-        String yourHand = String.format("%" + (length/2 + 5) + "s", "Your Hand:");
+        String yourHand = String.format("%" + (length/2 + 5) + "s", this.basePlayer.getName() + "'s Hand:");
         console.println(yourHand + "\n" + bars);
         console.println(Hand.showHand(player.hand));
         console.println(bars);
@@ -286,9 +298,4 @@ public class GoFish extends CardGame {
         return (!(player.getNumberOfBooks() + cpuPlayer.getNumberOfBooks() < 13));
     }
 
-
-    @Override
-    public void switchTurns() {
-        super.switchTurns();
-    }
 }
