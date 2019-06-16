@@ -1,5 +1,7 @@
 package io.zipcoder.casino.CardGames.UtilitiesCards;
 
+import static com.sun.xml.internal.ws.util.VersionUtil.compare;
+
 public class Card implements Comparable<Card> {
     private Suit suit;
     private Rank faceValue;
@@ -33,20 +35,37 @@ public class Card implements Comparable<Card> {
         return imageValue;
     }
 
-    public String printCard(){
-        String thisCard;
-        if (this.faceValue.getRankValue() > 10 || this.faceValue.getRankValue() == 1){
-            thisCard = this.faceValue.getRankString() + this.imageValue;
+    public String printCard() {
+//        return this.faceValue.getRankString() + "" + this.suit.getSuitImage();
+//    }
+        String thisCard = "";
+        if (this.faceValue.getRankValue() > 10 || this.faceValue.getRankValue() == 1) {
+            thisCard += this.faceValue.getRankString();
         } else {
-            thisCard = this.faceValue.getRankValue() + "" + this.imageValue;
+            thisCard += this.faceValue.getRankValue();
         }
-        return thisCard;
+        return thisCard + "" + this.suit.getSuitImage();
     }
 
 
     @Override
     public int compareTo(Card card) {
-        return (this.getFaceValue().getRankValue() < card.getFaceValue().getRankValue() ? -1 :
-                (this.getFaceValue().getRankValue() == card.getFaceValue().getRankValue() ? 0 : 1));
+//        final Integer numCompare = Integer.compare(this.getFaceValue().getRankValue(), card.getFaceValue().getRankValue());
+//        final Integer suitCompare = compare(this.getSuite().getSuitText(), card.getSuite().getSuitText());
+
+
+        int numCompare = Integer.compare(this.getFaceValue().getRankValue(), card.getFaceValue().getRankValue());
+        int suitCompare = (this.suit.getSuitText().compareTo(card.suit.getSuitText()));
+        if (numCompare != 0) {
+            return numCompare;
+        }
+        return suitCompare;
     }
+
+
+//        if (numCompare == 0) {
+//            return suitCompare;
+//        } else {
+//            return numCompare;
+//        }
 }

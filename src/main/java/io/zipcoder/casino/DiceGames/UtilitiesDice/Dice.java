@@ -5,10 +5,12 @@ import io.zipcoder.casino.utilities.Bin;
 import java.util.ArrayList;
 
 public class Dice implements Bin {
+
     public static ArrayList<Integer> dealerDice = new ArrayList<Integer>(5);
     public static ArrayList<Integer> playerDice = new ArrayList<Integer>(5);
     public static ArrayList<Integer> heldDice = new ArrayList<Integer>(5);
     public static Integer numOfDice = 0;
+
 
 
     public Dice() {
@@ -22,6 +24,14 @@ public class Dice implements Bin {
             playerDice.add(i, die);
         }
         return playerDice;
+    }
+
+    public static Integer roll (){
+        int sum = 0;
+        for (int i = 0; i < 2; i++) {
+            sum += (int) (Math.random() * 6 + 1);
+        }
+        return sum;
     }
 
 
@@ -52,25 +62,7 @@ public class Dice implements Bin {
         return null;
     }
 
-   public Integer rollOneDIe() {
-        return null;
-    }
 
-    public Integer rollTwoDice() {
-        return null;
-    }
-
-    public Integer rollThreeDie() {
-        return null;
-    }
-
-    public Integer rollFourDie() {
-        return null;
-    }
-
-    public Integer rollFiveDie() {
-        return null;
-    }
 }
 
 

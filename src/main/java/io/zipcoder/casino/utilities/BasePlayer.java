@@ -2,9 +2,9 @@ package io.zipcoder.casino.utilities;
 
 public  class BasePlayer {
     private Integer wallet;
-    private  String name;
+    private String name;
 
-    public BasePlayer(){}
+    public BasePlayer(){this.wallet = 100000;}
 
     public BasePlayer(String name) {
         this.name = name;

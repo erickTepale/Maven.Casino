@@ -25,13 +25,13 @@ public class Lobby {
 
             switch (game) {
                 case "BlackJack":
-                    Blackjack bj = new Blackjack(base, dealer);
+                    Blackjack bj = new Blackjack(base,dealer,console);
                     break;
                 case "Poker":
                     Poker poker = new Poker(base, dealer, console);
                     break;
                 case "GoFish":
-                    //GoFish gofish = new GoFish(base,dealer);
+                    GoFish gofish = new GoFish(base, dealer, console);
                     break;
                 case "Roulette":
                     //Roulette roulette = new Roulette(base,dealer);
