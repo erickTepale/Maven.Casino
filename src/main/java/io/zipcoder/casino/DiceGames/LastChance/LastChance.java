@@ -107,6 +107,9 @@ public abstract class LastChance extends DiceGame implements GamblingGame{
     }
 
     public void playGame(){
+        String name; // = BasePlayer.getName();
+        Integer wallet; // = BasePlayer.getWallet();
+
         String gameScreen = String.format("\n" +
                 "\t\t\t\tLast Chance\n" +
                 "\t%1$s's Wallet: %2$s           Possible Winnings: %3$s\n" +
@@ -118,7 +121,7 @@ public abstract class LastChance extends DiceGame implements GamblingGame{
                 "\t\n" +
                 "\tEnter 'roll' to roll the dice or 'lobby' to forfiet your bet.\n");
         // why can't I use name, and wallet from BasePlayer.basePlayer?
-//                , name, wallet, pot, dealerDice, playerDice, heldDice, rolls);
+        //        , name, wallet, pot, dealerDice, playerDice, heldDice, rolls);
         // Call setNumOfDice
         Dice.roll(numOfDice); //sets return Integer[] playerDice
         rolls--;
