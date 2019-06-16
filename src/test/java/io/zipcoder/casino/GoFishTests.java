@@ -15,11 +15,13 @@ public class GoFishTests {
     private BasePlayer basePlayer;
     private GoFishPlayer humanPlayer;
     private GoFishPlayer cpuPlayer;
+    private Console console;
 
     @Before
     public void setup(){
         basePlayer = new BasePlayer("Test");
         humanPlayer = new GoFishPlayer(basePlayer);
+        console = new Console(System.in, System.out);
         cpuPlayer = new GoFishPlayer();
         goFishGame = new GoFish(basePlayer, cpuPlayer);
         goFishGame.deckGetter().sortDeck();
@@ -82,18 +84,9 @@ public class GoFishTests {
     }
 
 
+
     @Test
     public void doTurnTest(){
-        ///System.out.println(Hand.showHand(cpuPlayer.hand));
-        //System.out.println(Hand.showHand(humanPlayer.hand));
-        goFishGame.doTurn(cpuPlayer, humanPlayer, "JACK");
-        //System.out.println(Hand.showHand(cpuPlayer.hand));
-        //System.out.println(Hand.showHand(humanPlayer.hand));
-
-    }
-
-    @Test
-    public void doTurnTest2(){
         Integer expectedInitialHandSize = 7;
         Integer actualInitialHandSize = humanPlayer.hand.size();
 
@@ -174,6 +167,22 @@ public class GoFishTests {
         Integer inspectahDeck = 35;
         Integer protectYahDeck = goFishGame.getDeckSize();
         Assert.assertEquals(inspectahDeck, protectYahDeck);
+    }
+
+    @Test
+    public void goFishNameTest(){
+        String expected = "Test";
+        String actual = goFishGame.basePlayer.getName();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void goFishWalletTest(){
+        Integer expected= 100000;
+        Integer actual = goFishGame.basePlayer.getWallet();
+
+        Assert.assertEquals(expected, actual);
     }
 
 
