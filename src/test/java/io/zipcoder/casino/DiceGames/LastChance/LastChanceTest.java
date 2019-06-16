@@ -10,11 +10,12 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class LastChanceTest {
+import static org.junit.Assert.assertEquals;
 
-    private BasePlayer player;
-    private ConsoleIO console;
-    private ArrayList<String> expected;
+public class LastChanceTest {
+    public BasePlayer player;
+    public ConsoleIO console;
+    public ArrayList<String> expected;
 
     @Before
     public void setup(){
@@ -22,12 +23,12 @@ public class LastChanceTest {
         player = new BasePlayer();
     }
 
-    //@Test
-   // public void
-
-
-
-
+    @Test
+    public void setupGameTest(){
+        int iBet = 10;
+        int iMultiplier = 5;
+//        assertEquals(50, LastChance.setupGame(iBet, iMultiplier));
+    }
 
 
 }
