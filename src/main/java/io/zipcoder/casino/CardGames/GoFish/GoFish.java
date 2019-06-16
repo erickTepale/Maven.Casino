@@ -66,27 +66,19 @@ public class GoFish extends CardGame {
 
     public void playGame(){
         while (player.getNumberOfBooks() + cpuPlayer.getNumberOfBooks() < 13){
-            checkForBooks(player);
-            checkForBooks(cpuPlayer);
-            sortHands();
-
+            setUp();
             if (checkWin()) break;
 
-
-            checkHand(player);
             playerTurn();
             doTurn(player, cpuPlayer, action);
-            checkForBooks(player);
-            if (checkWin()) break;
+            setUp();
 
-            checkHand(cpuPlayer);
             if (checkWin()) break;
             String cpuCardChoice = cpuTurn();
             doTurn(cpuPlayer, player, cpuCardChoice);
+            setUp();
             if (checkWin()) break;
-            checkForBooks(cpuPlayer);
         }
-
         endGame();
     }
 
@@ -112,9 +104,18 @@ public class GoFish extends CardGame {
         Hand.sortHandByNumber(cpuPlayer.hand);
     }
 
+    public void setUp(){
+        checkForBooks(player);
+        checkForBooks(cpuPlayer);
+
+        sortHands();
+    }
+
 
 
     public Rank playerTurn() {
+        checkHand(player);
+        setUp();
         printHand(player);
         Rank thisCard = Rank.ACE;
         boolean isLooping = true;
@@ -136,6 +137,9 @@ public class GoFish extends CardGame {
     }
 
     public String cpuTurn(){
+        checkHand(cpuPlayer);
+        setUp();
+
         console.println("\nIt is your opponent's turn.");
         playerHandMap = Hand.getHandMap(cpuPlayer.hand);
         List<Rank> keysAsArray = new ArrayList<>(playerHandMap.keySet());
@@ -293,9 +297,4 @@ public class GoFish extends CardGame {
         return (!(player.getNumberOfBooks() + cpuPlayer.getNumberOfBooks() < 13));
     }
 
-
-    @Override
-    public void switchTurns() {
-        super.switchTurns();
-    }
 }
