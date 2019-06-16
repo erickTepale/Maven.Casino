@@ -5,10 +5,7 @@ import io.zipcoder.casino.CardGames.UtilitiesCards.Rank;
 import io.zipcoder.casino.utilities.BasePlayer;
 import io.zipcoder.casino.CardGames.UtilitiesCards.Card;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PokerPlayer extends BasePlayer {
     private BasePlayer player;
@@ -21,7 +18,37 @@ public class PokerPlayer extends BasePlayer {
     }
 
     public String currentHandValue(){
-        return null;
+        if(checkRoyal())
+            return "Royal Flush";
+        else if(checkStraight())
+            return "Straight Flush";
+        else if(check4Kind())
+            return "Four of a Kind";
+        else if(checkBoat())
+            return "Full House";
+        else if(checkFlush())
+            return "Flush";
+        else if(checkStraight())
+            return "Straight";
+        else if(check3Kind())
+            return "Three of a Kind";
+        else if(checkTwoPair())
+            return "Two Pair";
+        else if(checkPair())
+            return "Pair";
+        else
+            return "High Card";
+
+    }
+
+    public void reDraw(Integer[] toReDraw){
+        Arrays.sort(toReDraw);
+        for (int i = toReDraw.length - 1; i >= 0 ; i--) {
+            hand.remove(toReDraw[i] - 1);
+            //removing index arr[i] - 1 - i because size of array changes as you delete
+            //so if size of array starts at 5 and you delete index 1.
+            //size is now 4 and if you try to delete index 5 you get a null pointer!
+        }
     }
 
     public String addCard(Card newCard){

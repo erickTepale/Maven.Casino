@@ -12,6 +12,8 @@ public class Poker extends CardGame implements GamblingGame {
     private PokerPlayer dealer;
     private Integer minBet;
     private Integer bet;
+    Boolean fold;
+    private Integer [] discard;
     private Integer pot;
     private Integer[] wagerRecords; //2 rounds of betting
     private Console console;
@@ -21,6 +23,7 @@ public class Poker extends CardGame implements GamblingGame {
         this.player = new PokerPlayer(player);
         this.dealer = new PokerPlayer(dealer);
         this.pot = 0;
+        this.fold = false;
         this.minBet = 50;
         console = consoleIO;//new Console(System.in, System.out);
 
@@ -48,10 +51,25 @@ public class Poker extends CardGame implements GamblingGame {
                     if(pot > 0){
                         dealer.setHand(super.deal(5));
                         player.setHand(super.deal(5));
+
+                        /// BET PLACED ! ///
+                        console.println("\nYour Hand:");
                         sortHands();
-                        console.println("\n"+ Hand.showHand((ArrayList<Card>)player.hand));
-                        console.println(player.currentHandValue());
-                        player.addCard(super.draw());
+                        console.println(Hand.showHand((ArrayList<Card>)player.hand));
+                        console.println("Hand Value: " + player.currentHandValue());
+
+                        // Player Action
+                        displayPlayerAction();
+                        if(!fold && (discard != null)){
+                            player.reDraw(discard);
+                            reAdd();
+                            sortHands();
+                            console.println(Hand.showHand((ArrayList<Card>)player.hand));
+                        }
+
+                        //Print Results
+
+
                     }
 
                     break;
@@ -138,6 +156,76 @@ public class Poker extends CardGame implements GamblingGame {
     private void sortHands(){
         Hand.sortHandByNumber((ArrayList<Card>)player.hand);
         Hand.sortHandByNumber((ArrayList<Card>)dealer.hand);
+    }
+
+    private void reAdd(){
+        for (int i = 0; i <discard.length ; i++) {
+            player.hand.add(super.draw());
+        }
+
+    }
+
+    private void displayDrawMenu(){
+        String input = "";
+        Boolean inputParsed = false;
+        clearConsole();
+        console.println(Hand.showHand((ArrayList<Card>) player.getHand()));
+        console.println(" [1]  [2]  [3]  [4]  [5]");
+
+        do {
+            if(!input.equals(""))
+                console.println("Please input valid numbers.\n");
+            input = console.getStringInput("\nSelect the hands you wish to replace. " +
+                    "\nExample: 1 4 5");
+            inputParsed = parseDiscardInput(input);
+        } while (inputParsed);
+
+    }
+
+    private Boolean parseDiscardInput(String input){
+        String [] a = input.split(" ");
+        discard  = new Integer[a.length];
+
+        for (int i = 0; i <a.length ; i++) {
+            if(!a[i].matches("-?\\d+(\\.\\d+)?"))
+                return true;
+            else {
+                discard[i] = Integer.parseInt(a[i]);
+            }
+        }
+
+        for (int i = 0; i < discard.length ; i++) {
+            System.out.println(discard[i]);
+        }
+
+        return false;
+    }
+    private void clearConsole(){
+        console.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    }
+
+    private void displayPlayerAction(){
+        Integer a = -1;
+        do {
+            a = console.getIntegerInput("\nYou can either: \n" +
+                                                "Draw      [1]\n" +
+                                                "Stand Pat [2]\n" +
+                                                "Fold      [3]");
+
+        }while(a < 0 || a > 3);
+
+        switch (a){
+            case 1:
+                displayDrawMenu();
+                break;
+            case 2:
+                //printResults();
+                break;
+            case 3:
+                fold = true;
+                //displayLost();
+                break;
+        }
     }
 
     public Boolean isWin() {
