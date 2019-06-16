@@ -1,6 +1,7 @@
 package io.zipcoder.casino.CardGames.GoFish;
 
 import com.sun.javafx.binding.StringFormatter;
+import com.sun.tools.internal.ws.wsdl.document.Output;
 import io.zipcoder.casino.CardGames.UtilitiesCards.Card;
 import io.zipcoder.casino.CardGames.UtilitiesCards.Hand;
 import io.zipcoder.casino.CardGames.UtilitiesCards.Rank;
@@ -9,6 +10,7 @@ import io.zipcoder.casino.CardGames.UtilitiesCards.CardGame;
 import io.zipcoder.casino.utilities.Console;
 import io.zipcoder.casino.utilities.Lobby;
 
+import java.io.PrintStream;
 import java.util.*;
 
 public class GoFish extends CardGame {
@@ -35,6 +37,7 @@ public class GoFish extends CardGame {
         this.player = new GoFishPlayer(player);
         this.cpuPlayer = new GoFishPlayer((cpuPlayer));
         this.basePlayer = player;
+        this.console = new Console(System.in, System.out);
     }
 
 
