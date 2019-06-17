@@ -68,7 +68,7 @@ public class Poker extends CardGame{
         Hand.sortHandByNumber((ArrayList<Card>)dealer.hand);
     }
 
-    private void reAdd(){
+    public void reAdd(){
         for (int i = 0; i <discard.length ; i++) {
             player.hand.add(super.draw());
         }
@@ -99,7 +99,7 @@ public class Poker extends CardGame{
 
     }
 
-    protected void checkWinner(){
+    public void checkWinner(){
         String [] playerResults = player.currentHandValue();
         String [] dealerResults = dealer.currentHandValue();
 
