@@ -5,6 +5,7 @@ import io.zipcoder.casino.CardGames.GoFish.GoFish;
 import io.zipcoder.casino.CardGames.Poker.Poker;
 import io.zipcoder.casino.DiceGames.Craps.Craps;
 import io.zipcoder.casino.DiceGames.LastChance.LastChance;
+import io.zipcoder.casino.Roulette.Roulette;
 //import io.zipcoder.casino.Roulette.Roulette;
 
 public class Lobby {
@@ -33,7 +34,7 @@ public class Lobby {
                     GoFish gofish = new GoFish(base, dealer, console);
                     break;
                 case "ROULETTE":
-                    //Roulette roulette = new Roulette(base,dealer);
+                    Roulette roulette = new Roulette(base,dealer);
                     break;
                 case "CRAPS":
                     Craps craps = new Craps(base, dealer);
