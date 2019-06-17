@@ -17,28 +17,49 @@ public class PokerPlayer extends BasePlayer {
         hand = new ArrayList<>();
     }
 
-    public String currentHandValue(){
-        if(checkRoyal())
-            return "Royal Flush";
-        else if(checkStraight())
-            return "Straight Flush";
-        else if(check4Kind())
-            return "Four of a Kind";
-        else if(checkBoat())
-            return "Full House";
-        else if(checkFlush())
-            return "Flush";
-        else if(checkStraight())
-            return "Straight";
-        else if(check3Kind())
-            return "Three of a Kind";
-        else if(checkTwoPair())
-            return "Two Pair";
-        else if(checkPair())
-            return "Pair";
-        else
-            return "High Card";
-
+    public String[] currentHandValue(){
+        String [] result = new String[2];
+        if(checkRoyal()) {
+            result[0] = "Royal Flush";
+            result[1] = "1000";
+        }
+        else if(checkStraight()){
+            result[0] = "Straight Flush";
+            result[1] = "300";
+        }
+        else if(check4Kind()){
+            result[0] = "Four of a Kind";
+            result[1] = "90";
+        }
+        else if(checkBoat()){
+            result[0] = "Full House";
+            result[1] = "20";
+        }
+        else if(checkFlush()){
+            result[0] = "Flush";
+            result[1] = "13";
+        }
+        else if(checkStraight()){
+            result[0] = "Straight";
+            result[1] = "9";
+        }
+        else if(check3Kind()){
+            result[0] = "Three of a Kind";
+            result[1] = "6";
+        }
+        else if(checkTwoPair()){
+            result[0] = "Two Pair";
+            result[1] = "3";
+        }
+        else if(checkPair()){
+            result[0] = "One Pair";
+            result[1] = "2";
+        }
+        else{
+            result[0] = "High Card";
+            result[1] = "1";
+        }
+        return result;
     }
 
     public void reDraw(Integer[] toReDraw){
