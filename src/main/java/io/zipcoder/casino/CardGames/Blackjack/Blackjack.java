@@ -3,10 +3,7 @@ package io.zipcoder.casino.CardGames.Blackjack;
 import io.zipcoder.casino.CardGames.UtilitiesCards.Card;
 import io.zipcoder.casino.CardGames.UtilitiesCards.CardGame;
 import io.zipcoder.casino.CardGames.UtilitiesCards.Hand;
-import io.zipcoder.casino.utilities.BasePlayer;
-import io.zipcoder.casino.utilities.Console;
-import io.zipcoder.casino.utilities.ConsoleIO;
-import io.zipcoder.casino.utilities.GamblingGame;
+import io.zipcoder.casino.utilities.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +40,10 @@ public class Blackjack extends CardGame implements GamblingGame {
             this.dealer = new BlackjackPlayer(BJdealer);
         while (isRunning) {
             gameReset();
+            String readyToPlay = console.getStringInput("Ready to play y or n");
+            if(readyToPlay.toUpperCase().equals("N")){
+                new Lobby(new Console(System.in, System.out), this.player, new BasePlayer());
+            }
             betAmount = console.getIntegerInput("Please enter your wager");
             while (currentGame) {
                 console.println(placeWager(betAmount));
@@ -203,15 +204,15 @@ public class Blackjack extends CardGame implements GamblingGame {
         }
     public Integer dealerHandValue() {
         dealerHandValue = 0;
-        for (int i = 0; i < dealer.hand.size(); i++) {
+        for (int j = 0; j < dealer.hand.size(); j++) {
 
-            dealerHandValue += dealer.hand.get(i).getFaceValue().getBlackJackValue();
+            dealerHandValue += dealer.hand.get(j).getFaceValue().getBlackJackValue();
 
         }
         Integer num2 = 0;
-        Integer temp = isAPresent(dealer.hand);
-        if(temp  > 0 && dealerHandValue> 21){
-            num2 = 10 * temp;
+        //Integer temp = isAPresent(dealer.hand);
+        if(isAPresent(dealer.hand) > 0 && dealerHandValue> 21){
+            num2 = 10 * isAPresent(dealer.hand);
         }
             return dealerHandValue-num2;
 
