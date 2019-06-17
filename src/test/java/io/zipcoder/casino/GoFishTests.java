@@ -1,6 +1,5 @@
 package io.zipcoder.casino;
 
-import com.sun.source.tree.AssertTree;
 import io.zipcoder.casino.CardGames.GoFish.GoFish;
 import io.zipcoder.casino.CardGames.GoFish.GoFishPlayer;
 import io.zipcoder.casino.CardGames.UtilitiesCards.Hand;
@@ -47,9 +46,6 @@ public class GoFishTests {
         Integer actual = goFishGame.getDeckSize();
         Assert.assertEquals(expected, actual);
     }
-
-
-
 
     @Test
     public void getHandTest(){
@@ -104,7 +100,6 @@ public class GoFishTests {
     @Test
     public void printHandTest(){
         String expected = "\n" +
-                "\n" +
                 "          Test's Hand:\n" +
                 "===================================\n" +
                 "[Q♦] [Q❤] [Q♠] [K♣] [K♦] [K❤] [K♠] \n" +
@@ -114,7 +109,7 @@ public class GoFishTests {
         Hand.sortHandByNumber(humanPlayer.hand);
         String actual = goFishGame.printHand(humanPlayer);
 
-        //Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected, actual);
     }
 
 
@@ -281,9 +276,7 @@ public class GoFishTests {
 
         Assert.assertEquals(expectedInitialHandSize, actualInitialHandSize);
         Assert.assertEquals(expectedResultingHandSize, actualResultingHandSize);
-
     }
-
 
 
 
@@ -295,18 +288,6 @@ public class GoFishTests {
         Assert.assertEquals(expected, actual);
     }
 
-
-    @Test
-    public void setUpTest() {
-        goFishGame.setUp();
-        Integer expected = 3;
-        Integer actual= cpuPlayer.hand.size();
-
-        Assert.assertEquals(expected, actual);
-    }
-
-
-
     @Test
     public void goFishWalletTest(){
         Integer expected= 100000;
@@ -316,18 +297,6 @@ public class GoFishTests {
     }
 
 
-    @Test
-    public void printRulesTest(){
-        String expected= "\nA 'book' is a pair of four cards, based only on value (suit can be disregarded)." +
-                "\nOn your turn, you may choose a card and ask the opponent if they have any of that card." +
-                "\nIf they do, they must give you all of their cards of that type." +
-                "\nIf they don't have any, then you 'go fish'! (Draw a card from the deck)." +
-                "\nThe game is played until there are no cards remaining in the deck, or a player runs out of cards." +
-                "\nThe player with the most books at the end of the game wins!";
-//        String actual = goFishGame.printRules();
-//
-//        Assert.assertEquals(expected, actual);
-    }
 
     @Test
     public void printMenuTest(){
@@ -340,54 +309,14 @@ public class GoFishTests {
         Assert.assertEquals(expected, actual);
     }
 
-    @Test
-    public void playerTurnTest(){
-        Rank expected= Rank.JACK;
-        Rank actual = goFishGame.playerTurn();
-        Assert.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void cpuTurnTest(){
-        String expected = "JACK";
-        String actual = goFishGame.cpuTurn();
-        Assert.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void playGameTest(){
-        goFishGame.playGame();
-        String expected = "JACK";
-        String actual = goFishGame.cpuTurn();
-        Assert.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void constructorTest(){
-//        GoFish goFishGame2 = new GoFish(basePlayer, cpuPlayer, new Console(System.in, System.out));
-//        String expected = "Test";
-//        String actual = goFishGame2.basePlayer.getName();
-//        Assert.assertEquals(expected, actual);
-    }
 
 
-    @Test
-    public void startGameTest(){
-        //goFishGame.startGame();
 
-        Integer expected = 7;
-        Integer actual = goFishGame.cpuPlayer.hand.size();
 
-        Assert.assertEquals(expected, actual);
-    }
 
-    @Test
-    public void getCPUChoiceTest(){
-        String expected = "JACK";
-        String actual = goFishGame.cpuTurn();
 
-        Assert.assertEquals(expected, actual);
-    }
+
+
 
 
 

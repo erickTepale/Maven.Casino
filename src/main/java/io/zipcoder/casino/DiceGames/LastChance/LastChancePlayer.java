@@ -6,7 +6,9 @@ import io.zipcoder.casino.DiceGames.UtilitiesDice.Dice;
 import java.util.List;
 
 public class LastChancePlayer extends BasePlayer {
-
+    private BasePlayer player;
+    private Integer betAmpout;
+    private Integer pot;
 
 
 

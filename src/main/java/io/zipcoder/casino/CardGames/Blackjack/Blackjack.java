@@ -51,7 +51,7 @@ public class Blackjack extends CardGame implements GamblingGame {
                     //checkPlayerAnswer(console);
                     if(playerBustCheck()){ break;}
 
-                    console.print(player.getHandValue().toString());
+                    console.print(playerHandValue().toString());
                 }
                     if(playerBustCheck()){ break;}
 
@@ -62,6 +62,7 @@ public class Blackjack extends CardGame implements GamblingGame {
                     //console.println(test.toString());
 
             }
+
             whoWon(console);
 
         }
@@ -73,14 +74,14 @@ public class Blackjack extends CardGame implements GamblingGame {
             }else if(playerBustCheck()){
                 console.println("You lost " + betAmount);
 
-            }else if(player.getHandValue() > dealer.getHandValue()){
+            }else if(playerHandValue() > dealerHandValue()){
                 console.println("You won " + betAmount*2);
                 player.addToWallet(betAmount*2);
 
-            }else if(player.getHandValue() < dealer.getHandValue()){
+            }else if(playerHandValue() < dealerHandValue()){
                 console.println("You lost " + betAmount);
 
-            }else if(player.getHandValue().equals(dealer.getHandValue())){
+            }else if(playerHandValue().equals(dealerHandValue())){
                 player.addToWallet(betAmount);
                 console.println("It was a push");
             }
@@ -90,13 +91,12 @@ public class Blackjack extends CardGame implements GamblingGame {
         public void gameReset(){
         currentGame = true;
         playerTurn = true;
+        betAmount = 0;
         }
         public Boolean playerBustCheck() {
             Integer num = 0;
-            if(isAPresent(player.hand) > 0 && player.getHandValue()> 21){
-               num = 10 * isAPresent(player.hand);
-            }
-        if (player.getHandValue() - num > 21) {
+
+        if (playerHandValue() > 21) {
 
                 return true;
             } else {
@@ -109,10 +109,10 @@ public class Blackjack extends CardGame implements GamblingGame {
         public Boolean dealerBustCheck(){
             Integer number = 0;
             Integer bustValue = 21;
-            if(isAPresent(dealer.hand) > 0 && dealer.getHandValue()>bustValue){
+            if(isAPresent(dealer.hand) > 0 && dealerHandValue()>21){
                 number = 10 * isAPresent(dealer.hand);
             }
-        if (dealer.getHandValue()-number > 21) {
+        if (dealerHandValue()-number > 21) {
                 return true;
             } else {
 
@@ -136,7 +136,7 @@ public class Blackjack extends CardGame implements GamblingGame {
         public void  dealerTurn(Console console){
 
 
-        while(dealer.getHandValue() < 17){
+        while(dealerHandValue() < 17){
             dealer.hand.add(draw());
             dealer.setHandValue(dealerHandValue());
             if(dealerBustCheck()){
@@ -153,15 +153,16 @@ public class Blackjack extends CardGame implements GamblingGame {
         String playerAnswer = console.getStringInput("\nWould you like to hit or stay?");
         if(playerAnswer.toUpperCase().equals("HIT")){
 
-            player.hand.add(super.draw());
-            player.setHandValue(playerHandValue());
+            player.hand.add(draw());
+            //player.setHandValue(playerHandValue());
             console.print(Hand.showHand((ArrayList<Card>) player.hand));
-            if(playerBustCheck()){
-                console.println(player.getName()+" busted "+ betAmount + " has been lost");
-                playerBusted= true;
-                 return false;
+            //console.print(player.getHandValue().toString());
+            //if(playerBustCheck()){
+              //  console.println("You busted "+ betAmount + " has been lost");
+              //  playerBusted= true;
+               //  return false;
 
-            }
+           // }
             return true;
 
         }else if(playerAnswer.toUpperCase().equals("STAY")){
@@ -178,21 +179,27 @@ public class Blackjack extends CardGame implements GamblingGame {
             console.print(Hand.showHand((ArrayList<Card>) dealer.hand));
             console.println("\nPlayer is dealt");
             console.print(Hand.showHand((ArrayList<Card>) player.hand));
-            player.setHandValue(playerHandValue());
-            dealer.setHandValue(dealerHandValue());
+           // player.setHandValue(playerHandValue());
+            //dealer.setHandValue(dealerHandValue());
 
         }
 
 
 
         public Integer playerHandValue(){
-            Integer playerHandValue= 0;
+        Integer num = 0;
+        Integer playerHandValue= 0;
         for (int i = 0; i <player.hand.size(); i++) {
 
                 playerHandValue += player.hand.get(i).getFaceValue().getBlackJackValue();
 
             }
-        return playerHandValue;
+            Integer temp = isAPresent(player.hand);
+            if(temp  > 0 && playerHandValue> 21){
+                num = 10 * temp;
+            }
+
+        return playerHandValue - num;
         }
     public Integer dealerHandValue() {
         dealerHandValue = 0;
@@ -201,7 +208,12 @@ public class Blackjack extends CardGame implements GamblingGame {
             dealerHandValue += dealer.hand.get(i).getFaceValue().getBlackJackValue();
 
         }
-            return dealerHandValue;
+        Integer num2 = 0;
+        Integer temp = isAPresent(dealer.hand);
+        if(temp  > 0 && dealerHandValue> 21){
+            num2 = 10 * temp;
+        }
+            return dealerHandValue-num2;
 
     }
         public Boolean isWin(){

@@ -44,7 +44,7 @@ public  class BasePlayer {
         isOwner = owner;
     }
 
-    public void printChar(Console console){
-        console.println("====================\nName: " + this.getName() + "\nCash: $" + this.getWallet() + "\n====================");
+    public String printChar(Console console){
+        return "====================\nName: " + this.getName() + "\nCash: $" + this.getWallet() + "\n====================";
     }
 }

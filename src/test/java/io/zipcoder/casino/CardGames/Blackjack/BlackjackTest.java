@@ -96,10 +96,55 @@ public class BlackjackTest {
 
         Assert.assertEquals(expected,answer);
 
-
+    }
+    @Test
+    public void test45(){
+        hand.clear();
+        hand.add(new Card(Suit.CLUBS, Rank.TEN,   Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.JACK,  Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.ACE, Suit.HEARTS.getSuitImage()));
+        player.setHand(hand);
+        Integer answer =  b.playerHandValue();
+        Integer expected = 21;
+        Assert.assertEquals(expected,answer);
 
     }
+    @Test
+    public void test46(){
+        hand.clear();
+        hand.add(new Card(Suit.CLUBS, Rank.TEN,   Suit.CLUBS.getSuitImage()));
 
+        hand.add(new Card(Suit.HEARTS, Rank.ACE, Suit.HEARTS.getSuitImage()));
+        player.setHand(hand);
+        Integer answer =  b.playerHandValue();
+        Integer expected = 21;
+        Assert.assertEquals(expected,answer);
+
+    }
+    @Test
+    public void test47(){
+        hand.clear();
+        hand.add(new Card(Suit.CLUBS, Rank.TEN,   Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.JACK,  Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.ACE, Suit.HEARTS.getSuitImage()));
+        dealer.setHand(hand);
+        Integer answer =  b.dealerHandValue();
+        Integer expected = 21;
+        Assert.assertEquals(expected,answer);
+
+    }
+    @Test
+    public void test48(){
+        hand.clear();
+        hand.add(new Card(Suit.CLUBS, Rank.TEN,   Suit.CLUBS.getSuitImage()));
+
+        hand.add(new Card(Suit.HEARTS, Rank.ACE, Suit.HEARTS.getSuitImage()));
+        dealer.setHand(hand);
+        Integer answer =  b.dealerHandValue();
+        Integer expected = 21;
+        Assert.assertEquals(expected,answer);
+
+    }
 
 
     @Test
