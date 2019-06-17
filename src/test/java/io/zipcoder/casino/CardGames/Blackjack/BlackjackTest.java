@@ -104,6 +104,9 @@ public class BlackjackTest {
 
     @Test
     public void gameReset() {
+        Boolean answer = b.getPlayerTurn();
+        Boolean expected = true;
+        Assert.assertEquals(expected,answer);
     }
 
     @Test
@@ -129,4 +132,11 @@ public class BlackjackTest {
         Assert.assertEquals(expected,answer);
     }
 
+    @Test
+    public void gameReset1() {
+
+        Boolean answer = b.getCurrentGame();
+        Boolean expected = true;
+        Assert.assertEquals(expected,answer);
+    }
 }
