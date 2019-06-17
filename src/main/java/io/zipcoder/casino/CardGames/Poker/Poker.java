@@ -38,6 +38,7 @@ public class Poker extends CardGame implements GamblingGame {
         //cycle through options
         do {
             pot = 0;
+            fold = false;
             action = console.getStringInput(printMenu());
             switch (action.toUpperCase()) {
                 case "RULES":
@@ -229,7 +230,7 @@ public class Poker extends CardGame implements GamblingGame {
     protected void tie(){
         switch (player.currentHandValue()[0]) {
             case "Royal Flush":
-                push();
+                push(1);
                 break;
             case "Straight Flush":
                 compareByLastCard();
@@ -267,33 +268,143 @@ public class Poker extends CardGame implements GamblingGame {
                     else if(playerWinsKicker() == -1)
                         payDealer();
                     else
-                        push();
+                        push(1);
                 }
                 break;
-
+            case "Two Pair":
+                if(playerWins2Pair() == 1){
+                    payPlayer();
+                }else if(playerWins2Pair() == -1)
+                    payDealer();
+                else{
+                    if(playerWinsKicker() == 1)
+                        payPlayer();
+                    else if (playerWinsKicker() == -1)
+                        payDealer();
+                    else
+                        push(1);
+                }
+                break;
+            case "One Pair":
+                if(playerWinPair() == 1)
+                    payPlayer();
+                else if(playerWinPair() == -1)
+                    payDealer();
+                else {
+                    if(playerWinsKicker() == 1)
+                        payPlayer();
+                    else if(playerWinsKicker() == -1)
+                        payDealer();
+                    else
+                        push(1);
+                }
+                break;
+            case "High Card":
+                if(playerWinsHighCard() == 1)
+                    payPlayer();
+                else if(playerWinsHighCard() == -1)
+                    payDealer();
+                else
+                    push(1);
+                break;
+                default:
+                    System.out.println("idk homie");
 
         }
 
     }
 
+    protected Integer playerWinsHighCard(){
+        Integer playerSum = 0;
+        Integer dealerSum = 0;
+
+        for (int i = 0; i < player.getHand().size(); i++) {
+            if(player.getHand().get(i).getFaceValue().getRankValue() == 1)
+                playerSum += 14;
+            if (dealer.getHand().get(i).getFaceValue().getRankValue() == 1)
+                dealerSum += 14;
+
+            playerSum += player.getHand().get(i).getFaceValue().getRankValue();
+            dealerSum += dealer.getHand().get(i).getFaceValue().getRankValue();
+        }
+        if (playerSum > dealerSum)
+            return 1;
+        else if(playerSum < dealerSum)
+            return -1;
+        else
+            return 0;
+    }
+
+    protected Integer playerWins2Pair(){
+        //prob works tho
+        Integer playerValue = 0;
+        Integer dealerValue = 0;
+        EnumMap<Rank, Integer> handMap = Hand.getHandMap((ArrayList<Card>)player.getHand());
+        EnumMap<Rank, Integer> handMapDealer = Hand.getHandMap((ArrayList<Card>)dealer.getHand());
+
+        for(Map.Entry<Rank, Integer> mapEntry : handMap.entrySet()){
+            if(mapEntry.getValue() == 2)
+                if(playerValue <  mapEntry.getKey().getRankValue()) {
+                    if (playerValue != 1)
+                        playerValue = mapEntry.getKey().getRankValue();
+                }
+        }
+
+        for(Map.Entry<Rank, Integer> mapEntry : handMapDealer.entrySet()){
+            if(mapEntry.getValue() == 2)
+                if(dealerValue < mapEntry.getKey().getRankValue()) {
+                    if (dealerValue != 1)
+                        dealerValue = mapEntry.getKey().getRankValue();
+                }
+        }
+
+        if(playerValue == 1)
+            playerValue = 14;
+        if(dealerValue == 1)
+            dealerValue = 14;
+
+        if(playerValue > dealerValue)
+            return 1;
+
+        if(playerValue < dealerValue)
+            return -1;
+
+
+        return 0; // tie
+    }
+
     protected Integer playerWinsKicker(){
-//        //prob works tho
-////        Integer playerSum = 0;
-////        Integer dealerSum = 0;
-////        EnumMap<Rank, Integer> handMap = Hand.getHandMap((ArrayList<Card>)player.getHand());
-////        EnumMap<Rank, Integer> handMapDealer = Hand.getHandMap((ArrayList<Card>)dealer.getHand());
-////
-////        for(Map.Entry<Rank, Integer> mapEntry : handMap.entrySet()){
-////            if(mapEntry.getValue() == 1)
-////                playerValue = mapEntry.getKey().getRankValue();
-////        }
-////
-////        for(Map.Entry<Rank, Integer> mapEntry : handMapDealer.entrySet()){
-////            if(mapEntry.getValue() == 4)
-////                dealerValue = mapEntry.getKey().getRankValue();
-////        }
-////
-        return null;
+        //prob works tho
+        Integer playerSum = 0;
+        Integer dealerSum = 0;
+        EnumMap<Rank, Integer> handMap = Hand.getHandMap((ArrayList<Card>)player.getHand());
+        EnumMap<Rank, Integer> handMapDealer = Hand.getHandMap((ArrayList<Card>)dealer.getHand());
+
+        playerSum = kickerSum(handMap);
+
+        dealerSum = kickerSum(handMapDealer);
+
+        if(playerSum > dealerSum)
+            return 1;
+
+        if(playerSum < dealerSum)
+            return -1;
+
+
+        return 0; // tie
+
+    }
+
+    private Integer kickerSum(EnumMap<Rank, Integer> handMapDealer) {
+        Integer sum = 0;
+        for(Map.Entry<Rank, Integer> mapEntry : handMapDealer.entrySet()){
+            if(mapEntry.getValue() == 1)
+                if(mapEntry.getKey().getRankValue() == 1)
+                    sum += 13;
+                else
+                    sum += mapEntry.getKey().getRankValue();
+        }
+        return sum;
     }
 
     private void compareByLastCard() {
@@ -305,8 +416,42 @@ public class Poker extends CardGame implements GamblingGame {
             else
                 payDealer();
         }else{
-            push();
+            push(1);
         }
+    }
+
+    protected Integer playerWinPair(){
+        //prob works tho
+        Integer playerValue = 0;
+        Integer dealerValue = 0;
+        EnumMap<Rank, Integer> handMap = Hand.getHandMap((ArrayList<Card>)player.getHand());
+        EnumMap<Rank, Integer> handMapDealer = Hand.getHandMap((ArrayList<Card>)dealer.getHand());
+
+        for(Map.Entry<Rank, Integer> mapEntry : handMap.entrySet()){
+            if(mapEntry.getValue() == 2)
+                playerValue = mapEntry.getKey().getRankValue();
+        }
+
+        for(Map.Entry<Rank, Integer> mapEntry : handMapDealer.entrySet()){
+            if(mapEntry.getValue() == 2)
+                dealerValue = mapEntry.getKey().getRankValue();
+        }
+
+
+
+        if(playerValue == 1)
+            playerValue = 14;
+        if(dealerValue == 1)
+            dealerValue = 14;
+
+        if(playerValue > dealerValue)
+            return 1;
+
+        if(playerValue < dealerValue)
+            return -1;
+
+
+        return 0; // tie
     }
 
     protected Boolean playerWinFourKind(){
@@ -370,11 +515,14 @@ public class Poker extends CardGame implements GamblingGame {
     protected void payPlayer(){
         Integer totalPayout = 0;
         Integer bonus = Integer.parseInt(player.currentHandValue()[1]);
+        System.out.println(bonus);
         if(bonus == 2)
             bonus = 1;
+        System.out.println(bonus);
 
         totalPayout += pot * 2;
-        totalPayout += pot * bonus;
+        if (bonus > 1)
+            totalPayout += pot * bonus;
         player.getPlayer().addToWallet(totalPayout);
         dealer.getPlayer().removeFromWallet(totalPayout);
         console.println("\nCongratlations ! You Won: " + totalPayout);
@@ -382,7 +530,7 @@ public class Poker extends CardGame implements GamblingGame {
 
     private boolean dealerQualifies(){
         //Check if dealer Qualifies to play
-        if(dealer.currentHandValue().equals("High Card"))
+        if(dealer.currentHandValue()[0].equals("High Card"))
             return dealer.QHigh();
 
         return true;
@@ -392,6 +540,11 @@ public class Poker extends CardGame implements GamblingGame {
     protected void push(){
         player.getPlayer().addToWallet(bet);
         console.println("Dealer Does not have Q High");
+    }
+
+    protected void push(Integer one){
+        player.getPlayer().addToWallet(bet);
+        console.println("Dealer and Player have equivalent hand");
     }
 
     private void clearConsole(){
@@ -417,9 +570,14 @@ public class Poker extends CardGame implements GamblingGame {
                 break;
             case 3:
                 fold = true;
-                //displayLost();
+                displayLost();
                 break;
         }
+    }
+
+    private void displayLost(){
+        fold = true;
+        console.println("Folded");
     }
 
     public Boolean isWin() {

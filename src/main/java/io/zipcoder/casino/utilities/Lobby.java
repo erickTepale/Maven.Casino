@@ -13,15 +13,18 @@ public class Lobby {
 
 
     public Lobby() {
+
+
     }
 
     public Lobby(Console console, BasePlayer base, BasePlayer dealer) {
         this.console = console;
+        //System.out.println("Welcome " + base.getName() + " to Blitz & Chips the most exclusive Casino in the World");
         boolean gameRunning = true;
         while (gameRunning) {
             console.println(base.printChar(console));
             console.println("1.) BlackJack\n2.) Poker\n3.) GoFish\n4.) Roulette\n5.) Craps\n6.) Last Chance\n7.) Bar\n8.) Exit\n");
-            String game = console.getStringInput("Where would you like to go?");
+            String game = console.getStringInput("Please choose a game below");
 
             switch (game.toUpperCase()) {
                 case "BLACKJACK":
@@ -37,7 +40,7 @@ public class Lobby {
                     Roulette roulette = new Roulette(base,dealer);
                     break;
                 case "CRAPS":
-                    Craps craps = new Craps(base, dealer);
+                    //Craps craps = new Craps(base, dealer);
                     break;
                 case "LAST CHANCE":
                     //LastChance lc = new LastChance(base,dealer);
@@ -50,19 +53,13 @@ public class Lobby {
                     gameRunning = false;
                     break;
 
-
             }
 
         }
+
+
+        //make base PLayer
+        //create a menu class to display
+        //initiate games based on option
     }
-
-//    public void printMenu() {
-//        console.println("1.) BlackJack\n2.) Poker\n3.) GoFish\n4.) Roulette\n5.) Craps\n6.) Last Chance\n7.) Exit");
-//        String game = console.getStringInput("Please choose a game below");
-//    }
-
-
-    //make base PLayer
-    //create a menu class to display
-    //initiate games based on option
 }
