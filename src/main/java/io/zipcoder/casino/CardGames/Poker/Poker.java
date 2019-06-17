@@ -89,7 +89,7 @@ public class Poker extends CardGame{
         return false;
     }
 
-    private void printResults(){
+    public void printResults(){
         if(dealerQualifies()){
             checkWinner();
         }else {
@@ -260,7 +260,7 @@ public class Poker extends CardGame{
         return 0; // tie
     }
 
-    protected Integer playerWinsKicker(){
+    public Integer playerWinsKicker(){
         //prob works tho
         Integer playerSum = 0;
         Integer dealerSum = 0;
@@ -318,7 +318,7 @@ public class Poker extends CardGame{
         }
     }
 
-    protected Integer playerWinPair(){
+    public Integer playerWinPair(){
         //prob works tho
         Integer playerValue = 0;
         Integer dealerValue = 0;
@@ -352,7 +352,7 @@ public class Poker extends CardGame{
         return 0; // tie
     }
 
-    protected Boolean playerWinFourKind(){
+    public Boolean playerWinFourKind(){
         //prob works tho
         Integer playerValue = 0;
         Integer dealerValue = 0;

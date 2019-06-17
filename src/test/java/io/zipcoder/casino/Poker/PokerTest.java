@@ -283,6 +283,84 @@ public class PokerTest {
     }
 
     @Test
+    public void testPlayerWins1Pair1(){
+        pokerGame.setPot(10);
+
+        ArrayList<Card> hand = new ArrayList<>();
+        hand.add(new Card(Suit.CLUBS, Rank.QUEEN, Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.QUEEN, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.JACK, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.DIAMONDS, Rank.TEN, Suit.DIAMONDS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.ACE, Suit.HEARTS.getSuitImage()));
+
+        pokerGame.getPlayer().setHand(hand);
+
+        ArrayList<Card> hand1 = new ArrayList<>();
+        hand1.add(new Card(Suit.DIAMONDS, Rank.QUEEN, Suit.DIAMONDS.getSuitImage()));
+        hand1.add(new Card(Suit.SPADES, Rank.ACE, Suit.SPADES.getSuitImage()));
+        hand1.add(new Card(Suit.SPADES, Rank.JACK, Suit.SPADES.getSuitImage()));
+        hand1.add(new Card(Suit.CLUBS, Rank.SEVEN, Suit.CLUBS.getSuitImage()));
+        hand1.add(new Card(Suit.HEARTS, Rank.FOUR, Suit.HEARTS.getSuitImage()));
+
+        pokerGame.getDealer().setHand(hand1);
+
+        // assert pay player
+        Assert.assertEquals(Integer.valueOf(1), pokerGame.playerWinPair());
+    }
+
+    @Test
+    public void testPlayerWins1Pair2(){
+        pokerGame.setPot(10);
+
+        ArrayList<Card> hand = new ArrayList<>();
+        hand.add(new Card(Suit.CLUBS, Rank.QUEEN, Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.QUEEN, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.JACK, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.DIAMONDS, Rank.TEN, Suit.DIAMONDS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.ACE, Suit.HEARTS.getSuitImage()));
+
+        pokerGame.getDealer().setHand(hand);
+
+        ArrayList<Card> hand1 = new ArrayList<>();
+        hand1.add(new Card(Suit.DIAMONDS, Rank.QUEEN, Suit.DIAMONDS.getSuitImage()));
+        hand1.add(new Card(Suit.SPADES, Rank.ACE, Suit.SPADES.getSuitImage()));
+        hand1.add(new Card(Suit.SPADES, Rank.JACK, Suit.SPADES.getSuitImage()));
+        hand1.add(new Card(Suit.CLUBS, Rank.SEVEN, Suit.CLUBS.getSuitImage()));
+        hand1.add(new Card(Suit.HEARTS, Rank.FOUR, Suit.HEARTS.getSuitImage()));
+
+        pokerGame.getPlayer().setHand(hand1);
+
+        // assert pay player
+        Assert.assertEquals(Integer.valueOf(-1), pokerGame.playerWinPair());
+    }
+
+    @Test
+    public void testPlayerWins1Pair3(){
+        pokerGame.setPot(10);
+
+        ArrayList<Card> hand = new ArrayList<>();
+        hand.add(new Card(Suit.CLUBS, Rank.QUEEN, Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.QUEEN, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.JACK, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.DIAMONDS, Rank.TEN, Suit.DIAMONDS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.ACE, Suit.HEARTS.getSuitImage()));
+
+        pokerGame.getPlayer().setHand(hand);
+
+        ArrayList<Card> hand1 = new ArrayList<>();
+        hand1.add(new Card(Suit.DIAMONDS, Rank.QUEEN, Suit.DIAMONDS.getSuitImage()));
+        hand1.add(new Card(Suit.SPADES, Rank.ACE, Suit.SPADES.getSuitImage()));
+        hand1.add(new Card(Suit.SPADES, Rank.JACK, Suit.SPADES.getSuitImage()));
+        hand1.add(new Card(Suit.CLUBS, Rank.SEVEN, Suit.CLUBS.getSuitImage()));
+        hand1.add(new Card(Suit.HEARTS, Rank.FOUR, Suit.HEARTS.getSuitImage()));
+
+        pokerGame.getDealer().setHand(hand);
+
+        // assert pay player
+        Assert.assertEquals(Integer.valueOf(0), pokerGame.playerWinPair());
+    }
+
+    @Test
     public void testPlayerWinsFullHouse1(){
         pokerGame.setPot(10);
 
@@ -307,6 +385,165 @@ public class PokerTest {
         // assert pay player
         Assert.assertEquals(Integer.valueOf(1), pokerGame.playerWinFullHouse());
     }
+
+    @Test
+    public void testPlayerWinsKicker1(){
+        pokerGame.setPot(10);
+
+        ArrayList<Card> hand = new ArrayList<>();
+        hand.add(new Card(Suit.CLUBS, Rank.QUEEN, Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.QUEEN, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.SPADES, Rank.TEN, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.DIAMONDS, Rank.SEVEN, Suit.DIAMONDS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.ACE, Suit.HEARTS.getSuitImage()));
+
+        pokerGame.getPlayer().setHand(hand);
+
+        ArrayList<Card> hand1 = new ArrayList<>();
+        hand1.add(new Card(Suit.DIAMONDS, Rank.QUEEN, Suit.DIAMONDS.getSuitImage()));
+        hand1.add(new Card(Suit.SPADES, Rank.QUEEN, Suit.SPADES.getSuitImage()));
+        hand1.add(new Card(Suit.SPADES, Rank.JACK, Suit.SPADES.getSuitImage()));
+        hand1.add(new Card(Suit.CLUBS, Rank.FIVE, Suit.CLUBS.getSuitImage()));
+        hand1.add(new Card(Suit.HEARTS, Rank.FOUR, Suit.HEARTS.getSuitImage()));
+
+        pokerGame.getDealer().setHand(hand1);
+
+        // assert pay player
+        Assert.assertEquals(Integer.valueOf(1),pokerGame.playerWinsKicker());
+    }
+
+    @Test
+    public void testPlayerWinsKicker3(){
+        pokerGame.setPot(10);
+
+        ArrayList<Card> hand = new ArrayList<>();
+        hand.add(new Card(Suit.CLUBS, Rank.QUEEN, Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.QUEEN, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.SPADES, Rank.TEN, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.DIAMONDS, Rank.TEN, Suit.DIAMONDS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.ACE, Suit.HEARTS.getSuitImage()));
+
+        pokerGame.getPlayer().setHand(hand);
+
+        ArrayList<Card> hand1 = new ArrayList<>();
+        hand1.add(new Card(Suit.DIAMONDS, Rank.QUEEN, Suit.DIAMONDS.getSuitImage()));
+        hand1.add(new Card(Suit.SPADES, Rank.QUEEN, Suit.SPADES.getSuitImage()));
+        hand1.add(new Card(Suit.SPADES, Rank.TEN, Suit.SPADES.getSuitImage()));
+        hand1.add(new Card(Suit.CLUBS, Rank.TEN, Suit.CLUBS.getSuitImage()));
+        hand1.add(new Card(Suit.HEARTS, Rank.FOUR, Suit.HEARTS.getSuitImage()));
+
+        pokerGame.getDealer().setHand(hand1);
+
+        // assert pay player
+        Assert.assertEquals(Integer.valueOf(1),pokerGame.playerWinsKicker());
+    }
+
+    @Test
+    public void testPlayerWinsKicker4(){
+        pokerGame.setPot(10);
+
+        ArrayList<Card> hand = new ArrayList<>();
+        hand.add(new Card(Suit.CLUBS, Rank.QUEEN, Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.QUEEN, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.SPADES, Rank.TEN, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.DIAMONDS, Rank.TEN, Suit.DIAMONDS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.ACE, Suit.HEARTS.getSuitImage()));
+
+        pokerGame.getDealer().setHand(hand);
+
+        ArrayList<Card> hand1 = new ArrayList<>();
+        hand1.add(new Card(Suit.DIAMONDS, Rank.QUEEN, Suit.DIAMONDS.getSuitImage()));
+        hand1.add(new Card(Suit.SPADES, Rank.QUEEN, Suit.SPADES.getSuitImage()));
+        hand1.add(new Card(Suit.SPADES, Rank.TEN, Suit.SPADES.getSuitImage()));
+        hand1.add(new Card(Suit.CLUBS, Rank.TEN, Suit.CLUBS.getSuitImage()));
+        hand1.add(new Card(Suit.HEARTS, Rank.FOUR, Suit.HEARTS.getSuitImage()));
+
+        pokerGame.getPlayer().setHand(hand1);
+
+        // assert pay player
+        Assert.assertEquals(Integer.valueOf(-1),pokerGame.playerWinsKicker());
+    }
+
+    @Test
+    public void testInit(){
+        Assert.assertEquals(pokerGame.getPot(), Integer.valueOf(0));
+        Assert.assertFalse(pokerGame.getFold());
+        Assert.assertEquals(50, (int) pokerGame.getMinBet());
+        pokerGame.initGame("Quit");
+    }
+
+    @Test
+    public void testPlayerWinsKicker5(){
+        pokerGame.setPot(10);
+
+        ArrayList<Card> hand = new ArrayList<>();
+        hand.add(new Card(Suit.CLUBS, Rank.QUEEN, Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.QUEEN, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.SPADES, Rank.TEN, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.DIAMONDS, Rank.TEN, Suit.DIAMONDS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.ACE, Suit.HEARTS.getSuitImage()));
+
+        pokerGame.getDealer().setHand(hand);
+
+        pokerGame.getPlayer().setHand(hand);
+
+        // assert pay player
+        Assert.assertEquals(Integer.valueOf(0),pokerGame.playerWinsKicker());
+    }
+
+
+    @Test
+    public void testPlayerWinsFourKind1(){
+        pokerGame.setPot(10);
+
+        ArrayList<Card> hand = new ArrayList<>();
+        hand.add(new Card(Suit.CLUBS, Rank.QUEEN, Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.QUEEN, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.SPADES, Rank.QUEEN, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.DIAMONDS, Rank.QUEEN, Suit.DIAMONDS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.ACE, Suit.HEARTS.getSuitImage()));
+
+        pokerGame.getPlayer().setHand(hand);
+
+        ArrayList<Card> hand1 = new ArrayList<>();
+        hand1.add(new Card(Suit.DIAMONDS, Rank.QUEEN, Suit.DIAMONDS.getSuitImage()));
+        hand1.add(new Card(Suit.SPADES, Rank.QUEEN, Suit.SPADES.getSuitImage()));
+        hand1.add(new Card(Suit.SPADES, Rank.JACK, Suit.SPADES.getSuitImage()));
+        hand1.add(new Card(Suit.CLUBS, Rank.JACK, Suit.CLUBS.getSuitImage()));
+        hand1.add(new Card(Suit.HEARTS, Rank.FOUR, Suit.HEARTS.getSuitImage()));
+
+        pokerGame.getDealer().setHand(hand1);
+
+        // assert pay player
+        Assert.assertTrue(pokerGame.playerWinFourKind());
+    }
+
+    @Test
+    public void testPlayerWinsFourKind2(){
+        pokerGame.setPot(10);
+
+        ArrayList<Card> hand = new ArrayList<>();
+        hand.add(new Card(Suit.CLUBS, Rank.QUEEN, Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.QUEEN, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.SPADES, Rank.QUEEN, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.DIAMONDS, Rank.QUEEN, Suit.DIAMONDS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.ACE, Suit.HEARTS.getSuitImage()));
+
+        pokerGame.getPlayer().setHand(hand);
+
+        ArrayList<Card> hand1 = new ArrayList<>();
+        hand1.add(new Card(Suit.DIAMONDS, Rank.KING, Suit.DIAMONDS.getSuitImage()));
+        hand1.add(new Card(Suit.SPADES, Rank.KING, Suit.SPADES.getSuitImage()));
+        hand1.add(new Card(Suit.SPADES, Rank.KING, Suit.SPADES.getSuitImage()));
+        hand1.add(new Card(Suit.CLUBS, Rank.KING, Suit.CLUBS.getSuitImage()));
+        hand1.add(new Card(Suit.HEARTS, Rank.FOUR, Suit.HEARTS.getSuitImage()));
+
+        pokerGame.getDealer().setHand(hand1);
+
+        // assert pay player
+        Assert.assertFalse(pokerGame.playerWinFourKind());
+    }
+
 
     @Test
     public void testPlayerWinsFullHouse2(){
@@ -627,10 +864,29 @@ public class PokerTest {
         hand1.add(new Card(Suit.HEARTS, Rank.FOUR, Suit.HEARTS.getSuitImage()));
 
         pokerGame.getDealer().setHand(hand1);
-
+        pokerGame.getPlayer().setHand(hand1);
+        pokerGame.printResults();
 
         // assert pay player
         Assert.assertTrue(pokerGame.dealerQualifies());
+    }
+    @Test
+    public void testDealerQualifies2(){
+        pokerGame.setPot(10);
+
+        ArrayList<Card> hand1 = new ArrayList<>();
+        hand1.add(new Card(Suit.DIAMONDS, Rank.DEUCE, Suit.DIAMONDS.getSuitImage()));
+        hand1.add(new Card(Suit.SPADES, Rank.TEN, Suit.SPADES.getSuitImage()));
+        hand1.add(new Card(Suit.SPADES, Rank.JACK, Suit.SPADES.getSuitImage()));
+        hand1.add(new Card(Suit.CLUBS, Rank.SEVEN, Suit.CLUBS.getSuitImage()));
+        hand1.add(new Card(Suit.HEARTS, Rank.FOUR, Suit.HEARTS.getSuitImage()));
+
+        pokerGame.getDealer().setHand(hand1);
+        pokerGame.getPlayer().setHand(hand1);
+        pokerGame.printResults();
+
+        // assert pay player
+        Assert.assertFalse(pokerGame.dealerQualifies());
     }
 
 }
