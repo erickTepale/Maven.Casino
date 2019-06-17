@@ -3,12 +3,14 @@ package io.zipcoder.casino.utilities;
 public  class BasePlayer {
     private Integer wallet;
     private String name;
+    private boolean isOwner;
 
     public BasePlayer(){this.wallet = 100000;}
 
     public BasePlayer(String name) {
         this.name = name;
         this.wallet = 100000;
+        this.isOwner = false;
     }
 
     public String getName() {
@@ -30,5 +32,19 @@ public  class BasePlayer {
             return true;
         }else
             return false;
+    }
+
+
+
+    public boolean getOwner() {
+        return isOwner;
+    }
+
+    public void setOwner(boolean owner) {
+        isOwner = owner;
+    }
+
+    public void printChar(Console console){
+        console.println("====================\nName: " + this.getName() + "\nCash: $" + this.getWallet() + "\n====================");
     }
 }
