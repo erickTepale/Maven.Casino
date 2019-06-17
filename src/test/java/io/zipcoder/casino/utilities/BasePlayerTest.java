@@ -7,6 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class BasePlayerTest {
+
     @Test
     public void getName() {
 
@@ -83,6 +84,28 @@ public class BasePlayerTest {
 
         Assert.assertEquals(expected, a.getWallet());
 
+    }
+
+    @Test
+    public void ownerTest1(){
+        BasePlayer a = new BasePlayer("bleh");
+        Assert.assertFalse(a.getOwner());
+    }
+
+    @Test
+    public void ownerTest2(){
+        BasePlayer a = new BasePlayer("bleh");
+        a.setOwner(true);
+        Assert.assertTrue(a.getOwner());
+    }
+
+    @Test
+    public void printCharTest(){
+        BasePlayer a = new BasePlayer("bleh");
+        Console console = new Console(System.in, System.out);
+        String expected = "====================\nName: " + a.getName() + "\nCash: $" + a.getWallet() + "\n====================";
+        String actual = a.printChar(console);
+        Assert.assertEquals(expected, actual);
     }
 
 

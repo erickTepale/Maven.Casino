@@ -18,7 +18,7 @@ public class Lobby {
         this.console = console;
         boolean gameRunning = true;
         while (gameRunning) {
-            base.printChar(console);
+            console.println(base.printChar(console));
             console.println("1.) BlackJack\n2.) Poker\n3.) GoFish\n4.) Roulette\n5.) Craps\n6.) Last Chance\n7.) Bar\n8.) Exit\n");
             String game = console.getStringInput("Where would you like to go?");
 
