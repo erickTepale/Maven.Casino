@@ -47,9 +47,6 @@ public class GoFishTests {
         Assert.assertEquals(expected, actual);
     }
 
-
-
-
     @Test
     public void getHandTest(){
         Integer expected = 7;
@@ -96,6 +93,21 @@ public class GoFishTests {
         String expected = "[Q♦] [Q❤] [Q♠] [K♣] [K♦] [K❤] [K♠] ";
         Hand.sortHandByNumber(humanPlayer.hand);
         String actual = Hand.showHand(humanPlayer.hand);
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void printHandTest(){
+        String expected = "\n" +
+                "          Test's Hand:\n" +
+                "===================================\n" +
+                "[Q♦] [Q❤] [Q♠] [K♣] [K♦] [K❤] [K♠] \n" +
+                "===================================\n" +
+                "You have 0 books.\n" +
+                "Your opponent has 0 books.";
+        Hand.sortHandByNumber(humanPlayer.hand);
+        String actual = goFishGame.printHand(humanPlayer);
 
         Assert.assertEquals(expected, actual);
     }
@@ -264,22 +276,10 @@ public class GoFishTests {
 
         Assert.assertEquals(expectedInitialHandSize, actualInitialHandSize);
         Assert.assertEquals(expectedResultingHandSize, actualResultingHandSize);
-
     }
 
 
-//    @Test
-//    public void cpuTurnTest(){
-//        //goFishGame.checkForBooks(cpuPlayer);
-//
-//        String expected = "10";
-//        String actual = goFishGame.cpuTurn();
-//
-//        Assert.assertEquals(expected, actual);
-//    }
 
-
-    
     @Test
     public void goFishNameTest(){
         String expected = "Test";
@@ -295,6 +295,27 @@ public class GoFishTests {
 
         Assert.assertEquals(expected, actual);
     }
+
+
+
+    @Test
+    public void printMenuTest(){
+        String expected= "\nPlease Type In An Option: " +
+                "\nPlay:              [Play]" +
+                "\nSee Rules:         [Rules]" +
+                "\nReturn to Lobby:   [Quit]";
+        String actual = goFishGame.printMenu();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+
+
+
+
+
+
+
 
 
 
