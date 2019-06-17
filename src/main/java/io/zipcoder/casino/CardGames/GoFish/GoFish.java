@@ -173,7 +173,6 @@ public class GoFish extends CardGame {
         } else {
             console.println("But you don't have any!");
         }
-        //doTurn(cpuPlayer, player, cardChoice);
         return cardChoice;
     }
 
@@ -249,33 +248,33 @@ public class GoFish extends CardGame {
     }
 
 
-    public void printHand(GoFishPlayer player){
+    public String printHand(GoFishPlayer player){
+        StringBuilder bookBuilder = new StringBuilder();
         Integer length = Hand.showHand(player.hand).length();
-        console.println("");
+        //console.println("");
         String bars = String.format("%" + length + "s", "").replace(' ', '=');
         String yourHand = String.format("%" + (length/2 + 5) + "s", this.basePlayer.getName() + "'s Hand:");
-        console.println(yourHand + "\n" + bars);
-        console.println(Hand.showHand(player.hand));
-        console.println(bars);
+        bookBuilder.append("\n" + yourHand + "\n" + bars + "\n");
+        bookBuilder.append(Hand.showHand(player.hand));
+        bookBuilder.append("\n" + bars);
 
-        StringBuilder bookBuilder = new StringBuilder();
-        bookBuilder.append("You have " + player.getNumberOfBooks() + " book");
+        bookBuilder.append("\nYou have " + player.getNumberOfBooks() + " book");
         if (player.getNumberOfBooks() == 1){
             bookBuilder.append(".");
         } else {
             bookBuilder.append("s.");
         }
-        console.println(bookBuilder.toString());
+        //console.println(bookBuilder.toString());
 
-        bookBuilder = new StringBuilder();
-        bookBuilder.append("Your opponent has " + cpuPlayer.getNumberOfBooks() + " book");
+        //bookBuilder = new StringBuilder();
+        bookBuilder.append("\nYour opponent has " + cpuPlayer.getNumberOfBooks() + " book");
         if (cpuPlayer.getNumberOfBooks() == 1){
             bookBuilder.append(".");
         } else {
             bookBuilder.append("s.");
         }
         console.println(bookBuilder.toString());
-        //console.println("Cards in deck: " + super.getDeckSize());
+        return bookBuilder.toString();
     }
 
 
