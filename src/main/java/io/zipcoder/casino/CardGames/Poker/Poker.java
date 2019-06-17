@@ -3,18 +3,17 @@ package io.zipcoder.casino.CardGames.Poker;
 import io.zipcoder.casino.CardGames.UtilitiesCards.*;
 import io.zipcoder.casino.utilities.BasePlayer;
 import io.zipcoder.casino.utilities.Console;
-import io.zipcoder.casino.utilities.GamblingGame;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.Map;
 
-public class Poker extends CardGame implements GamblingGame {
+public class Poker extends CardGame{
     private PokerPlayer player;
     private PokerPlayer dealer;
     private Integer minBet;
     private Integer bet;
-    Boolean fold;
+    private Boolean fold;
     private Integer [] discard;
     private Integer pot;
     private Integer[] wagerRecords; //2 rounds of betting
@@ -28,167 +27,55 @@ public class Poker extends CardGame implements GamblingGame {
         this.fold = false;
         this.minBet = 50;
         console = consoleIO;//new Console(System.in, System.out);
-
-        welcomeMessage();
-        initGame();
     }
 
-    private void initGame(){
-        String action = "";
-        //cycle through options
-        do {
-            pot = 0;
-            fold = false;
-            action = console.getStringInput(printMenu());
-            switch (action.toUpperCase()) {
-                case "RULES":
-                    printRules();
-                    break;
-                case "BONUS":
-                    printBonus();
-                    break;
-                case "RANK":
-                    printHandRanking();
-                    break;
-                case "PLAY":
-                    console.println(placeWager());
-                    if(pot > 0){
-                        dealer.setHand(super.deal(5));
-                        player.setHand(super.deal(5));
+    public void initGame(String action){
+        switch (action.toUpperCase()){
+            case "PLAY":
+                if(!fold && (discard != null)){
+                    player.reDraw(discard);
+                    reAdd();
+                    sortHands();
+                }
 
-                        /// BET PLACED ! ///
-                        console.println("\nYour Hand:");
-                        sortHands();
-                        console.println(Hand.showHand((ArrayList<Card>)player.hand));
-                        console.println("Hand Value: " + player.currentHandValue()[0]);
-                        console.println("Dealer Hand : " + Hand.showHand((ArrayList<Card>)dealer.hand));
+                //dealers hand
+                console.println("\nDealer Hand: \n" + Hand.showHand((ArrayList<Card>)dealer.hand));
+                console.println("Dealers Hand Value: " + dealer.currentHandValue()[0]);
 
-                        // Player Action
-                        displayPlayerAction();
-                        if(!fold && (discard != null)){
-                            player.reDraw(discard);
-                            reAdd();
-                            sortHands();
-                            console.println("\n" + Hand.showHand((ArrayList<Card>)player.hand));
-                        }
+                //players hand
+                console.println("\nYour Hand: \n" + Hand.showHand((ArrayList<Card>)player.hand));
+                console.println("Hand Value: " + player.currentHandValue()[0]);
 
-                        //Print Results
-                        printResults();
+                //Print Results
+                if(!fold)
+                    printResults();
+                else {
+                    displayLost();
+                    payDealer();
+                }
 
-                    }
-
-                    break;
-            }
-
-        }while(!action.equals("quit"));
+                break;
+        }
     }
 
-    private String printMenu(){
-        return "\nPlease Type In An Option: " +
-                "\nPlay:              [Play]" +
-                "\nSee Rules:         [Rules]" +
-                "\nSee Bonuses:       [Bonus]" +
-                "\nSee Hand Rankings: [Rank]";
+    public void deal(){
+        dealer.setHand(super.deal(5));
+        player.setHand(super.deal(5));
     }
 
-    private void printHandRanking(){
-        console.println("\nHand Rankings:\n\n" +
-                "Royal Flush:       " +
-                Rank.ACE.getRankString() + Suit.SPADES.getSuitImage() +
-                Rank.KING.getRankString()+ Suit.SPADES.getSuitImage() +
-                Rank.QUEEN.getRankString()+Suit.SPADES.getSuitImage() +
-                Rank.JACK.getRankString()+ Suit.SPADES.getSuitImage() +
-                Rank.TEN.getRankValue() + Suit.SPADES.getSuitImage() +
-                "\nStright Flush:     " +
-                Rank.TEN.getRankValue() + Suit.HEARTS.getSuitImage() +
-                Rank.NINE.getRankValue()+ Suit.HEARTS.getSuitImage() +
-                Rank.EIGHT.getRankValue()+Suit.HEARTS.getSuitImage() +
-                Rank.SEVEN.getRankValue()+ Suit.HEARTS.getSuitImage() +
-                Rank.SIX.getRankValue() + Suit.HEARTS.getSuitImage() +
-                "\nFull House:        " +
-                Rank.NINE.getRankValue() + Suit.DIAMONDS.getSuitImage() +
-                Rank.NINE.getRankValue()+ Suit.SPADES.getSuitImage() +
-                Rank.NINE.getRankValue()+Suit.HEARTS.getSuitImage() +
-                Rank.SIX.getRankValue()+ Suit.DIAMONDS.getSuitImage() +
-                Rank.SIX.getRankValue() + Suit.CLUBS.getSuitImage() +
-                "\nFlush:             " +
-                Rank.ACE.getRankString() + Suit.CLUBS.getSuitImage() +
-                Rank.JACK.getRankString()+ Suit.CLUBS.getSuitImage() +
-                Rank.DEUCE.getRankValue()+Suit.CLUBS.getSuitImage() +
-                Rank.SEVEN.getRankValue()+Suit.CLUBS.getSuitImage() +
-                Rank.FOUR.getRankValue() + Suit.CLUBS.getSuitImage() +
-                "\nStreight:          " +
-                Rank.TEN.getRankValue() + Suit.DIAMONDS.getSuitImage() +
-                Rank.NINE.getRankValue()+ Suit.CLUBS.getSuitImage() +
-                Rank.EIGHT.getRankValue()+Suit.SPADES.getSuitImage() +
-                Rank.SEVEN.getRankValue()+ Suit.HEARTS.getSuitImage() +
-                Rank.SIX.getRankValue() + Suit.HEARTS.getSuitImage() +
-                "\n3 Of A Kind:       " +
-                Rank.TEN.getRankValue() + Suit.DIAMONDS.getSuitImage() +
-                Rank.TEN.getRankValue()+ Suit.CLUBS.getSuitImage() +
-                Rank.TEN.getRankValue()+Suit.SPADES.getSuitImage() +
-                Rank.SEVEN.getRankValue()+ Suit.HEARTS.getSuitImage() +
-                Rank.SIX.getRankValue() + Suit.HEARTS.getSuitImage() +
-                "\n2 Pair:            " +
-                Rank.TEN.getRankValue() + Suit.DIAMONDS.getSuitImage() +
-                Rank.TEN.getRankValue()+ Suit.CLUBS.getSuitImage() +
-                Rank.EIGHT.getRankValue()+Suit.SPADES.getSuitImage() +
-                Rank.EIGHT.getRankValue()+ Suit.HEARTS.getSuitImage() +
-                Rank.SIX.getRankValue() + Suit.HEARTS.getSuitImage() );
-
-    }
-
-    private void printBonus(){
-        console.println("\nPayout Bonuses:\nBeating the Dealer ->   2:1\n" +
-                "\t2 Pair:            3:1\n" +
-                "\t3 Of A Kind:       6:1\n" +
-                "\tStright:           9:1\n" +
-                "\tFlush:             13:1\n" +
-                "\tFull House:        20:1\n" +
-                "\tFour of A Kind:    90:1\n" +
-                "\tStreight Flush:    300:1\n" +
-                "\tRoyal Flush:       1000:1");
-    }
-
-    private void printRules(){
-        console.println("\nRules:" +
-                "\nSingle Draw Poker is a variation of Poker,\n" +
-                "You place your initial wager to recieve a hand and you double down\n" +
-                "to either stay pat, or redraw selected cards to make a better hand.\n" +
-                "Not doubling down is a folding action and you lose initial bet." +
-                "\nDealer Must Have Queen High to Play! ");
-    }
-
-    private void sortHands(){
+    public void sortHands(){
         Hand.sortHandByNumber((ArrayList<Card>)player.hand);
         Hand.sortHandByNumber((ArrayList<Card>)dealer.hand);
     }
 
-    private void reAdd(){
+    public void reAdd(){
         for (int i = 0; i <discard.length ; i++) {
             player.hand.add(super.draw());
         }
 
     }
 
-    private void displayDrawMenu(){
-        String input = "";
-        Boolean inputParsed = false;
-        clearConsole();
-        console.println(Hand.showHand((ArrayList<Card>) player.getHand()));
-        console.println(" [1]  [2]  [3]  [4]  [5]");
-
-        do {
-            if(!input.equals(""))
-                console.println("Please input valid numbers.\n");
-            input = console.getStringInput("\nSelect the hands you wish to replace. " +
-                    "\nExample: 1 4 5");
-            inputParsed = parseDiscardInput(input);
-        } while (inputParsed);
-
-    }
-
-    private Boolean parseDiscardInput(String input){
+    public Boolean parseDiscardInput(String input){
         String [] a = input.split(" ");
         discard  = new Integer[a.length];
 
@@ -202,7 +89,7 @@ public class Poker extends CardGame implements GamblingGame {
         return false;
     }
 
-    private void printResults(){
+    public void printResults(){
         if(dealerQualifies()){
             checkWinner();
         }else {
@@ -212,7 +99,7 @@ public class Poker extends CardGame implements GamblingGame {
 
     }
 
-    protected void checkWinner(){
+    public void checkWinner(){
         String [] playerResults = player.currentHandValue();
         String [] dealerResults = dealer.currentHandValue();
 
@@ -244,12 +131,12 @@ public class Poker extends CardGame implements GamblingGame {
                 }
                 break;
             case "Full House":
-                    if(playerWinFullHouse() == 1){
-                        payPlayer();
-                    }else {
-                        payDealer();
-                    }
-                    break;
+                if(playerWinFullHouse() == 1){
+                    payPlayer();
+                }else {
+                    payDealer();
+                }
+                break;
             case "Flush":
                 compareByLastCard();
                 break;
@@ -307,14 +194,14 @@ public class Poker extends CardGame implements GamblingGame {
                 else
                     push(1);
                 break;
-                default:
-                    System.out.println("idk homie");
+            default:
+                System.out.println("idk homie");
 
         }
 
     }
 
-    protected Integer playerWinsHighCard(){
+    public Integer playerWinsHighCard(){
         Integer playerSum = 0;
         Integer dealerSum = 0;
 
@@ -335,7 +222,7 @@ public class Poker extends CardGame implements GamblingGame {
             return 0;
     }
 
-    protected Integer playerWins2Pair(){
+    public Integer playerWins2Pair(){
         //prob works tho
         Integer playerValue = 0;
         Integer dealerValue = 0;
@@ -373,7 +260,7 @@ public class Poker extends CardGame implements GamblingGame {
         return 0; // tie
     }
 
-    protected Integer playerWinsKicker(){
+    public Integer playerWinsKicker(){
         //prob works tho
         Integer playerSum = 0;
         Integer dealerSum = 0;
@@ -395,6 +282,11 @@ public class Poker extends CardGame implements GamblingGame {
 
     }
 
+    public void displayLost(){
+        setFold(true);
+        console.println("\nFolded");
+    }
+
     private Integer kickerSum(EnumMap<Rank, Integer> handMapDealer) {
         Integer sum = 0;
         for(Map.Entry<Rank, Integer> mapEntry : handMapDealer.entrySet()){
@@ -407,20 +299,26 @@ public class Poker extends CardGame implements GamblingGame {
         return sum;
     }
 
-    private void compareByLastCard() {
-        if(player.getHand().get(4).getFaceValue().getRankValue() > dealer.getHand().get(4).getFaceValue().getRankValue()){
+    public void compareByLastCard() {
+        EnumMap<Rank, Integer> handMap = Hand.getHandMap((ArrayList<Card>)player.getHand());
+        EnumMap<Rank, Integer> handMapDealer = Hand.getHandMap((ArrayList<Card>)dealer.getHand());
+        int playerSum = kickerSum(handMap);
+        int dealerSum = kickerSum(handMapDealer);
+
+        if(playerSum == dealerSum){ //identical hands
+            push(1);
+        } else if(player.getHand().get(0).getFaceValue().getRankValue() == 1 && !(dealer.getHand().get(0).getFaceValue().getRankValue() == 1)){
+            payPlayer();
+        } else if(dealer.getHand().get(0).getFaceValue().getRankValue() == 1 && !(player.getHand().get(0).getFaceValue().getRankValue() == 1)){
+            payDealer();
+        } else if(player.getHand().get(4).getFaceValue().getRankValue() > dealer.getHand().get(4).getFaceValue().getRankValue()){
             payPlayer();
         }else if(player.getHand().get(4).getFaceValue().getRankValue() < dealer.getHand().get(4).getFaceValue().getRankValue()){
-            if(player.getHand().get(4).getFaceValue().getRankValue() == 1)
-                payPlayer();
-            else
-                payDealer();
-        }else{
-            push(1);
+            payDealer();
         }
     }
 
-    protected Integer playerWinPair(){
+    public Integer playerWinPair(){
         //prob works tho
         Integer playerValue = 0;
         Integer dealerValue = 0;
@@ -454,7 +352,7 @@ public class Poker extends CardGame implements GamblingGame {
         return 0; // tie
     }
 
-    protected Boolean playerWinFourKind(){
+    public Boolean playerWinFourKind(){
         //prob works tho
         Integer playerValue = 0;
         Integer dealerValue = 0;
@@ -463,7 +361,7 @@ public class Poker extends CardGame implements GamblingGame {
 
         for(Map.Entry<Rank, Integer> mapEntry : handMap.entrySet()){
             if(mapEntry.getValue() == 4)
-               playerValue = mapEntry.getKey().getRankValue();
+                playerValue = mapEntry.getKey().getRankValue();
         }
 
         for(Map.Entry<Rank, Integer> mapEntry : handMapDealer.entrySet()){
@@ -478,7 +376,7 @@ public class Poker extends CardGame implements GamblingGame {
         return playerValue > dealerValue;
     }
 
-    protected Integer playerWinFullHouse(){//also 3 of a kind
+    public Integer playerWinFullHouse(){//also 3 of a kind
         Integer playerValue = 0;
         Integer dealerValue = 0;
         EnumMap<Rank, Integer> handMap = Hand.getHandMap((ArrayList<Card>)player.getHand());
@@ -515,10 +413,8 @@ public class Poker extends CardGame implements GamblingGame {
     protected void payPlayer(){
         Integer totalPayout = 0;
         Integer bonus = Integer.parseInt(player.currentHandValue()[1]);
-        System.out.println(bonus);
         if(bonus == 2)
             bonus = 1;
-        System.out.println(bonus);
 
         totalPayout += pot * 2;
         if (bonus > 1)
@@ -528,7 +424,7 @@ public class Poker extends CardGame implements GamblingGame {
         console.println("\nCongratlations ! You Won: " + totalPayout);
     }
 
-    private boolean dealerQualifies(){
+    public boolean dealerQualifies(){
         //Check if dealer Qualifies to play
         if(dealer.currentHandValue()[0].equals("High Card"))
             return dealer.QHigh();
@@ -537,48 +433,18 @@ public class Poker extends CardGame implements GamblingGame {
     }
 
     //return bet to player
-    protected void push(){
-        player.getPlayer().addToWallet(bet);
+    public void push(){
+        player.getPlayer().addToWallet(pot);
         console.println("Dealer Does not have Q High");
     }
 
     protected void push(Integer one){
-        player.getPlayer().addToWallet(bet);
+        player.getPlayer().addToWallet(pot);
         console.println("Dealer and Player have equivalent hand");
     }
 
-    private void clearConsole(){
-        console.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-    }
 
-    private void displayPlayerAction(){
-        Integer a = -1;
-        do {
-            a = console.getIntegerInput("\nYou can either: \n" +
-                    "Draw      [1]\n" +
-                    "Stand Pat [2]\n" +
-                    "Fold      [3]");
 
-        }while(a < 0 || a > 3);
-
-        switch (a){
-            case 1:
-                displayDrawMenu();
-                break;
-            case 2:
-                //printResults();
-                break;
-            case 3:
-                fold = true;
-                displayLost();
-                break;
-        }
-    }
-
-    private void displayLost(){
-        fold = true;
-        console.println("Folded");
-    }
 
     public Boolean isWin() {
         return null;
@@ -589,23 +455,11 @@ public class Poker extends CardGame implements GamblingGame {
     }
 
     //INTERFACE GAMBLING GAME METHODS
-    @Override
-    public void welcomeMessage() {
-        console.println("Welcome to Blits and Chips Poker Room");
-        console.println("Here At Blits and Chips we play Single Draw Poker ");
-
-    }
-
     //in poker.java
-    public String placeWager() {
-        Integer bet = 0;
-        while(bet < minBet){
-            bet = console.getIntegerInput("\nPlease input a wager(Min Bet: $" + minBet + ")");
-            if(bet < minBet) console.println("Sorry, Minimum Bet is $" + minBet);
-        }
-        this.pot += bet;
-        this.bet = bet;
-        return player.placeWager(bet);
+    public String placeWager(Integer wager) {
+        this.pot += wager;
+        this.bet = wager;
+        return player.placeWager(wager);
     }
 
     public void increaseMinBet() {
@@ -635,5 +489,57 @@ public class Poker extends CardGame implements GamblingGame {
 
     public Integer[] getWagerRecords() {
         return wagerRecords;
+    }
+
+    public void setPlayer(PokerPlayer player) {
+        this.player = player;
+    }
+
+    public void setDealer(PokerPlayer dealer) {
+        this.dealer = dealer;
+    }
+
+    public void setMinBet(Integer minBet) {
+        this.minBet = minBet;
+    }
+
+    public Integer getBet() {
+        return bet;
+    }
+
+    public void setBet(Integer bet) {
+        this.bet = bet;
+    }
+
+    public Boolean getFold() {
+        return fold;
+    }
+
+    public void setFold(Boolean fold) {
+        this.fold = fold;
+    }
+
+    public Integer[] getDiscard() {
+        return discard;
+    }
+
+    public void setDiscard(Integer[] discard) {
+        this.discard = discard;
+    }
+
+    public void setPot(Integer pot) {
+        this.pot = pot;
+    }
+
+    public void setWagerRecords(Integer[] wagerRecords) {
+        this.wagerRecords = wagerRecords;
+    }
+
+    public Console getConsole() {
+        return console;
+    }
+
+    public void setConsole(Console console) {
+        this.console = console;
     }
 }

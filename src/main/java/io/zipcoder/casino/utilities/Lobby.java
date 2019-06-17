@@ -3,6 +3,7 @@ package io.zipcoder.casino.utilities;
 import io.zipcoder.casino.CardGames.Blackjack.Blackjack;
 import io.zipcoder.casino.CardGames.GoFish.GoFish;
 import io.zipcoder.casino.CardGames.Poker.Poker;
+import io.zipcoder.casino.CardGames.Poker.PokerUserManager;
 import io.zipcoder.casino.DiceGames.Craps.Craps;
 import io.zipcoder.casino.DiceGames.LastChance.LastChance;
 import io.zipcoder.casino.Roulette.Roulette;
@@ -30,8 +31,9 @@ public class Lobby {
                 case "BLACKJACK":
                     Blackjack bj = new Blackjack(base, dealer, console);
                     break;
+
                 case "POKER":
-                    Poker poker = new Poker(base, dealer, console);
+                    PokerUserManager poker = new PokerUserManager(base, dealer, console);
                     break;
                 case "GOFISH":
                     GoFish gofish = new GoFish(base, dealer, console);
