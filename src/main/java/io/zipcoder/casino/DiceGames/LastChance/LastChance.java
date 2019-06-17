@@ -17,6 +17,7 @@ import static io.zipcoder.casino.DiceGames.UtilitiesDice.Dice.*;
 import static io.zipcoder.casino.utilities.Lobby.*;
 
 public abstract class LastChance extends DiceGame implements GamblingGame{
+    public static Object set;
     /**
      *   public void initGame(){
      *      String input = "";
