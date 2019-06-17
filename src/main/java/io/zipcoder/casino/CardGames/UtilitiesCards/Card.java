@@ -1,7 +1,5 @@
 package io.zipcoder.casino.CardGames.UtilitiesCards;
 
-import static com.sun.xml.internal.ws.util.VersionUtil.compare;
-
 public class Card implements Comparable<Card> {
     private Suit suit;
     private Rank faceValue;

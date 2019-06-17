@@ -5,10 +5,7 @@ import io.zipcoder.casino.CardGames.UtilitiesCards.Rank;
 import io.zipcoder.casino.utilities.BasePlayer;
 import io.zipcoder.casino.CardGames.UtilitiesCards.Card;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PokerPlayer extends BasePlayer {
     private BasePlayer player;
@@ -20,8 +17,59 @@ public class PokerPlayer extends BasePlayer {
         hand = new ArrayList<>();
     }
 
-    public String currentHandValue(){
-        return null;
+    public String[] currentHandValue(){
+        String [] result = new String[2];
+        if(checkRoyal()) {
+            result[0] = "Royal Flush";
+            result[1] = "1000";
+        }
+        else if(checkStraight()){
+            result[0] = "Straight Flush";
+            result[1] = "300";
+        }
+        else if(check4Kind()){
+            result[0] = "Four of a Kind";
+            result[1] = "90";
+        }
+        else if(checkBoat()){
+            result[0] = "Full House";
+            result[1] = "20";
+        }
+        else if(checkFlush()){
+            result[0] = "Flush";
+            result[1] = "13";
+        }
+        else if(checkStraight()){
+            result[0] = "Straight";
+            result[1] = "9";
+        }
+        else if(check3Kind()){
+            result[0] = "Three of a Kind";
+            result[1] = "6";
+        }
+        else if(checkTwoPair()){
+            result[0] = "Two Pair";
+            result[1] = "3";
+        }
+        else if(checkPair()){
+            result[0] = "One Pair";
+            result[1] = "2";
+        }
+        else{
+            result[0] = "High Card";
+            result[1] = "1";
+        }
+        return result;
+    }
+
+    public void reDraw(Integer[] toReDraw){
+        Arrays.sort(toReDraw);
+        for (int i = toReDraw.length - 1; i >= 0 ; i--) {
+            hand.remove(toReDraw[i] - 1);
+            //removing index arr[i] - 1 - i because size of array changes as you delete
+            //so if size of array starts at 5 and you delete index 1.
+            //size is now 4 and if you try to delete index 5 you get a null pointer!
+        }
     }
 
     public String addCard(Card newCard){

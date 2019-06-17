@@ -1,7 +1,5 @@
 package io.zipcoder.casino.CardGames.GoFish;
 
-import com.sun.javafx.binding.StringFormatter;
-import com.sun.tools.internal.ws.wsdl.document.Output;
 import io.zipcoder.casino.CardGames.UtilitiesCards.Card;
 import io.zipcoder.casino.CardGames.UtilitiesCards.Hand;
 import io.zipcoder.casino.CardGames.UtilitiesCards.Rank;
