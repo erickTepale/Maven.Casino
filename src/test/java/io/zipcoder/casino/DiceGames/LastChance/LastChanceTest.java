@@ -3,8 +3,6 @@ package io.zipcoder.casino.DiceGames.LastChance;
 import io.zipcoder.casino.utilities.BasePlayer;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 import io.zipcoder.casino.DiceGames.LastChance.LastChance;
 import io.zipcoder.casino.utilities.BasePlayer;
 import io.zipcoder.casino.utilities.ConsoleIO;
@@ -37,4 +35,3 @@ public class LastChanceTest {
 
 
 }
-
