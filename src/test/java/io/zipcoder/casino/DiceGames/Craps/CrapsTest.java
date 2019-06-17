@@ -1,13 +1,12 @@
 package io.zipcoder.casino.DiceGames.Craps;
 
 import io.zipcoder.casino.utilities.BasePlayer;
+import io.zipcoder.casino.utilities.Console;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class CrapsTest {
-
+    Console console = new Console(System.in,System.out);
 
     @Test
     public void initGame() {
@@ -21,7 +20,7 @@ public class CrapsTest {
         //Given
         BasePlayer player = new CrapsPlayer("Henry");
         BasePlayer dealer = new CrapsPlayer("Dealer");
-        Craps craps =  new Craps(player, dealer);
+        Craps craps =  new Craps(player, dealer,console);
         craps.setStartBet(30);
         //when
         craps.playGame();
@@ -31,64 +30,6 @@ public class CrapsTest {
         Assert.assertTrue(craps.getWin() == true || craps.getWin() == false);
         Assert.assertTrue(craps.getWinAmount() == 0 || craps.getWinAmount() == 30 * 2);
         Assert.assertTrue(craps.getLastRolledValue() > 2 || craps.getLastRolledValue()<=12);
-
-
-
-
-    }
-
-    @Test
-    public void playGame2() {
-        //Given
-        BasePlayer player = new CrapsPlayer("Henry");
-        BasePlayer dealer = new CrapsPlayer("Dealer");
-        Craps craps = new Craps(player, dealer);
-        craps.setStartBet(30);
-        //when
-        craps.playGame();
-
-        Assert.assertTrue(craps.getMinBet() == 20);
-    }
-
-    @Test
-    public void playGame3() {
-        //Given
-        BasePlayer player = new CrapsPlayer("Henry");
-        BasePlayer dealer = new CrapsPlayer("Dealer");
-        Craps craps = new Craps(player, dealer);
-        craps.setStartBet(30);
-        //when
-        craps.playGame();
-
-        Assert.assertTrue(craps.getWin() == true || craps.getWin() == false);
-    }
-
-    @Test
-    public void playGame4() {
-        //Given
-        BasePlayer player = new CrapsPlayer("Henry");
-        BasePlayer dealer = new CrapsPlayer("Dealer");
-        Craps craps = new Craps(player, dealer);
-        craps.setStartBet(30);
-        //when
-        craps.playGame();
-
-        Assert.assertTrue(craps.getWinAmount() == 0 || craps.getWinAmount() == 30 * 2);
-
-    }
-
-    @Test
-    public void playGame5() {
-        //Given
-        BasePlayer player = new CrapsPlayer("Henry");
-        BasePlayer dealer = new CrapsPlayer("Dealer");
-        Craps craps = new Craps(player, dealer);
-        craps.setStartBet(30);
-        //when
-        craps.playGame();
-
-
-        Assert.assertTrue(craps.getLastRolledValue() > 2 || craps.getLastRolledValue() <= 12);
     }
 
     @Test
@@ -96,7 +37,7 @@ public class CrapsTest {
         //given
         BasePlayer player = new CrapsPlayer("Henry");
         BasePlayer dealer = new CrapsPlayer("Dealer");
-        Craps crap = new Craps(player, dealer);
+        Craps crap = new Craps(player, dealer,console);
         //when
         int rolledValue = crap.roll();
         //then

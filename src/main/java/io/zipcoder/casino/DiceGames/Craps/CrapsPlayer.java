@@ -8,10 +8,11 @@ public class CrapsPlayer extends BasePlayer {
     private Integer winAmount;
 
     public CrapsPlayer(String name) {
-
         super(name);
     }
-
+    public CrapsPlayer(BasePlayer player) {
+        this.player = player;
+    }
 
 
 }
