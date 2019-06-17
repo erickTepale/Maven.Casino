@@ -112,7 +112,7 @@ public class GoFishTests {
                 "You have 0 books.\n" +
                 "Your opponent has 0 books.";
         Hand.sortHandByNumber(humanPlayer.hand);
-        //String actual = goFishGame.printHand(humanPlayer);
+        String actual = goFishGame.printHand(humanPlayer);
 
         //Assert.assertEquals(expected, actual);
     }
@@ -295,16 +295,10 @@ public class GoFishTests {
         Assert.assertEquals(expected, actual);
     }
 
-//    @Test
-//    public void goFishNameTest2(){
-//        String expected = "Go Fish Player";
-//        String actual = goFishGame.cpuPlayer.getName();
-//
-//        Assert.assertEquals(expected, actual);
-//    }
+
     @Test
     public void setUpTest() {
-        //goFishGame.setUp(humanPlayer, cpuPlayer);
+        goFishGame.setUp();
         Integer expected = 3;
         Integer actual= cpuPlayer.hand.size();
 
@@ -383,6 +377,14 @@ public class GoFishTests {
 
         Integer expected = 7;
         Integer actual = goFishGame.cpuPlayer.hand.size();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getCPUChoiceTest(){
+        String expected = "JACK";
+        String actual = goFishGame.cpuTurn();
 
         Assert.assertEquals(expected, actual);
     }
