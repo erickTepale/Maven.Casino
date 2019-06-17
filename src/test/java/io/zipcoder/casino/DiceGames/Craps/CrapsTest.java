@@ -39,6 +39,60 @@ public class CrapsTest {
     }
 
     @Test
+    public void playGame2() {
+        //Given
+        BasePlayer player = new CrapsPlayer("Henry");
+        BasePlayer dealer = new CrapsPlayer("Dealer");
+        Craps craps = new Craps(player, dealer);
+        craps.setStartBet(30);
+        //when
+        craps.playGame();
+
+        Assert.assertTrue(craps.getMinBet() == 20);
+    }
+
+    @Test
+    public void playGame3() {
+        //Given
+        BasePlayer player = new CrapsPlayer("Henry");
+        BasePlayer dealer = new CrapsPlayer("Dealer");
+        Craps craps = new Craps(player, dealer);
+        craps.setStartBet(30);
+        //when
+        craps.playGame();
+
+        Assert.assertTrue(craps.getWin() == true || craps.getWin() == false);
+    }
+
+    @Test
+    public void playGame4() {
+        //Given
+        BasePlayer player = new CrapsPlayer("Henry");
+        BasePlayer dealer = new CrapsPlayer("Dealer");
+        Craps craps = new Craps(player, dealer);
+        craps.setStartBet(30);
+        //when
+        craps.playGame();
+
+        Assert.assertTrue(craps.getWinAmount() == 0 || craps.getWinAmount() == 30 * 2);
+
+    }
+
+    @Test
+    public void playGame5() {
+        //Given
+        BasePlayer player = new CrapsPlayer("Henry");
+        BasePlayer dealer = new CrapsPlayer("Dealer");
+        Craps craps = new Craps(player, dealer);
+        craps.setStartBet(30);
+        //when
+        craps.playGame();
+
+
+        Assert.assertTrue(craps.getLastRolledValue() > 2 || craps.getLastRolledValue() <= 12);
+    }
+
+    @Test
     public void roll() {
         //given
         BasePlayer player = new CrapsPlayer("Henry");
