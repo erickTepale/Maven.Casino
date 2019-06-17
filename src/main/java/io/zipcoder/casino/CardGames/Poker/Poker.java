@@ -201,7 +201,7 @@ public class Poker extends CardGame{
 
     }
 
-    protected Integer playerWinsHighCard(){
+    public Integer playerWinsHighCard(){
         Integer playerSum = 0;
         Integer dealerSum = 0;
 
@@ -222,7 +222,7 @@ public class Poker extends CardGame{
             return 0;
     }
 
-    protected Integer playerWins2Pair(){
+    public Integer playerWins2Pair(){
         //prob works tho
         Integer playerValue = 0;
         Integer dealerValue = 0;
@@ -282,7 +282,7 @@ public class Poker extends CardGame{
 
     }
 
-    private void displayLost(){
+    public void displayLost(){
         setFold(true);
         console.println("\nFolded");
     }
@@ -299,16 +299,22 @@ public class Poker extends CardGame{
         return sum;
     }
 
-    private void compareByLastCard() {
-        if(player.getHand().get(4).getFaceValue().getRankValue() > dealer.getHand().get(4).getFaceValue().getRankValue()){
+    public void compareByLastCard() {
+        EnumMap<Rank, Integer> handMap = Hand.getHandMap((ArrayList<Card>)player.getHand());
+        EnumMap<Rank, Integer> handMapDealer = Hand.getHandMap((ArrayList<Card>)dealer.getHand());
+        int playerSum = kickerSum(handMap);
+        int dealerSum = kickerSum(handMapDealer);
+
+        if(playerSum == dealerSum){ //identical hands
+            push(1);
+        } else if(player.getHand().get(0).getFaceValue().getRankValue() == 1 && !(dealer.getHand().get(0).getFaceValue().getRankValue() == 1)){
+            payPlayer();
+        } else if(dealer.getHand().get(0).getFaceValue().getRankValue() == 1 && !(player.getHand().get(0).getFaceValue().getRankValue() == 1)){
+            payDealer();
+        } else if(player.getHand().get(4).getFaceValue().getRankValue() > dealer.getHand().get(4).getFaceValue().getRankValue()){
             payPlayer();
         }else if(player.getHand().get(4).getFaceValue().getRankValue() < dealer.getHand().get(4).getFaceValue().getRankValue()){
-            if(player.getHand().get(4).getFaceValue().getRankValue() == 1)
-                payPlayer();
-            else
-                payDealer();
-        }else{
-            push(1);
+            payDealer();
         }
     }
 
@@ -370,7 +376,7 @@ public class Poker extends CardGame{
         return playerValue > dealerValue;
     }
 
-    protected Integer playerWinFullHouse(){//also 3 of a kind
+    public Integer playerWinFullHouse(){//also 3 of a kind
         Integer playerValue = 0;
         Integer dealerValue = 0;
         EnumMap<Rank, Integer> handMap = Hand.getHandMap((ArrayList<Card>)player.getHand());
@@ -407,10 +413,8 @@ public class Poker extends CardGame{
     protected void payPlayer(){
         Integer totalPayout = 0;
         Integer bonus = Integer.parseInt(player.currentHandValue()[1]);
-        System.out.println(bonus);
         if(bonus == 2)
             bonus = 1;
-        System.out.println(bonus);
 
         totalPayout += pot * 2;
         if (bonus > 1)
@@ -420,7 +424,7 @@ public class Poker extends CardGame{
         console.println("\nCongratlations ! You Won: " + totalPayout);
     }
 
-    private boolean dealerQualifies(){
+    public boolean dealerQualifies(){
         //Check if dealer Qualifies to play
         if(dealer.currentHandValue()[0].equals("High Card"))
             return dealer.QHigh();
@@ -429,13 +433,13 @@ public class Poker extends CardGame{
     }
 
     //return bet to player
-    protected void push(){
-        player.getPlayer().addToWallet(bet);
+    public void push(){
+        player.getPlayer().addToWallet(pot);
         console.println("Dealer Does not have Q High");
     }
 
     protected void push(Integer one){
-        player.getPlayer().addToWallet(bet);
+        player.getPlayer().addToWallet(pot);
         console.println("Dealer and Player have equivalent hand");
     }
 
