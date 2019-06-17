@@ -25,7 +25,7 @@ public class Bar {
 
         boolean gameRunning = true;
         while (gameRunning) {
-            base.printChar(console);
+            console.println(base.printChar(console));
             console.println("=====================\n1.) Bartender\n2.) Old man\n3.) Shady character\n4.) Exit\n=====================");
             String choice = console.getStringInput("To whom would you like to speak?");
 
@@ -97,10 +97,10 @@ public class Bar {
         console.getStringInput("\n'Any last words?'");
         Integer diceRoll = (int) (Math.random() * 6 + 1);
         if (diceRoll == 1){
-            console.println("\nYour life flashes before your eyes...\n\nGame over!");
+            console.println("\n*~BOOM!~*\nIn a split second your entire experience at Blitz & Chips flashes before your eyes...\n\nGame over!");
             System.exit(0);
         } else {
-            console.println("\n... you won! (phew...)\n");
+            console.println("*click*\n\n... you won! (phew...)\n");
             base.addToWallet(base.getWallet());
         }
 
