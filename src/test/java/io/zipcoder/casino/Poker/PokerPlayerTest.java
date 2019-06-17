@@ -28,6 +28,28 @@ public class PokerPlayerTest {
         Assert.assertTrue(realPlayer.checkRoyal());
 
     }
+
+    @Test
+    public void currentHandRoyalTest1(){
+        BasePlayer player = new BasePlayer();
+        PokerPlayer realPlayer = new PokerPlayer(player);
+        ArrayList<Card> hand = new ArrayList<>();
+
+
+        hand.add(new Card(Suit.HEARTS, Rank.ACE, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.TEN, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.JACK, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.QUEEN, Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.KING, Suit.HEARTS.getSuitImage()));
+
+        realPlayer.setHand(hand);
+        String [] arr = realPlayer.currentHandValue();
+
+        Assert.assertEquals("Royal Flush", arr[0]);
+        Assert.assertEquals("1000", arr[1]);
+
+    }
+
     @Test
     public void checkRoyalTest2(){
         BasePlayer player = new BasePlayer();
@@ -47,6 +69,28 @@ public class PokerPlayerTest {
 
         Assert.assertTrue(realPlayer.checkRoyal());
     }
+
+    @Test
+    public void currentHandRoyalTest2(){
+        BasePlayer player = new BasePlayer();
+        PokerPlayer realPlayer = new PokerPlayer(player);
+        ArrayList<Card> hand = new ArrayList<>();
+
+
+        hand.add(new Card(Suit.CLUBS, Rank.ACE,   Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.TEN,   Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.JACK,  Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.QUEEN, Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.KING,  Suit.CLUBS.getSuitImage()));
+
+        realPlayer.setHand(hand);
+        String [] arr = realPlayer.currentHandValue();
+
+        Assert.assertEquals("Royal Flush", arr[0]);
+        Assert.assertEquals("1000", arr[1]);
+
+    }
+
 
     @Test
     public void checkRoyalTest3(){
@@ -87,6 +131,73 @@ public class PokerPlayerTest {
         Assert.assertTrue(realPlayer.checkStraight());
 
     }
+
+
+
+    @Test
+    public void currentStraightTest1(){
+        BasePlayer player = new BasePlayer();
+        PokerPlayer realPlayer = new PokerPlayer(player);
+        ArrayList<Card> hand = new ArrayList<>();
+
+
+        hand.add(new Card(Suit.HEARTS, Rank.ACE,   Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.TEN,   Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.JACK,  Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.QUEEN, Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.KING,  Suit.CLUBS.getSuitImage()));
+
+        realPlayer.setHand(hand);
+        String [] arr = realPlayer.currentHandValue();
+
+        Assert.assertEquals("Straight", arr[0]);
+        Assert.assertEquals("9", arr[1]);
+
+    }
+
+    @Test
+    public void currentStraightFlushTest1(){
+        BasePlayer player = new BasePlayer();
+        PokerPlayer realPlayer = new PokerPlayer(player);
+        ArrayList<Card> hand = new ArrayList<>();
+
+
+        hand.add(new Card(Suit.CLUBS, Rank.NINE,   Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.TEN,   Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.JACK,  Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.QUEEN, Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.KING,  Suit.CLUBS.getSuitImage()));
+
+        realPlayer.setHand(hand);
+        String [] arr = realPlayer.currentHandValue();
+
+        Assert.assertEquals("Straight Flush", arr[0]);
+        Assert.assertEquals("300", arr[1]);
+
+    }
+
+    @Test
+    public void currentStraightTest2(){
+        BasePlayer player = new BasePlayer();
+        PokerPlayer realPlayer = new PokerPlayer(player);
+        ArrayList<Card> hand = new ArrayList<>();
+
+
+        hand.add(new Card(Suit.CLUBS, Rank.SIX,   Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.SEVEN,   Suit.HEARTS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.EIGHT,  Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.NINE, Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.TEN,  Suit.CLUBS.getSuitImage()));
+
+        realPlayer.setHand(hand);
+        String [] arr = realPlayer.currentHandValue();
+
+        Assert.assertEquals("Straight", arr[0]);
+        Assert.assertEquals("9", arr[1]);
+
+    }
+
+
 
     @Test
     public void checkStraightTest2(){
@@ -149,6 +260,28 @@ public class PokerPlayerTest {
     }
 
     @Test
+    public void currentFlushTest1(){
+        BasePlayer player = new BasePlayer();
+        PokerPlayer realPlayer = new PokerPlayer(player);
+        ArrayList<Card> hand = new ArrayList<>();
+
+
+        hand.add(new Card(Suit.CLUBS, Rank.DEUCE,   Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.SEVEN,   Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.TEN,  Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.QUEEN, Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.KING,  Suit.CLUBS.getSuitImage()));
+
+        realPlayer.setHand(hand);
+        String [] arr = realPlayer.currentHandValue();
+
+        Assert.assertEquals("Flush", arr[0]);
+        Assert.assertEquals("13", arr[1]);
+
+    }
+
+
+    @Test
     public void checkFlushTest2(){
         BasePlayer player = new BasePlayer();
         PokerPlayer realPlayer = new PokerPlayer(player);
@@ -209,6 +342,29 @@ public class PokerPlayerTest {
     }
 
     @Test
+    public void current3KindTest1(){
+        BasePlayer player = new BasePlayer();
+        PokerPlayer realPlayer = new PokerPlayer(player);
+        ArrayList<Card> hand = new ArrayList<>();
+
+
+        hand.add(new Card(Suit.SPADES, Rank.DEUCE,   Suit.SPADES.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.DEUCE,   Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.DIAMONDS, Rank.DEUCE,  Suit.DIAMONDS.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.QUEEN, Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.DIAMONDS, Rank.KING,  Suit.DIAMONDS.getSuitImage()));
+
+        realPlayer.setHand(hand);
+        String [] arr = realPlayer.currentHandValue();
+
+        Assert.assertEquals("Three of a Kind", arr[0]);
+        Assert.assertEquals("6", arr[1]);
+
+    }
+
+
+
+    @Test
     public void check3Kind2(){
         BasePlayer player = new BasePlayer();
         PokerPlayer realPlayer = new PokerPlayer(player);
@@ -249,6 +405,28 @@ public class PokerPlayerTest {
     }
 
     @Test
+    public void current3KindTest2(){
+        BasePlayer player = new BasePlayer();
+        PokerPlayer realPlayer = new PokerPlayer(player);
+        ArrayList<Card> hand = new ArrayList<>();
+
+
+        hand.add(new Card(Suit.SPADES, Rank.THREE,   Suit.SPADES.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.KING,   Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.DIAMONDS, Rank.ACE,  Suit.DIAMONDS.getSuitImage()));
+        hand.add(new Card(Suit.SPADES, Rank.ACE, Suit.SPADES.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.ACE,  Suit.CLUBS.getSuitImage()));
+
+        realPlayer.setHand(hand);
+        String [] arr = realPlayer.currentHandValue();
+
+        Assert.assertEquals("Three of a Kind", arr[0]);
+        Assert.assertEquals("6", arr[1]);
+
+    }
+
+
+    @Test
     public void check4Kind1(){
         BasePlayer player = new BasePlayer();
         PokerPlayer realPlayer = new PokerPlayer(player);
@@ -267,6 +445,28 @@ public class PokerPlayerTest {
         Assert.assertTrue(realPlayer.check4Kind());
 
     }
+
+    @Test
+    public void current4KindTest1(){
+        BasePlayer player = new BasePlayer();
+        PokerPlayer realPlayer = new PokerPlayer(player);
+        ArrayList<Card> hand = new ArrayList<>();
+
+
+        hand.add(new Card(Suit.SPADES, Rank.THREE,   Suit.SPADES.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.ACE,   Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.DIAMONDS, Rank.ACE,  Suit.DIAMONDS.getSuitImage()));
+        hand.add(new Card(Suit.SPADES, Rank.ACE, Suit.SPADES.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.ACE,  Suit.CLUBS.getSuitImage()));
+
+        realPlayer.setHand(hand);
+        String [] arr = realPlayer.currentHandValue();
+
+        Assert.assertEquals("Four of a Kind", arr[0]);
+        Assert.assertEquals("90", arr[1]);
+
+    }
+
 
     @Test
     public void check4Kind2(){
@@ -325,6 +525,27 @@ public class PokerPlayerTest {
         System.out.println(Hand.showHand((ArrayList<Card>) realPlayer.getHand()));
 
         Assert.assertTrue(realPlayer.checkBoat());
+
+    }
+
+    @Test
+    public void currentBoatTest1(){
+        BasePlayer player = new BasePlayer();
+        PokerPlayer realPlayer = new PokerPlayer(player);
+        ArrayList<Card> hand = new ArrayList<>();
+
+
+        hand.add(new Card(Suit.SPADES, Rank.THREE,   Suit.SPADES.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.THREE,   Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.DIAMONDS, Rank.ACE,  Suit.DIAMONDS.getSuitImage()));
+        hand.add(new Card(Suit.SPADES, Rank.ACE, Suit.SPADES.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.ACE,  Suit.CLUBS.getSuitImage()));
+
+        realPlayer.setHand(hand);
+        String [] arr = realPlayer.currentHandValue();
+
+        Assert.assertEquals("Full House", arr[0]);
+        Assert.assertEquals("20", arr[1]);
 
     }
 
@@ -389,6 +610,27 @@ public class PokerPlayerTest {
     }
 
     @Test
+    public void current2PairTest1(){
+        BasePlayer player = new BasePlayer();
+        PokerPlayer realPlayer = new PokerPlayer(player);
+        ArrayList<Card> hand = new ArrayList<>();
+
+
+        hand.add(new Card(Suit.SPADES, Rank.THREE,   Suit.SPADES.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.THREE,   Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.DIAMONDS, Rank.KING,  Suit.DIAMONDS.getSuitImage()));
+        hand.add(new Card(Suit.SPADES, Rank.ACE, Suit.SPADES.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.ACE,  Suit.CLUBS.getSuitImage()));
+
+        realPlayer.setHand(hand);
+        String [] arr = realPlayer.currentHandValue();
+
+        Assert.assertEquals("Two Pair", arr[0]);
+        Assert.assertEquals("3", arr[1]);
+
+    }
+
+    @Test
     public void check2Pair2(){
         BasePlayer player = new BasePlayer();
         PokerPlayer realPlayer = new PokerPlayer(player);
@@ -445,6 +687,27 @@ public class PokerPlayerTest {
         System.out.println(Hand.showHand((ArrayList<Card>) realPlayer.getHand()));
 
         Assert.assertTrue(realPlayer.checkPair());
+
+    }
+
+    @Test
+    public void currentPairTest1(){
+        BasePlayer player = new BasePlayer();
+        PokerPlayer realPlayer = new PokerPlayer(player);
+        ArrayList<Card> hand = new ArrayList<>();
+
+
+        hand.add(new Card(Suit.SPADES, Rank.EIGHT,   Suit.SPADES.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.JACK,   Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.DIAMONDS, Rank.ACE,  Suit.DIAMONDS.getSuitImage()));
+        hand.add(new Card(Suit.SPADES, Rank.FOUR, Suit.SPADES.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.JACK,  Suit.CLUBS.getSuitImage()));
+
+        realPlayer.setHand(hand);
+        String [] arr = realPlayer.currentHandValue();
+
+        Assert.assertEquals("One Pair", arr[0]);
+        Assert.assertEquals("2", arr[1]);
 
     }
 
@@ -548,6 +811,29 @@ public class PokerPlayerTest {
 
     }
 
+    @Test
+    public void currentHighCardTest1(){
+        BasePlayer player = new BasePlayer();
+        PokerPlayer realPlayer = new PokerPlayer(player);
+        ArrayList<Card> hand = new ArrayList<>();
+
+
+        hand.add(new Card(Suit.SPADES, Rank.EIGHT,   Suit.SPADES.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.SEVEN,   Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.DIAMONDS, Rank.KING,  Suit.DIAMONDS.getSuitImage()));
+        hand.add(new Card(Suit.SPADES, Rank.FOUR, Suit.SPADES.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.JACK,  Suit.CLUBS.getSuitImage()));
+
+
+        realPlayer.setHand(hand);
+        String [] arr = realPlayer.currentHandValue();
+
+        Assert.assertEquals("High Card", arr[0]);
+        Assert.assertEquals("1", arr[1]);
+
+    }
+
+
 
     @Test
     public void testQHigh4(){
@@ -643,6 +929,30 @@ public class PokerPlayerTest {
 
         //action
         realPlayer.addCard(new Card(Suit.HEARTS, Rank.FOUR, Suit.HEARTS.getSuitImage()));
+
+        Assert.assertEquals(expected,Integer.valueOf( realPlayer.getHand().size()));
+    }
+
+    @Test
+    public void testReDraw(){
+        BasePlayer player = new BasePlayer();
+        PokerPlayer realPlayer = new PokerPlayer(player);
+
+        ArrayList<Card> hand = new ArrayList<>();
+
+        hand.add(new Card(Suit.SPADES, Rank.EIGHT,   Suit.SPADES.getSuitImage()));
+        hand.add(new Card(Suit.HEARTS, Rank.SEVEN,   Suit.CLUBS.getSuitImage()));
+        hand.add(new Card(Suit.DIAMONDS, Rank.ACE,  Suit.DIAMONDS.getSuitImage()));
+        hand.add(new Card(Suit.SPADES, Rank.FOUR, Suit.SPADES.getSuitImage()));
+        hand.add(new Card(Suit.CLUBS, Rank.JACK,  Suit.CLUBS.getSuitImage()));
+
+        realPlayer.setHand(hand);
+
+        //expected
+        Integer expected = realPlayer.getHand().size() - 4;
+
+        //action
+        realPlayer.reDraw(new Integer[]{5, 3,2, 1});
 
         Assert.assertEquals(expected,Integer.valueOf( realPlayer.getHand().size()));
     }

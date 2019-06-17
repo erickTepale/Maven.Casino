@@ -23,7 +23,7 @@ public class PokerPlayer extends BasePlayer {
             result[0] = "Royal Flush";
             result[1] = "1000";
         }
-        else if(checkStraight()){
+        else if(checkStraightFlush()){
             result[0] = "Straight Flush";
             result[1] = "300";
         }
@@ -66,9 +66,6 @@ public class PokerPlayer extends BasePlayer {
         Arrays.sort(toReDraw);
         for (int i = toReDraw.length - 1; i >= 0 ; i--) {
             hand.remove(toReDraw[i] - 1);
-            //removing index arr[i] - 1 - i because size of array changes as you delete
-            //so if size of array starts at 5 and you delete index 1.
-            //size is now 4 and if you try to delete index 5 you get a null pointer!
         }
     }
 
