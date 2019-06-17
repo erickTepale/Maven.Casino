@@ -121,13 +121,9 @@ public class Craps extends DiceGame implements GamblingGame {
         this.minBet = minBet;
     }
 
-    public CrapsPlayer getPlayer() {
-        return player;
-    }
+    public CrapsPlayer getPlayer() { return player; }
 
-    public void setPlayer(CrapsPlayer player) {
-        this.player = player;
-    }
+    public void setPlayer(CrapsPlayer player) { this.player = player; }
 
     public CrapsPlayer getDealer() {
         return dealer;

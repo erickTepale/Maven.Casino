@@ -5,7 +5,7 @@ public class Casino {
     public static void main(String[] args) {
 
         Console console = new Console(System.in,System.out);
-        console.println("Welcome to Blitz & Chips, the finest text based Casino in all the universe!");
+        console.println("Welcome to Blitz & Chips, the finest text based Casino in all of the universe!");
         String name = console.getStringInput("\n...Haven't seen ya here before, what do they call ya?");
         BasePlayer blank = new BasePlayer(name);
         BasePlayer dealer = new BasePlayer("Dealer");
